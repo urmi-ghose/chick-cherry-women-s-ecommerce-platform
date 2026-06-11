@@ -1,0 +1,428 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — ChicCherry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .wrapper {
+      display: flex;
+      width: 100%;
+      max-width: 960px;
+      min-height: 560px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      animation: fadeUp 0.45s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Left branding panel ── */
+    .brand-panel {
+      flex: 1;
+      background: linear-gradient(145deg, #be123c 0%, #e11d48 60%, #fb7185 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 40px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .brand-logo {
+      width: 64px;
+      height: 64px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      backdrop-filter: blur(6px);
+    }
+
+    .brand-logo svg { width: 34px; height: 34px; fill: #fff; }
+
+    .brand-name {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    .brand-tagline {
+      font-size: 15px;
+      opacity: 0.82;
+      line-height: 1.6;
+      max-width: 240px;
+    }
+
+    .brand-features {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      text-align: left;
+    }
+
+    .feature-item svg { width: 18px; height: 18px; flex-shrink: 0; fill: #c7d2fe; }
+
+    /* ── Right form panel ── */
+    .form-panel {
+      flex: 1;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 40px;
+    }
+
+    .form-card { width: 100%; max-width: 360px; }
+
+    .form-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .form-subtitle {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 28px;
+    }
+
+    /* Django messages */
+    .alert {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      margin-bottom: 18px;
+    }
+    .alert-error   { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+    .alert-success { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+    .alert-warning { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+    .alert-info    { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+
+    /* Form fields */
+    .field { margin-bottom: 18px; }
+
+    label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #0f172a;
+      background: #f8fafc;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="text"]:focus {
+      border-color: #e11d48;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(225,29,72,0.15);
+    }
+
+    input.is-invalid { border-color: #f87171; }
+    .error-msg { font-size: 12px; color: #ef4444; margin-top: 5px; display: none; }
+    .error-msg.visible { display: block; }
+
+    /* Password wrapper */
+    .pw-wrap { position: relative; }
+    .pw-wrap input { padding-right: 42px; }
+    .pw-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+    }
+    .pw-toggle:hover { color: #e11d48; }
+    .pw-toggle svg { width: 18px; height: 18px; }
+
+    /* Remember + forgot */
+    .row-check {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .check-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: #475569;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #e11d48;
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      font-size: 13.5px;
+      color: #e11d48;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .forgot-link:hover { text-decoration: underline; }
+
+    /* Submit button */
+    .btn-login {
+      width: 100%;
+      padding: 11px;
+      background: #e11d48;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-login:hover:not(:disabled) { background: #be123c; }
+    .btn-login:active:not(:disabled) { transform: scale(0.98); }
+    .btn-login:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    /* Spinner */
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .btn-login.loading .spinner { display: block; }
+    .btn-login.loading .btn-text { display: none; }
+
+    /* Footer note */
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .brand-panel { display: none; }
+      .form-panel { padding: 36px 28px; }
+      .wrapper { border-radius: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- Left: Branding -->
+  <div class="brand-panel">
+    <div class="brand-logo">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/>
+      </svg>
+    </div>
+    <div class="brand-name">ChicCherry</div>
+    <div class="brand-tagline">Sign in to explore the latest fashion & lifestyle products curated just for you.</div>
+
+    <div class="brand-features">
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-10.3-5h11.1l1.7-8H5.2L4.3 3H1v2h2l3.6 7.59L5.25 15H19v-2H7.42l-.72-2z"/></svg>
+        Easy cart &amp; checkout
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        Track your orders live
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg>
+        Exclusive deals &amp; offers
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Login Form -->
+  <div class="form-panel">
+    <div class="form-card">
+      <div class="form-title">Welcome Back</div>
+      <div class="form-subtitle">Please sign in to your account</div>
+
+      <form method="post" action="{% url 'accounts:login' %}" id="loginForm" novalidate>
+        {% csrf_token %}
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+          <div class="error-msg" id="emailErr">Please enter a valid email address.</div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="pw-wrap">
+            <input type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required />
+            <button type="button" class="pw-toggle" id="pwToggle" aria-label="Toggle password visibility">
+              <!-- Eye icon -->
+              <svg id="eyeShow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+              <!-- Eye-off icon -->
+              <svg id="eyeHide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </button>
+          </div>
+          <div class="error-msg" id="pwErr">Password is required.</div>
+        </div>
+
+        <div class="row-check">
+          <label class="check-label">
+            <input type="checkbox" name="remember" id="remember" />
+            Remember me
+          </label>
+          <a href="{% url 'accounts:forgotPassword' %}" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn-login" id="loginBtn">
+          <span class="spinner"></span>
+          <span class="btn-text">Sign In</span>
+        </button>
+      </form>
+
+      <div class="form-footer">
+        &copy; {% now "Y" %} ChicCherry. All rights reserved.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Password show/hide
+  const pwInput  = document.getElementById('password');
+  const eyeShow  = document.getElementById('eyeShow');
+  const eyeHide  = document.getElementById('eyeHide');
+  document.getElementById('pwToggle').addEventListener('click', () => {
+    const isText = pwInput.type === 'text';
+    pwInput.type = isText ? 'password' : 'text';
+    eyeShow.style.display = isText ? '' : 'none';
+    eyeHide.style.display = isText ? 'none' : '';
+  });
+
+  // Inline validation + loading state
+  const form     = document.getElementById('loginForm');
+  const emailEl  = document.getElementById('email');
+  const emailErr = document.getElementById('emailErr');
+  const pwErr    = document.getElementById('pwErr');
+  const loginBtn = document.getElementById('loginBtn');
+
+  form.addEventListener('submit', (e) => {
+    let valid = true;
+
+    // Email
+    if (!emailEl.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailEl.value)) {
+      emailEl.classList.add('is-invalid');
+      emailErr.classList.add('visible');
+      valid = false;
+    } else {
+      emailEl.classList.remove('is-invalid');
+      emailErr.classList.remove('visible');
+    }
+
+    // Password
+    if (!pwInput.value) {
+      pwInput.classList.add('is-invalid');
+      pwErr.classList.add('visible');
+      valid = false;
+    } else {
+      pwInput.classList.remove('is-invalid');
+      pwErr.classList.remove('visible');
+    }
+
+    if (!valid) { e.preventDefault(); return; }
+
+    // Loading state
+    loginBtn.classList.add('loading');
+    loginBtn.disabled = true;
+  });
+
+  // Clear error on input
+  emailEl.addEventListener('input', () => {
+    emailEl.classList.remove('is-invalid');
+    emailErr.classList.remove('visible');
+  });
+  pwInput.addEventListener('input', () => {
+    pwInput.classList.remove('is-invalid');
+    pwErr.classList.remove('visible');
+  });
+</script>
+
+</body>
+</html>

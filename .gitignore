@@ -1,0 +1,23 @@
+# Node
+node_modules/
+npm-debug.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+env/
+venv/
+*.egg-info/
+
+# Django
+*.sqlite3
+media/
+staticfiles/
+
+# Env
+.env
+
+# OS
+.DS_Store
+Thumbs.db

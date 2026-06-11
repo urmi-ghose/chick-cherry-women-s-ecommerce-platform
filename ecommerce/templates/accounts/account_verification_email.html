@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Account Verification</title>
+</head>
+<body>
+    <h1>Welcome to ChicCherry!</h1>
+    <p>Hi {{ user.first_name }},</p>
+    <p>Please click the link below to activate your account:</p>
+    <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">Activate Account</a>
+    <p>If you did not create an account, please ignore this email.</p>
+    <p>Best regards,<br>ChicCherry Team</p>
+</body>
+</html>

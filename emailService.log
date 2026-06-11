@@ -1,0 +1,3 @@
+Email service running on port 3001
+SMTP verify failed — check EMAIL_USER / EMAIL_APP_PASSWORD and network: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 41be03b00d2f7-c7fd606ea2fsm2646064a12.14 - gsmtp

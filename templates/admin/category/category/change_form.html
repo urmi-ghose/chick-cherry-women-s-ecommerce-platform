@@ -1,0 +1,318 @@
+{% extends "admin/change_form.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+/* ── Hide Django chrome ── */
+#content h1, #content h2, .object-tools,
+#content .submit-row, #content fieldset h2,
+.breadcrumbs { display: none !important; }
+#content fieldset { border: none !important; padding: 0 !important; margin: 0 !important; }
+.form-row { margin: 0 !important; padding: 0 !important; }
+p.help { display: none; }
+
+/* ── Wrap ── */
+.cc-wrap { max-width: 900px; margin: 0 auto; }
+
+/* ── Header ── */
+.cc-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px; gap: 12px; flex-wrap: wrap;
+}
+.cc-header-title { font-size: 20px; font-weight: 700; color: #111827; margin: 0 0 2px; }
+.cc-header-sub   { font-size: 13px; color: #6b7280; margin: 0; }
+.cc-header-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+/* ── Buttons ── */
+.cc-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: 10px; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all .15s; text-decoration: none;
+  border: none; font-family: inherit; white-space: nowrap;
+}
+.cc-btn-primary { background: #6366f1; color: #fff; }
+.cc-btn-primary:hover { background: #4f46e5; color: #fff; }
+.cc-btn-ghost   { background: #fff; color: #374151; border: 1.5px solid #e2e8f0; }
+.cc-btn-ghost:hover { border-color: #6366f1; color: #6366f1; background: #f5f3ff; }
+.cc-btn-danger  { background: #fff; color: #ef4444; border: 1.5px solid #fecaca; }
+.cc-btn-danger:hover { background: #fef2f2; border-color: #ef4444; }
+.cc-btn-full    { width: 100%; justify-content: center; }
+
+/* ── Grid ── */
+.cc-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 20px;
+  align-items: start;
+}
+.cc-main { display: flex; flex-direction: column; gap: 16px; }
+.cc-side { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 80px; }
+
+/* ── Card ── */
+.cc-card {
+  background: #fff; border: 1px solid #e5e7eb;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.cc-card-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 18px; border-bottom: 1px solid #f1f5f9;
+  background: #fafbff;
+}
+.cc-card-head i { color: #6366f1; font-size: 13px; width: 16px; text-align: center; }
+.cc-card-head-title { font-size: 13px; font-weight: 600; color: #111827; }
+.cc-card-body { padding: 18px; }
+
+/* ── Form groups ── */
+.cc-group { display: flex; flex-direction: column; gap: 5px; margin-bottom: 14px; }
+.cc-group:last-child { margin-bottom: 0; }
+.cc-label { font-size: 13px; font-weight: 500; color: #374151; }
+.cc-label .req { color: #ef4444; margin-left: 2px; }
+.cc-help  { font-size: 11px; color: #9ca3af; }
+.cc-error { font-size: 11px; color: #ef4444; }
+
+.cc-card-body input[type=text],
+.cc-card-body input[type=number],
+.cc-card-body select,
+.cc-card-body textarea {
+  width: 100%; padding: 9px 13px;
+  border: 1.5px solid #e5e7eb; border-radius: 10px;
+  font-size: 13px; font-family: inherit; color: #111827;
+  background: #f9fafb; outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.cc-card-body input:focus,
+.cc-card-body select:focus,
+.cc-card-body textarea:focus {
+  border-color: #6366f1; background: #fff;
+  box-shadow: 0 0 0 3px rgba(99,102,241,.1);
+}
+.cc-card-body textarea { resize: vertical; min-height: 80px; }
+
+/* ── Image preview ── */
+.cc-img-box {
+  width: 100%; aspect-ratio: 4/3;
+  border-radius: 12px; overflow: hidden;
+  background: #f3f4f6; border: 1px solid #e5e7eb;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 12px;
+}
+.cc-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cc-img-placeholder { text-align: center; color: #9ca3af; }
+.cc-img-placeholder i { font-size: 32px; display: block; margin-bottom: 6px; opacity: .35; }
+.cc-img-placeholder span { font-size: 12px; }
+
+/* ── Meta rows ── */
+.cc-meta-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 12px;
+}
+.cc-meta-row:last-child { border-bottom: none; padding-bottom: 0; }
+.cc-meta-key { color: #6b7280; }
+.cc-meta-val { font-weight: 600; color: #111827; }
+
+/* ── Mobile save bar ── */
+.cc-mobile-save {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+  background: #fff; border-top: 1px solid #e5e7eb;
+  padding: 12px 16px; gap: 10px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,.08);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .cc-grid { grid-template-columns: 1fr; }
+  .cc-side { position: static; order: -1; }
+  .cc-header-actions .cc-btn-primary { display: none; }
+  .cc-mobile-save { display: flex; }
+  #admin-content { padding-bottom: 80px; }
+  .cc-card-body { padding: 14px; }
+}
+@media (max-width: 480px) {
+  .cc-header { flex-direction: column; align-items: stretch; }
+  .cc-header-actions { flex-wrap: wrap; }
+  .cc-header-actions .cc-btn { flex: 1; justify-content: center; }
+}
+</style>
+{% endblock %}
+
+{% block content_title %}{% endblock %}
+{% block object-tools %}{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data" id="cc-form" novalidate>
+{% csrf_token %}
+{% for field in adminform.form.hidden_fields %}{{ field }}{% endfor %}
+
+<div class="cc-wrap">
+
+  <!-- Header -->
+  <div class="cc-header">
+    <div>
+      <h1 class="cc-header-title">{% if original %}Edit Category{% else %}Add Category{% endif %}</h1>
+      <p class="cc-header-sub">{% if original %}{{ original.category_name }}{% else %}Fill in the details to create a new category{% endif %}</p>
+    </div>
+    <div class="cc-header-actions">
+      <a href="/secureadmin/category/list/" class="cc-btn cc-btn-ghost">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+      {% if original %}
+      <a href="{% url 'admin:category_category_delete' original.pk %}" class="cc-btn cc-btn-danger">
+        <i class="fas fa-trash"></i> Delete
+      </a>
+      {% endif %}
+      <button type="submit" name="_save" class="cc-btn cc-btn-primary">
+        <i class="fas fa-check"></i> Save
+      </button>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="cc-grid">
+
+    <!-- Main -->
+    <div class="cc-main">
+
+      <!-- Basic Info -->
+      <div class="cc-card">
+        <div class="cc-card-head">
+          <i class="fas fa-tag"></i>
+          <span class="cc-card-head-title">Category Details</span>
+        </div>
+        <div class="cc-card-body">
+          {% with f=adminform.form.category_name %}
+          <div class="cc-group">
+            <label class="cc-label">{{ f.label }}<span class="req">*</span></label>
+            {{ f }}
+            {% if f.errors %}<p class="cc-error">{{ f.errors.0 }}</p>{% endif %}
+          </div>
+          {% endwith %}
+
+          {% with f=adminform.form.slug %}
+          <div class="cc-group">
+            <label class="cc-label">{{ f.label }}</label>
+            {{ f }}
+            <p class="cc-help">Auto-generated from category name. Used in the URL.</p>
+            {% if f.errors %}<p class="cc-error">{{ f.errors.0 }}</p>{% endif %}
+          </div>
+          {% endwith %}
+
+          {% with f=adminform.form.description %}
+          <div class="cc-group">
+            <label class="cc-label">{{ f.label }}</label>
+            {{ f }}
+            {% if f.errors %}<p class="cc-error">{{ f.errors.0 }}</p>{% endif %}
+          </div>
+          {% endwith %}
+
+          <!-- Save Options -->
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;">
+            <button type="submit" name="_save" class="cc-btn cc-btn-primary">
+              <i class="fas fa-check"></i> Save
+            </button>
+            <button type="submit" name="_continue" class="cc-btn cc-btn-ghost">
+              <i class="fas fa-pen"></i> Save & Continue
+            </button>
+            <button type="submit" name="_addanother" class="cc-btn cc-btn-ghost">
+              <i class="fas fa-plus"></i> Save & Add Another
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sidebar -->
+    <div class="cc-side">
+
+      <!-- Image -->
+      <div class="cc-card">
+        <div class="cc-card-head">
+          <i class="fas fa-image"></i>
+          <span class="cc-card-head-title">Category Image</span>
+        </div>
+        <div class="cc-card-body">
+          <div class="cc-img-box">
+            {% if original.cat_image %}
+            <img src="{{ original.cat_image.url }}" id="cat-img-preview" alt="{{ original.category_name }}">
+            {% else %}
+            <div class="cc-img-placeholder" id="cat-img-placeholder">
+              <i class="fas fa-image"></i>
+              <span>No image uploaded</span>
+            </div>
+            <img src="" id="cat-img-preview" style="display:none;width:100%;height:100%;object-fit:cover;" alt="">
+            {% endif %}
+          </div>
+          {% with f=adminform.form.cat_image %}
+          <div class="cc-group">
+            <label class="cc-label">{{ f.label }}</label>
+            {{ f }}
+          </div>
+          {% endwith %}
+        </div>
+      </div>
+
+      <!-- Meta -->
+      {% if original %}
+      <div class="cc-card">
+        <div class="cc-card-head">
+          <i class="fas fa-circle-info"></i>
+          <span class="cc-card-head-title">Info</span>
+        </div>
+        <div class="cc-card-body">
+          <div class="cc-meta-row">
+            <span class="cc-meta-key">ID</span>
+            <span class="cc-meta-val">#{{ original.pk }}</span>
+          </div>
+          <div class="cc-meta-row">
+            <span class="cc-meta-key">Slug</span>
+            <span class="cc-meta-val">/{{ original.slug }}/</span>
+          </div>
+          <div class="cc-meta-row">
+            <span class="cc-meta-key">Image</span>
+            <span class="cc-meta-val" style="color:{% if original.cat_image %}#22c55e{% else %}#ef4444{% endif %};">
+              {% if original.cat_image %}Uploaded{% else %}None{% endif %}
+            </span>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+<!-- Mobile sticky save -->
+<div class="cc-mobile-save">
+  <button type="submit" name="_save" class="cc-btn cc-btn-primary" style="flex:1;justify-content:center;">
+    <i class="fas fa-check"></i> Save
+  </button>
+  <button type="submit" name="_continue" class="cc-btn cc-btn-ghost" style="flex:1;justify-content:center;">
+    <i class="fas fa-pen"></i> Save & Continue
+  </button>
+</div>
+
+</form>
+
+<script>
+(function(){
+  var inp = document.querySelector('input[name="cat_image"]');
+  if(!inp) return;
+  inp.addEventListener('change', function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      var preview = document.getElementById('cat-img-preview');
+      var placeholder = document.getElementById('cat-img-placeholder');
+      preview.src = ev.target.result;
+      preview.style.display = 'block';
+      if(placeholder) placeholder.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  });
+})();
+</script>
+{% endblock %}

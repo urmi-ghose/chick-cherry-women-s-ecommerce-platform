@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChicCherry - Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .status {
+            background: #e8f5e8;
+            border: 1px solid #4caf50;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .minio-info {
+            background: #e3f2fd;
+            border: 1px solid #56051a;
+            color: #0d47a1;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .links {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background: #2196f3;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .links a:hover {
+            background: #1976d2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to ChicCherry</h1>
+
+        <div class="status">
+            <h3>✅ Django Server Status: Running</h3>
+            <p>Django version 5.2.6 is running successfully with ChicCherry settings.</p>
+        </div>
+
+        <div class="minio-info">
+            <h3>📦 MinIO Integration Status</h3>
+            <p><strong>Current Configuration:</strong></p>
+            <ul>
+                <li>USE_MINIO: {{ USE_MINIO|default:"False" }}</li>
+                <li>Storage Backend: Custom MinIO Storage (minio-py)</li>
+                <li>Default File Storage: greatkart.media_storages.MediaStorage</li>
+                {% if USE_MINIO %}
+                <li>MinIO Endpoint: {{ MINIO_ENDPOINT|default:"localhost:9000" }}</li>
+                <li>Bucket: {{ MINIO_BUCKET_NAME|default:"greatkart-media" }}</li>
+                {% else %}
+                <li>Storage: Local filesystem (media/ directory)</li>
+                {% endif %}
+            </ul>
+        </div>
+
+        <div class="links">
+            <a href="/admin/">Django Admin</a>
+            <a href="/accounts/login/">Login</a>
+            <a href="/store/">Store</a>
+        </div>
+
+        <div style="margin-top: 30px; padding: 20px; background: #f9f9f9; border-radius: 4px;">
+            <h3>🚀 Next Steps</h3>
+            <ol>
+                <li>Start MinIO server (if testing MinIO integration)</li>
+                <li>Test file uploads via Django Admin</li>
+                <li>Verify files are stored in MinIO bucket</li>
+                <li>Check file URLs point to MinIO</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

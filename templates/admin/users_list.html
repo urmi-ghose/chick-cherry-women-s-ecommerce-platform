@@ -1,0 +1,413 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}Users | ChicCherry Admin{% endblock %}
+{% block page_title %}Users{% endblock %}
+
+{% block content %}
+<style>
+  /* ── Stat Cards ── */
+  .stat-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px; }
+  .stat-card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 18px 20px; display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  }
+  .stat-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .stat-icon.blue   { background: #eff6ff; color: #3b82f6; }
+  .stat-icon.green  { background: #f0fdf4; color: #22c55e; }
+  .stat-icon.red    { background: #fff1f2; color: #f43f5e; }
+  .stat-icon.purple { background: #f5f3ff; color: #8b5cf6; }
+  .stat-label { font-size: 12px; color: #64748b; font-weight: 500; margin-bottom: 2px; }
+  .stat-value { font-size: 22px; font-weight: 700; color: #0f172a; line-height: 1; }
+
+  /* ── Toolbar ── */
+  .users-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px; flex-wrap: wrap; gap: 12px;
+  }
+  .search-wrap { display: flex; gap: 8px; position: relative; }
+  .search-wrap input {
+    padding: 8px 36px 8px 14px; border: 1.5px solid #e2e8f0; border-radius: 8px;
+    font-size: 13px; outline: none; width: 260px; background: #f8fafc;
+    transition: border-color .15s;
+  }
+  .search-wrap input:focus { border-color: #6366f1; background: #fff; }
+  .search-clear {
+    position: absolute; right: 44px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 14px;
+    display: {% if keyword %}flex{% else %}none{% endif %}; align-items: center;
+  }
+  .btn-search {
+    padding: 8px 16px; background: #6366f1; color: #fff;
+    border: none; border-radius: 8px; font-size: 13px; font-weight: 600;
+    cursor: pointer; transition: background .15s;
+  }
+  .btn-search:hover { background: #4f46e5; }
+  .btn-export {
+    padding: 8px 16px; background: #fff; color: #374151;
+    border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 6px;
+    text-decoration: none;
+  }
+  .btn-export:hover { border-color: #6366f1; color: #6366f1; }
+
+  /* ── Filter Tabs ── */
+  .filter-tabs {
+    display: flex; gap: 4px; margin-bottom: 20px;
+    background: #f1f5f9; padding: 4px; border-radius: 10px; width: fit-content;
+  }
+  .filter-tab {
+    padding: 6px 16px; border-radius: 7px; font-size: 13px; font-weight: 500;
+    color: #64748b; text-decoration: none; transition: all .15s; white-space: nowrap;
+  }
+  .filter-tab:hover { color: #0f172a; }
+  .filter-tab.active { background: #fff; color: #6366f1; font-weight: 600; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .tab-count {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #e2e8f0; color: #64748b; border-radius: 99px;
+    font-size: 10px; font-weight: 700; padding: 1px 6px; margin-left: 4px;
+  }
+  .filter-tab.active .tab-count { background: #eef2ff; color: #6366f1; }
+
+  /* ── Table ── */
+  .table-scroll {
+    width: 100%; overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 14px;
+  }
+  .users-table {
+    width: 100%; min-width: 640px; border-collapse: collapse;
+    background: #fff; border-radius: 14px;
+    overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .users-table thead tr { background: #f8fafc; }
+  .users-table th {
+    padding: 12px 16px; text-align: left;
+    font-size: 11px; font-weight: 700; color: #64748b;
+    text-transform: uppercase; letter-spacing: .6px;
+    border-bottom: 1px solid #e2e8f0; white-space: nowrap;
+  }
+  .users-table th a {
+    color: inherit; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+  }
+  /* fixed column widths so nothing squishes */
+  .users-table th:nth-child(1) { width: 48px; }
+  .users-table th:nth-child(2) { min-width: 160px; max-width: 220px; }
+  .users-table th:nth-child(3) { width: 120px; }
+  .users-table th:nth-child(4) { width: 110px; }
+  .users-table th:nth-child(5) { width: 90px; }
+  .users-table th:nth-child(6) { width: 90px; }
+  .users-table th:nth-child(7) { width: 80px; }
+  .user-cell { display: flex; align-items: center; min-width: 0; }
+  .user-info { min-width: 0; overflow: hidden; }
+  .user-name { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 140px; }
+  .user-email { font-size: 12px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100px; }
+  .users-table th a:hover { color: #6366f1; }
+  .sort-icon { font-size: 9px; opacity: .5; }
+  .sort-icon.active { opacity: 1; color: #6366f1; }
+
+  .users-table td {
+    padding: 12px 16px; font-size: 13px; color: #0f172a;
+    border-bottom: 1px solid #f1f5f9; vertical-align: middle;
+  }
+  .users-table tbody tr:last-child td { border-bottom: none; }
+  .users-table tbody tr:hover td { background: #fafbff; }
+
+  /* ── Avatar ── */
+  .avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    color: #fff; display: inline-flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; margin-right: 10px; flex-shrink: 0;
+  }
+  .user-cell { display: flex; align-items: center; }
+  .user-name { font-weight: 600; }
+  .user-email { font-size: 12px; color: #64748b; }
+
+  /* ── Badges ── */
+  .badge-active   { background: #dcfce7; color: #15803d; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 600; }
+  .badge-inactive { background: #fee2e2; color: #b91c1c; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 600; }
+
+  /* ── Quick Actions ── */
+  .actions-cell { display: flex; align-items: center; gap: 6px; }
+  .action-btn {
+    width: 30px; height: 30px; border-radius: 7px; border: 1.5px solid #e2e8f0;
+    background: #fff; color: #64748b; display: inline-flex; align-items: center;
+    justify-content: center; font-size: 12px; cursor: pointer;
+    transition: all .15s; text-decoration: none; position: relative;
+  }
+  .action-btn:hover { border-color: #6366f1; color: #6366f1; background: #eef2ff; }
+  .action-btn[title]:hover::after {
+    content: attr(title);
+    position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+    background: #0f172a; color: #fff; font-size: 11px; font-weight: 500;
+    padding: 4px 8px; border-radius: 6px; white-space: nowrap; pointer-events: none;
+    z-index: 10;
+  }
+
+  /* ── Pagination ── */
+  .pg-wrap { display: flex; justify-content: center; gap: 4px; margin-top: 24px; }
+  .pg-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 8px;
+    border: 1.5px solid #e2e8f0; background: #fff;
+    color: #64748b; font-size: 12px; text-decoration: none; transition: all .15s;
+  }
+  .pg-btn:hover { background: #eef2ff; color: #6366f1; border-color: #6366f1; }
+  .pg-btn.active { background: #6366f1; border-color: #6366f1; color: #fff; font-weight: 700; }
+  .pg-btn.disabled { opacity: .35; pointer-events: none; }
+
+  /* ── Empty ── */
+  .empty-state { text-align: center; padding: 60px 20px; color: #64748b; }
+  .empty-state i { font-size: 44px; opacity: .2; display: block; margin-bottom: 14px; }
+
+  /* ── Responsive ── */
+
+  /* 1100px — sidebar gone */
+  @media (max-width: 1100px) {
+    .stat-cards { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .col-phone { display: none; }
+  }
+
+  /* 912px */
+  @media (max-width: 912px) {
+    .stat-cards { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .stat-value { font-size: 20px; }
+    .users-table { min-width: 520px; }
+    .users-table td, .users-table th { padding: 10px 12px; }
+  }
+
+  /* 768px — iPad Mini */
+  @media (max-width: 768px) {
+    .stat-cards { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .stat-value { font-size: 18px; }
+    .stat-icon { width: 38px; height: 38px; font-size: 15px; }
+
+    .users-toolbar { flex-direction: column; align-items: stretch; }
+    .search-wrap { width: 100%; }
+    .search-wrap input { width: 100%; flex: 1; min-width: 0; }
+    .btn-export { justify-content: center; }
+
+    .filter-tabs { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .filter-tabs::-webkit-scrollbar { display: none; }
+    .filter-tab { padding: 6px 12px; font-size: 12px; }
+
+    .table-scroll { border-radius: 10px; }
+    .users-table { min-width: 480px; border-radius: 0; }
+    .col-joined { display: none; }
+  }
+
+  /* 480px — phones */
+  @media (max-width: 480px) {
+    .stat-cards { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .stat-card { padding: 12px 14px; gap: 10px; }
+    .stat-label { font-size: 11px; }
+    .stat-value { font-size: 16px; }
+    .stat-icon { width: 34px; height: 34px; font-size: 14px; }
+
+    .col-lastlogin { display: none; }
+    .users-table { min-width: 360px; }
+    .users-table td, .users-table th { padding: 9px 10px; }
+    .avatar { width: 30px; height: 30px; font-size: 11px; margin-right: 8px; }
+    .user-name { font-size: 13px; }
+    .user-email { font-size: 11px; }
+
+    .pg-wrap { flex-wrap: wrap; }
+    .pg-btn { width: 28px; height: 28px; font-size: 11px; }
+  }
+
+  /* 360px — Samsung S8+ */
+  @media (max-width: 360px) {
+    .stat-cards { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+    .stat-card { padding: 10px; gap: 8px; }
+    .stat-label { font-size: 10px; }
+    .stat-value { font-size: 15px; }
+    .stat-icon { width: 30px; height: 30px; font-size: 12px; border-radius: 8px; }
+
+    .users-table { min-width: 280px; }
+    .users-table td, .users-table th { padding: 8px; }
+    .avatar { width: 26px; height: 26px; font-size: 10px; margin-right: 6px; }
+    .user-email { display: none; }
+
+    .filter-tab { padding: 5px 8px; font-size: 11px; }
+    .tab-count { display: none; }
+  }
+</style>
+
+<!-- ── Stat Cards ── -->
+<div class="stat-cards">
+  <div class="stat-card">
+    <div class="stat-icon blue"><i class="fas fa-users"></i></div>
+    <div>
+      <div class="stat-label">Total Users</div>
+      <div class="stat-value">{{ total_count }}</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon green"><i class="fas fa-user-check"></i></div>
+    <div>
+      <div class="stat-label">Active</div>
+      <div class="stat-value">{{ active_count }}</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon red"><i class="fas fa-user-xmark"></i></div>
+    <div>
+      <div class="stat-label">Inactive</div>
+      <div class="stat-value">{{ inactive_count }}</div>
+    </div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon purple"><i class="fas fa-user-plus"></i></div>
+    <div>
+      <div class="stat-label">New This Month</div>
+      <div class="stat-value">{{ new_this_month }}</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── Toolbar ── -->
+<div class="users-toolbar">
+  <form method="get" action="/secureadmin/users/" class="search-wrap" id="search-form">
+    {% if request.GET.filter %}<input type="hidden" name="filter" value="{{ request.GET.filter }}">{% endif %}
+    {% if request.GET.sort %}<input type="hidden" name="sort" value="{{ request.GET.sort }}">{% endif %}
+    <input type="text" name="keyword" placeholder="Search by name or email…" value="{{ keyword }}" id="search-input">
+    <button type="button" class="search-clear" id="search-clear" onclick="clearSearch()"><i class="fas fa-times"></i></button>
+    <button type="submit" class="btn-search"><i class="fas fa-search"></i></button>
+  </form>
+  <a href="?{% if keyword %}keyword={{ keyword }}&{% endif %}{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}export=csv" class="btn-export">
+    <i class="fas fa-download"></i> Export CSV
+  </a>
+</div>
+
+<!-- ── Filter Tabs ── -->
+<div class="filter-tabs">
+  <a href="?{% if keyword %}keyword={{ keyword }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}{% endif %}"
+     class="filter-tab {% if not request.GET.filter %}active{% endif %}">
+    All <span class="tab-count">{{ total_count }}</span>
+  </a>
+  <a href="?{% if keyword %}keyword={{ keyword }}&{% endif %}filter=active{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}"
+     class="filter-tab {% if request.GET.filter == 'active' %}active{% endif %}">
+    Active <span class="tab-count">{{ active_count }}</span>
+  </a>
+  <a href="?{% if keyword %}keyword={{ keyword }}&{% endif %}filter=inactive{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}"
+     class="filter-tab {% if request.GET.filter == 'inactive' %}active{% endif %}">
+    Inactive <span class="tab-count">{{ inactive_count }}</span>
+  </a>
+  <a href="?{% if keyword %}keyword={{ keyword }}&{% endif %}filter=new{% if request.GET.sort %}&sort={{ request.GET.sort }}{% endif %}"
+     class="filter-tab {% if request.GET.filter == 'new' %}active{% endif %}">
+    New This Month <span class="tab-count">{{ new_this_month }}</span>
+  </a>
+</div>
+
+<!-- ── Table ── -->
+{% if users %}
+<div class="table-scroll">
+<table class="users-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>User</th>
+      <th class="col-phone">Phone</th>
+      <th class="col-joined">
+        <a href="?{% if keyword %}keyword={{ keyword }}&{% endif %}{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}sort={% if request.GET.sort == 'joined' %}joined_asc{% else %}joined{% endif %}">
+          Joined
+          <i class="fas fa-sort{% if request.GET.sort == 'joined' %}-down{% elif request.GET.sort == 'joined_asc' %}-up{% endif %} sort-icon {% if 'joined' in request.GET.sort|default:'' %}active{% endif %}"></i>
+        </a>
+      </th>
+      <th class="col-lastlogin">
+        <a href="?{% if keyword %}keyword={{ keyword }}&{% endif %}{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}sort={% if request.GET.sort == 'login' %}login_asc{% else %}login{% endif %}">
+          Last Login
+          <i class="fas fa-sort{% if request.GET.sort == 'login' %}-down{% elif request.GET.sort == 'login_asc' %}-up{% endif %} sort-icon {% if 'login' in request.GET.sort|default:'' %}active{% endif %}"></i>
+        </a>
+      </th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for u in users %}
+    <tr>
+      <td style="color:#94a3b8;font-size:12px;">{{ u.id }}</td>
+      <td>
+        <div class="user-cell">
+          <div class="avatar" data-name="{{ u.first_name|slice:':1'|upper }}">
+            {{ u.first_name|slice:":1"|upper }}
+          </div>
+          <div class="user-info">
+            <div class="user-name">{{ u.get_full_name }}</div>
+            <div class="user-email">{{ u.email }}</div>
+          </div>
+        </div>
+      </td>
+      <td class="col-phone">{{ u.phone_number|default:"—" }}</td>
+      <td class="col-joined" style="font-size:12px;color:#64748b;white-space:nowrap;">{{ u.date_joined|date:"d/m/y" }}</td>
+      <td class="col-lastlogin" style="font-size:12px;color:#64748b;white-space:nowrap;">
+        {% if u.last_login %}{{ u.last_login|date:"d/m/y" }}{% else %}<span style="color:#94a3b8;">Never</span>{% endif %}
+      </td>
+      <td>
+        {% if u.is_active %}
+        <span class="badge-active"><i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Active</span>
+        {% else %}
+        <span class="badge-inactive"><i class="fas fa-circle" style="font-size:7px;margin-right:4px;"></i>Inactive</span>
+        {% endif %}
+      </td>
+      <td>
+        <div class="actions-cell">
+          <a href="/secureadmin/carts/order/?q={{ u.email }}" class="action-btn" title="View Orders">
+            <i class="fas fa-bag-shopping"></i>
+          </a>
+          <a href="mailto:{{ u.email }}" class="action-btn" title="Send Email">
+            <i class="fas fa-envelope"></i>
+          </a>
+        </div>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+{% if users.has_other_pages %}
+<div class="pg-wrap">
+  <a class="pg-btn {% if not users.has_previous %}disabled{% endif %}"
+     href="{% if users.has_previous %}?{% if keyword %}keyword={{ keyword }}&{% endif %}{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ users.previous_page_number }}{% else %}#{% endif %}">
+    <i class="fas fa-chevron-left"></i>
+  </a>
+  {% for i in users.paginator.page_range %}
+  <a class="pg-btn {% if users.number == i %}active{% endif %}"
+     href="?{% if keyword %}keyword={{ keyword }}&{% endif %}{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ i }}">{{ i }}</a>
+  {% endfor %}
+  <a class="pg-btn {% if not users.has_next %}disabled{% endif %}"
+     href="{% if users.has_next %}?{% if keyword %}keyword={{ keyword }}&{% endif %}{% if request.GET.filter %}filter={{ request.GET.filter }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ users.next_page_number }}{% else %}#{% endif %}">
+    <i class="fas fa-chevron-right"></i>
+  </a>
+</div>
+{% endif %}
+
+{% else %}
+<div class="empty-state">
+  <i class="fas fa-users"></i>
+  <h4>No users found</h4>
+  <p>{% if keyword %}No results for "<strong>{{ keyword }}</strong>" — <a href="/secureadmin/users/">clear search</a>{% else %}No registered users yet{% endif %}</p>
+</div>
+{% endif %}
+
+<script>
+  // Color-coded avatars based on initial
+  var palette = ['#6366f1','#f43f5e','#22c55e','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#14b8a6'];
+  document.querySelectorAll('.avatar[data-name]').forEach(function(el) {
+    var code = el.dataset.name.charCodeAt(0) || 0;
+    el.style.background = palette[code % palette.length];
+  });
+
+  function clearSearch() {
+    document.getElementById('search-input').value = '';
+    document.getElementById('search-form').submit();
+  }
+</script>
+{% endblock %}

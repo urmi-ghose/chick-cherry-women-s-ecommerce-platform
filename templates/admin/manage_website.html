@@ -1,0 +1,411 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}Website Manage | ChicCherry Admin{% endblock %}
+{% block page_title %}Website Manage{% endblock %}
+
+{% block content %}
+<style>
+  :root { --primary:#6366f1; --primary-dark:#4f46e5; --border:#e2e8f0; --bg:#f1f5f9; --surface:#fff; --text:#0f172a; --muted:#64748b; --radius:14px; --radius-sm:8px; --shadow:0 2px 8px rgba(0,0,0,.06); }
+  .mw-section { background:var(--surface); border-radius:var(--radius); box-shadow:var(--shadow); margin-bottom:24px; overflow:hidden; }
+  .mw-section-header { padding:16px 22px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; font-size:14px; font-weight:700; color:var(--text); }
+  .mw-section-header i { color:var(--primary); font-size:16px; }
+  .mw-section-header .ml-auto { margin-left:auto; }
+  .mw-section-body { padding:22px; }
+  .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .form-group { display:flex; flex-direction:column; gap:6px; }
+  .form-group label { font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+  .form-group input { padding:9px 12px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-size:13px; color:var(--text); background:var(--bg); outline:none; transition:border-color .15s; }
+  .form-group input:focus { border-color:var(--primary); background:#fff; }
+  .card-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+  .card-toggle { border:1.5px solid var(--border); border-radius:var(--radius-sm); padding:14px 10px; background:var(--bg); display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; transition:border-color .15s, background .15s; }
+  .card-toggle:has(input:checked) { border-color:var(--primary); background:#eef2ff; }
+  .card-toggle input { display:none; }
+  .card-toggle i { font-size:28px; color:#64748b; transition:color .15s; }
+  .card-toggle:has(input:checked) i { color:var(--primary); }
+  .card-toggle span { font-size:11px; font-weight:600; color:var(--muted); }
+  .card-toggle:has(input:checked) span { color:var(--primary); }
+  .pm-list { display:flex; flex-direction:column; gap:10px; margin-top:20px; }
+  .pm-item { display:flex; align-items:center; gap:12px; background:var(--bg); border:1.5px solid var(--border); border-radius:var(--radius-sm); padding:10px 14px; }
+  .pm-item i { font-size:24px; color:var(--primary); width:32px; text-align:center; }
+  .pm-item .pm-name { font-size:13px; font-weight:600; color:var(--text); flex:1; }
+  .pm-item .pm-icon-label { font-size:11px; color:var(--muted); }
+  .btn-delete { background:none; border:none; color:#e11d48; cursor:pointer; font-size:14px; padding:4px 8px; border-radius:6px; transition:background .15s; }
+  .btn-delete:hover { background:#fff1f2; }
+  .btn-save { padding:10px 32px; background:var(--primary); color:#fff; border:none; border-radius:var(--radius-sm); font-size:14px; font-weight:600; cursor:pointer; transition:background .15s; }
+  .btn-save:hover { background:var(--primary-dark); }
+  .btn-add { padding:7px 14px; background:var(--primary); color:#fff; border:none; border-radius:var(--radius-sm); font-size:12px; font-weight:600; cursor:pointer; display:flex; align-items:center; gap:6px; transition:background .15s; }
+  .btn-add:hover { background:var(--primary-dark); }
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.4); z-index:1000; align-items:center; justify-content:center; }
+  .modal-overlay.open { display:flex; }
+  .modal-box { background:#fff; border-radius:var(--radius); padding:28px; width:420px; box-shadow:0 8px 40px rgba(0,0,0,.18); }
+  .modal-title { font-size:15px; font-weight:700; color:var(--text); margin-bottom:18px; display:flex; align-items:center; gap:8px; }
+  .modal-title i { color:var(--primary); }
+  .modal-field { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
+  .modal-field label { font-size:12px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; }
+  .modal-field input, .modal-field select { padding:9px 12px; border:1.5px solid var(--border); border-radius:var(--radius-sm); font-size:13px; outline:none; transition:border-color .15s; }
+  .modal-field input:focus { border-color:var(--primary); }
+  .modal-hint { font-size:11px; color:var(--muted); margin-top:4px; }
+  .icon-preview { font-size:32px; color:var(--primary); text-align:center; margin:10px 0; min-height:40px; }
+  .modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:6px; }
+  .btn-cancel { padding:8px 20px; background:var(--bg); color:var(--muted); border:1.5px solid var(--border); border-radius:var(--radius-sm); font-size:13px; font-weight:600; cursor:pointer; }
+</style>
+
+<!-- Single master form — all actions go through here -->
+<form method="post" id="main-form" enctype="multipart/form-data">
+  {% csrf_token %}
+  <input type="hidden" name="action" id="form-action" value="save">
+  <!-- payment hidden fields -->
+  <input type="hidden" name="pm_id"   id="form-pm-id"   value="">
+  <input type="hidden" name="pm_name" id="form-pm-name" value="">
+  <input type="hidden" name="pm_icon" id="form-pm-icon" value="">
+  <!-- slider hidden fields -->
+  <input type="hidden" name="slider_id"         id="form-slider-id"       value="">
+  <input type="hidden" name="slider_media_type" id="form-slider-type"     value="image">
+  <input type="hidden" name="slider_caption"    id="form-slider-caption"  value="">
+  <input type="hidden" name="slider_duration"   id="form-slider-duration" value="4000">
+  <input type="hidden" name="slider_order"      id="form-slider-order"    value="0">
+  <!-- actual file inputs (must be in the form to be submitted) -->
+  <input type="file" name="slider_image" id="form-slider-image" accept="image/*" style="display:none;">
+  <input type="file" name="slider_video" id="form-slider-video" accept="video/*" style="display:none;">
+
+  <!-- Header Settings -->
+  <div class="mw-section">
+    <div class="mw-section-header"><i class="fas fa-heading"></i> Header Settings</div>
+    <div class="mw-section-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Logo Text</label>
+          <input type="text" name="logo_text" value="{{ footer.logo_text }}">
+        </div>
+        <div class="form-group">
+          <label>Header Email</label>
+          <input type="email" name="header_email" value="{{ footer.header_email }}">
+        </div>
+        <div class="form-group">
+          <label>Header Phone</label>
+          <input type="text" name="header_phone" value="{{ footer.header_phone }}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Settings -->
+  <div class="mw-section">
+    <div class="mw-section-body">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Footer Email</label>
+          <input type="email" name="footer_email" value="{{ footer.email }}">
+        </div>
+        <div class="form-group">
+          <label>Footer Phone</label>
+          <input type="text" name="footer_phone" value="{{ footer.phone }}">
+        </div>
+        <div class="form-group">
+          <label>Address</label>
+          <input type="text" name="footer_address" value="{{ footer.address }}">
+        </div>
+        <div class="form-group">
+          <label>Copyright Text</label>
+          <input type="text" name="footer_copy" value="{{ footer.copy }}">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Icons -->
+  <div class="mw-section">
+    <div class="mw-section-header">
+      <i class="fas fa-credit-card"></i> Payment Icons in Footer
+      <button type="button" class="btn-add ml-auto" onclick="document.getElementById('pm-modal').classList.add('open')">
+        <i class="fas fa-plus"></i> Add Payment Method
+      </button>
+    </div>
+    <div class="mw-section-body">
+      <div class="card-grid">
+        <label class="card-toggle">
+          <input type="checkbox" name="show_visa" {% if footer.show_visa %}checked{% endif %}>
+          <i class="fab fa-cc-visa"></i><span>Visa</span>
+        </label>
+        <label class="card-toggle">
+          <input type="checkbox" name="show_paypal" {% if footer.show_paypal %}checked{% endif %}>
+          <i class="fab fa-cc-paypal"></i><span>PayPal</span>
+        </label>
+        <label class="card-toggle">
+          <input type="checkbox" name="show_master" {% if footer.show_master %}checked{% endif %}>
+          <i class="fab fa-cc-mastercard"></i><span>Mastercard</span>
+        </label>
+        <label class="card-toggle">
+          <input type="checkbox" name="show_amex" {% if footer.show_amex %}checked{% endif %}>
+          <i class="fab fa-cc-amex"></i><span>Amex</span>
+        </label>
+        <label class="card-toggle">
+          <input type="checkbox" name="show_stripe" {% if footer.show_stripe %}checked{% endif %}>
+          <i class="fab fa-cc-stripe"></i><span>Stripe</span>
+        </label>
+      </div>
+      {% if payment_methods %}
+      <div class="pm-list">
+        {% for pm in payment_methods %}
+        <div class="pm-item">
+          <i class="{{ pm.icon_class }}"></i>
+          <div style="flex:1">
+            <div class="pm-name">{{ pm.name }}</div>
+            <div class="pm-icon-label">{{ pm.icon_class }}</div>
+          </div>
+          <button type="button" class="btn-delete" title="Remove" onclick="deletePayment('{{ pm.id }}')"><i class="fas fa-trash-alt"></i></button>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- Homepage Slider -->
+  <div class="mw-section">
+    <div class="mw-section-header">
+      <i class="fas fa-images"></i> Homepage Slider
+      <button type="button" class="btn-add ml-auto" onclick="document.getElementById('slider-modal').classList.add('open')">
+        <i class="fas fa-plus"></i> Add Slide
+      </button>
+    </div>
+    <div class="mw-section-body">
+      {% if slider_items %}
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        {% for item in slider_items %}
+        <div style="display:flex;align-items:center;gap:14px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px;">
+          {% if item.media_type == 'image' and item.image %}
+          <img src="{{ item.image.url }}" style="width:90px;height:52px;object-fit:cover;border-radius:6px;flex-shrink:0;">
+          {% elif item.media_type == 'video' and item.video %}
+          <video src="{{ item.video.url }}" style="width:90px;height:52px;object-fit:cover;border-radius:6px;flex-shrink:0;" muted></video>
+          {% endif %}
+          <div style="flex:1;">
+            <div style="font-size:13px;font-weight:600;color:var(--text);">{{ item.caption|default:"(no caption)" }}</div>
+            <div style="font-size:11px;color:var(--muted);">
+              {% if item.media_type == 'image' %}🖼 Image &bull; {{ item.duration }}ms{% else %}🎬 Video{% endif %}
+              &bull; Order: {{ item.order }}
+              &bull; <span style="color:{% if item.is_active %}#16a34a{% else %}#dc2626{% endif %};">{% if item.is_active %}Active{% else %}Hidden{% endif %}</span>
+            </div>
+          </div>
+          <button type="button" style="background:none;border:1.5px solid var(--border);border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:var(--muted);" title="Toggle visibility"
+            onclick="sliderAction('toggle_slider','{{ item.id }}')">
+            <i class="fas fa-eye{% if not item.is_active %}-slash{% endif %}"></i>
+          </button>
+          <button type="button" style="background:none;border:1.5px solid var(--border);border-radius:6px;padding:5px 10px;font-size:12px;cursor:pointer;color:var(--primary);" title="Edit"
+            onclick="openEditSlider('{{ item.id }}','{{ item.media_type }}','{{ item.caption|escapejs }}','{{ item.duration }}','{{ item.order }}')">
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+          <button type="button" class="btn-delete" onclick="if(confirm('Delete this slide?')) sliderAction('delete_slider','{{ item.id }}')">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p style="color:var(--muted);font-size:13px;">No slider items yet. Add images or videos above.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  <button type="submit" class="btn-save"><i class="fas fa-save" style="margin-right:6px;"></i>Save Changes</button>
+</form>
+
+<!-- Add Payment Method Modal -->
+<div class="modal-overlay" id="pm-modal">
+  <div class="modal-box">
+    <div class="modal-title"><i class="fas fa-credit-card"></i> Add Payment Method</div>
+    <div class="modal-field">
+      <label>Name</label>
+      <input type="text" id="pm-name-input" placeholder="e.g. bKash">
+    </div>
+    <div class="modal-field">
+      <label>FontAwesome Icon Class</label>
+      <input type="text" id="pm-icon-input" placeholder="e.g. fab fa-cc-discover" oninput="updatePreview(this.value)">
+      <div class="modal-hint">Visit <a href="https://fontawesome.com/icons" target="_blank">fontawesome.com/icons</a> to find icon classes</div>
+    </div>
+    <div class="icon-preview" id="icon-preview"><i class="fas fa-credit-card" style="color:#cbd5e1"></i></div>
+    <div class="modal-actions">
+      <button type="button" class="btn-cancel" onclick="document.getElementById('pm-modal').classList.remove('open')">Cancel</button>
+      <button type="button" class="btn-save" style="padding:8px 24px;font-size:13px;" onclick="addPayment()">Add</button>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Slide Modal -->
+<div class="modal-overlay" id="slider-edit-modal">
+  <div class="modal-box" style="width:480px;">
+    <div class="modal-title"><i class="fas fa-pencil-alt"></i> Edit Slider Item</div>
+    <div class="modal-field">
+      <label>Type</label>
+      <select id="edit-slide-type-select" onchange="toggleEditSlideInput(this.value)" style="padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;">
+        <option value="image">Image</option>
+        <option value="video">Video</option>
+      </select>
+    </div>
+    <div class="modal-field" id="edit-slide-image-field">
+      <label>Replace Image (optional)</label>
+      <input type="button" value="Choose image…" onclick="document.getElementById('form-slider-image').click()" style="padding:7px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;cursor:pointer;">
+      <span id="edit-slide-image-name" style="font-size:11px;color:var(--muted);margin-top:2px;"></span>
+    </div>
+    <div class="modal-field" id="edit-slide-video-field" style="display:none;">
+      <label>Replace Video (optional)</label>
+      <input type="button" value="Choose video…" onclick="document.getElementById('form-slider-video').click()" style="padding:7px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;cursor:pointer;">
+      <span id="edit-slide-video-name" style="font-size:11px;color:var(--muted);margin-top:2px;"></span>
+    </div>
+    <div class="modal-field">
+      <label>Caption (optional)</label>
+      <input type="text" id="edit-slide-caption-input" placeholder="e.g. Summer Sale 2025">
+    </div>
+    <div class="modal-field" id="edit-slide-duration-field">
+      <label>Duration (ms, images only)</label>
+      <input type="number" id="edit-slide-duration-input" value="4000" min="500">
+    </div>
+    <div class="modal-field">
+      <label>Order</label>
+      <input type="number" id="edit-slide-order-input" value="0" min="0">
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn-cancel" onclick="document.getElementById('slider-edit-modal').classList.remove('open')">Cancel</button>
+      <button type="button" class="btn-save" style="padding:8px 24px;font-size:13px;" onclick="saveEditSlide()">Save Changes</button>
+    </div>
+  </div>
+</div>
+
+<!-- Add Slide Modal -->
+<div class="modal-overlay" id="slider-modal">
+  <div class="modal-box" style="width:480px;">
+    <div class="modal-title"><i class="fas fa-images"></i> Add Slider Item</div>
+    <div class="modal-field">
+      <label>Type</label>
+      <select id="slide-type-select" onchange="toggleSlideInput(this.value)" style="padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;">
+        <option value="image">Image</option>
+        <option value="video">Video</option>
+      </select>
+    </div>
+    <div class="modal-field" id="slide-image-field">
+      <label>Image File</label>
+      <input type="button" value="Choose image…" onclick="document.getElementById('form-slider-image').click()" style="padding:7px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;cursor:pointer;text-align:left;">
+      <span id="slide-image-name" style="font-size:11px;color:var(--muted);margin-top:2px;"></span>
+    </div>
+    <div class="modal-field" id="slide-video-field" style="display:none;">
+      <label>Video File</label>
+      <input type="button" value="Choose video…" onclick="document.getElementById('form-slider-video').click()" style="padding:7px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;cursor:pointer;text-align:left;">
+      <span id="slide-video-name" style="font-size:11px;color:var(--muted);margin-top:2px;"></span>
+    </div>
+    <div class="modal-field">
+      <label>Caption (optional)</label>
+      <input type="text" id="slide-caption-input" placeholder="e.g. Summer Sale 2025">
+    </div>
+    <div class="modal-field" id="slide-duration-field">
+      <label>Duration (ms, images only)</label>
+      <input type="number" id="slide-duration-input" value="4000" min="500">
+    </div>
+    <div class="modal-field">
+      <label>Order</label>
+      <input type="number" id="slide-order-input" value="0" min="0">
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn-cancel" onclick="document.getElementById('slider-modal').classList.remove('open')">Cancel</button>
+      <button type="button" class="btn-save" style="padding:8px 24px;font-size:13px;" onclick="addSlide()">Add Slide</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Payment modal
+  function updatePreview(val) {
+    var p = document.getElementById('icon-preview');
+    p.innerHTML = val.trim() ? '<i class="' + val.trim() + '"></i>' : '<i class="fas fa-credit-card" style="color:#cbd5e1"></i>';
+  }
+  function deletePayment(id) {
+    if (!confirm('Remove this payment method?')) return;
+    document.getElementById('form-action').value = 'delete_payment';
+    document.getElementById('form-pm-id').value = id;
+    document.getElementById('main-form').submit();
+  }
+  function addPayment() {
+    var name = document.getElementById('pm-name-input').value.trim();
+    var icon = document.getElementById('pm-icon-input').value.trim();
+    if (!name || !icon) { alert('Name and icon class are required.'); return; }
+    document.getElementById('form-action').value = 'add_payment';
+    document.getElementById('form-pm-name').value = name;
+    document.getElementById('form-pm-icon').value = icon;
+    document.getElementById('main-form').submit();
+  }
+  document.getElementById('pm-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+
+  // Slider add modal
+  function toggleSlideInput(type) {
+    document.getElementById('slide-image-field').style.display = type === 'image' ? '' : 'none';
+    document.getElementById('slide-video-field').style.display = type === 'video' ? '' : 'none';
+    document.getElementById('slide-duration-field').style.display = type === 'image' ? '' : 'none';
+  }
+  function addSlide() {
+    var type = document.getElementById('slide-type-select').value;
+    if (type === 'image' && !document.getElementById('form-slider-image').files.length) {
+      alert('Please choose an image file.'); return;
+    }
+    if (type === 'video' && !document.getElementById('form-slider-video').files.length) {
+      alert('Please choose a video file.'); return;
+    }
+    document.getElementById('form-action').value = 'add_slider';
+    document.getElementById('form-slider-type').value = type;
+    document.getElementById('form-slider-caption').value = document.getElementById('slide-caption-input').value;
+    document.getElementById('form-slider-duration').value = document.getElementById('slide-duration-input').value;
+    document.getElementById('form-slider-order').value = document.getElementById('slide-order-input').value;
+    document.getElementById('main-form').submit();
+  }
+  function sliderAction(action, id) {
+    document.getElementById('form-action').value = action;
+    document.getElementById('form-slider-id').value = id;
+    document.getElementById('main-form').submit();
+  }
+  document.getElementById('slider-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+
+  // Edit slide modal
+  function toggleEditSlideInput(type) {
+    document.getElementById('edit-slide-image-field').style.display = type === 'image' ? '' : 'none';
+    document.getElementById('edit-slide-video-field').style.display = type === 'video' ? '' : 'none';
+    document.getElementById('edit-slide-duration-field').style.display = type === 'image' ? '' : 'none';
+  }
+  document.getElementById('form-slider-image').addEventListener('change', function() {
+    var name = this.files[0] ? this.files[0].name : '';
+    document.getElementById('slide-image-name').textContent = name;
+    document.getElementById('edit-slide-image-name').textContent = name;
+  });
+  document.getElementById('form-slider-video').addEventListener('change', function() {
+    var name = this.files[0] ? this.files[0].name : '';
+    document.getElementById('slide-video-name').textContent = name;
+    document.getElementById('edit-slide-video-name').textContent = name;
+  });
+  function openEditSlider(id, type, caption, duration, order) {
+    document.getElementById('form-slider-id').value = id;
+    var sel = document.getElementById('edit-slide-type-select');
+    sel.value = type;
+    toggleEditSlideInput(type);
+    document.getElementById('edit-slide-caption-input').value = caption;
+    document.getElementById('edit-slide-duration-input').value = duration;
+    document.getElementById('edit-slide-order-input').value = order;
+    document.getElementById('edit-slide-image-name').textContent = '';
+    document.getElementById('edit-slide-video-name').textContent = '';
+    document.getElementById('slider-edit-modal').classList.add('open');
+  }
+  function saveEditSlide() {
+    var type = document.getElementById('edit-slide-type-select').value;
+    document.getElementById('form-action').value = 'edit_slider';
+    document.getElementById('form-slider-type').value = type;
+    document.getElementById('form-slider-caption').value = document.getElementById('edit-slide-caption-input').value;
+    document.getElementById('form-slider-duration').value = document.getElementById('edit-slide-duration-input').value;
+    document.getElementById('form-slider-order').value = document.getElementById('edit-slide-order-input').value;
+    document.getElementById('main-form').submit();
+  }
+  document.getElementById('slider-edit-modal').addEventListener('click', function(e) {
+    if (e.target === this) this.classList.remove('open');
+  });
+</script>
+{% endblock %}

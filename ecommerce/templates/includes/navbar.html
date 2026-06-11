@@ -1,0 +1,93 @@
+{% load static %}
+
+<header class="section-header">
+
+  <!-- Top bar -->
+  <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
+    <div class="container">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarTop4">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a href="#" class="nav-link">English</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">TK</a></li>
+        </ul>
+        <ul class="navbar-nav">
+          <li><a href="mailto:{{ footer.header_email }}" class="nav-link"><i class="fa fa-envelope"></i> {{ footer.header_email }}</a></li>
+          <li><a href="tel:{{ footer.header_phone }}" class="nav-link"><i class="fa fa-phone"></i> {{ footer.header_phone }}</a></li>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main header -->
+  <section class="header-main border-bottom">
+    <div class="container">
+      <div class="row align-items-center py-2">
+
+        <!-- Logo -->
+        <div class="col-lg-2 col-md-3 col-6">
+          <a href="{% url 'home' %}" style="font-family:'Baloo 2',cursive;color:#e11d48;font-size:30px;font-weight:800;letter-spacing:2px;text-decoration:none;text-shadow:0 0 8px rgba(225,29,72,0.5),0 0 20px rgba(225,29,72,0.3);display:inline-block;">
+            {{ footer.logo_text }}
+          </a>
+        </div>
+
+        <!-- Category + Search -->
+        <div class="col-lg col-md-6 col-12 d-flex align-items-center gap-2 flex-wrap">
+          <div class="category-wrap dropdown d-inline-block">
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+              <i class="fa fa-bars"></i> All category
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="{% url 'store' %}">All Products</a>
+              {% for category in links %}
+              <a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }}</a>
+              {% endfor %}
+            </div>
+          </div>
+          <a href="{% url 'store' %}" class="btn btn-outline-primary"><i class="fa fa-store"></i></a>
+          <form action="{% url 'store' %}" method="get" class="search flex-grow-1">
+            <div class="input-group">
+              <input type="text" name="keyword" class="form-control" placeholder="Search" value="{{ request.GET.keyword }}">
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <!-- User + Cart -->
+        <div class="col-lg-3 col-sm-6 col-6">
+          <div class="d-flex justify-content-end align-items-center">
+            <div class="widget-header">
+              {% if user.is_authenticated %}
+                <small class="title text-muted">Welcome {{ user.first_name }}!</small>
+                <div>
+                  <a href="{% url 'accounts:dashboard' %}">Dashboard</a>
+                  <span class="dark-transp">|</span>
+                  <a href="{% url 'accounts:logout' %}">Logout</a>
+                </div>
+              {% else %}
+                <small class="title text-muted">Welcome guest!</small>
+                <div>
+                  <a href="{% url 'accounts:login' %}">Log in</a>
+                  <span class="dark-transp">|</span>
+                  <a href="{% url 'accounts:register' %}">Register</a>
+                </div>
+              {% endif %}
+            </div>
+            <a href="{% url 'carts:cart' %}" class="widget-header pl-3 ml-3">
+              <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
+              <span id="cart-badge" class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</header>

@@ -1,0 +1,312 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}Reviews | ChicCherry Admin{% endblock %}
+{% block page_title %}Reviews{% endblock %}
+
+{% block content %}
+<style>
+  /* ── Stat Cards ── */
+  .rv-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-bottom: 24px; }
+  .rv-stat {
+    background:#fff; border:1px solid #e2e8f0; border-radius:14px;
+    padding:16px 18px; display:flex; align-items:center; gap:12px;
+    box-shadow:0 1px 4px rgba(0,0,0,.05);
+  }
+  .rv-stat-icon { width:40px; height:40px; border-radius:10px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:16px; }
+  .ic-blue   { background:#eff6ff; color:#3b82f6; }
+  .ic-green  { background:#f0fdf4; color:#22c55e; }
+  .ic-red    { background:#fff1f2; color:#f43f5e; }
+  .ic-amber  { background:#fffbeb; color:#f59e0b; }
+  .rv-stat-val { font-size:20px; font-weight:700; color:#0f172a; line-height:1; }
+  .rv-stat-lbl { font-size:11px; color:#64748b; margin-top:2px; }
+
+  /* ── Toolbar ── */
+  .rv-toolbar { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; gap:12px; flex-wrap:wrap; }
+  .rv-search {
+    display:flex; align-items:center;
+    border:1.5px solid #e2e8f0; border-radius:8px;
+    background:#f8fafc; overflow:hidden; transition:border-color .15s;
+    flex:1; max-width:300px;
+  }
+  .rv-search:focus-within { border-color:#6366f1; background:#fff; }
+  .rv-search input { border:none; background:transparent; padding:8px 12px; font-size:13px; outline:none; width:100%; color:#0f172a; min-width:0; }
+  .rv-search button { border:none; background:#6366f1; color:#fff; padding:8px 12px; cursor:pointer; font-size:13px; flex-shrink:0; transition:background .15s; }
+  .rv-search button:hover { background:#4f46e5; }
+
+  /* ── Filter Tabs ── */
+  .rv-tabs {
+    display:flex; gap:4px; margin-bottom:20px;
+    background:#f1f5f9; padding:4px; border-radius:10px;
+    width:fit-content; overflow-x:auto; scrollbar-width:none;
+  }
+  .rv-tabs::-webkit-scrollbar { display:none; }
+  .rv-tab {
+    padding:6px 14px; border-radius:7px; font-size:13px; font-weight:500;
+    color:#64748b; text-decoration:none; transition:all .15s; white-space:nowrap;
+  }
+  .rv-tab:hover { color:#0f172a; }
+  .rv-tab.active { background:#fff; color:#6366f1; font-weight:600; box-shadow:0 1px 4px rgba(0,0,0,.08); }
+  .rv-tab-count {
+    display:inline-flex; align-items:center; justify-content:center;
+    background:#e2e8f0; color:#64748b; border-radius:99px;
+    font-size:10px; font-weight:700; padding:1px 6px; margin-left:4px;
+  }
+  .rv-tab.active .rv-tab-count { background:#eef2ff; color:#6366f1; }
+
+  /* ── Review Cards ── */
+  .rv-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; }
+
+  .rv-card {
+    background:#fff; border:1px solid #e2e8f0; border-radius:14px;
+    box-shadow:0 1px 4px rgba(0,0,0,.05); overflow:hidden;
+    transition:box-shadow .2s;
+  }
+  .rv-card:hover { box-shadow:0 4px 16px rgba(0,0,0,.08); }
+  .rv-card.pending { border-left:4px solid #f59e0b; }
+  .rv-card.approved { border-left:4px solid #22c55e; }
+  .rv-card.rejected { border-left:4px solid #ef4444; }
+
+  .rv-card-body { padding:16px 18px; display:flex; gap:16px; align-items:flex-start; }
+
+  /* avatar */
+  .rv-avatar {
+    width:38px; height:38px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:700; color:#fff;
+  }
+
+  .rv-content { flex:1; min-width:0; }
+  .rv-top { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
+  .rv-meta { display:flex; flex-direction:column; gap:2px; }
+  .rv-subject { font-size:14px; font-weight:600; color:#0f172a; }
+  .rv-user { font-size:12px; color:#64748b; }
+  .rv-product { font-size:12px; color:#6366f1; font-weight:500; }
+
+  .rv-right { display:flex; flex-direction:column; align-items:flex-end; gap:6px; flex-shrink:0; }
+
+  /* stars */
+  .rv-stars { display:flex; gap:2px; }
+  .rv-stars i { font-size:13px; }
+  .star-full  { color:#f59e0b; }
+  .star-empty { color:#e2e8f0; }
+
+  .rv-review-text { font-size:13px; color:#374151; line-height:1.6; margin-bottom:10px; }
+
+  .rv-footer { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px; }
+  .rv-badges { display:flex; gap:6px; flex-wrap:wrap; }
+
+  .rv-badge {
+    display:inline-flex; align-items:center; gap:4px;
+    padding:3px 9px; border-radius:99px; font-size:11px; font-weight:600;
+  }
+  .rv-badge i { font-size:8px; }
+  .b-visible   { background:#f0fdf4; color:#16a34a; }
+  .b-hidden    { background:#fff1f2; color:#e11d48; }
+  .b-verified  { background:#eff6ff; color:#3b82f6; }
+  .b-date      { background:#f8fafc; color:#64748b; border:1px solid #e2e8f0; }
+
+  /* action buttons */
+  .rv-actions { display:flex; gap:6px; }
+  .rv-act-btn {
+    display:inline-flex; align-items:center; gap:5px;
+    padding:5px 12px; border-radius:7px; font-size:12px; font-weight:600;
+    cursor:pointer; transition:all .15s; text-decoration:none;
+    border:1.5px solid #e2e8f0; background:#fff; color:#64748b;
+    font-family:inherit;
+  }
+  .rv-act-btn:hover { border-color:#6366f1; color:#6366f1; background:#eef2ff; }
+  .rv-act-btn.approve { border-color:#bbf7d0; color:#16a34a; background:#f0fdf4; }
+  .rv-act-btn.approve:hover { background:#dcfce7; border-color:#86efac; }
+  .rv-act-btn.reject  { border-color:#fecaca; color:#ef4444; background:#fff1f2; }
+  .rv-act-btn.reject:hover  { background:#fee2e2; border-color:#fca5a5; }
+
+  /* ── Empty ── */
+  .rv-empty { text-align:center; padding:60px 20px; color:#64748b; background:#fff; border-radius:14px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+  .rv-empty i { font-size:44px; opacity:.15; display:block; margin-bottom:14px; }
+
+  /* ── Pagination ── */
+  .pg-wrap { display:flex; justify-content:center; gap:4px; margin-top:24px; flex-wrap:wrap; }
+  .pg-btn {
+    display:inline-flex; align-items:center; justify-content:center;
+    width:32px; height:32px; border-radius:8px;
+    border:1.5px solid #e2e8f0; background:#fff;
+    color:#64748b; font-size:12px; text-decoration:none; transition:all .15s;
+  }
+  .pg-btn:hover { background:#eef2ff; color:#6366f1; border-color:#6366f1; }
+  .pg-btn.active { background:#6366f1; border-color:#6366f1; color:#fff; font-weight:700; }
+  .pg-btn.disabled { opacity:.35; pointer-events:none; }
+
+  /* ── Responsive ── */
+  @media (max-width:1100px) { .rv-stats { grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:768px) {
+    .rv-stats { grid-template-columns:repeat(2,1fr); gap:10px; }
+    .rv-toolbar { flex-direction:column; align-items:stretch; }
+    .rv-search { max-width:none; }
+    .rv-tabs { width:100%; }
+    .rv-grid { grid-template-columns:1fr; }
+    .rv-card-body { flex-direction:column; gap:10px; }
+    .rv-right { flex-direction:row; align-items:center; }
+  }
+  @media (max-width:480px) {
+    .rv-stats { grid-template-columns:repeat(2,1fr); gap:8px; }
+    .rv-stat { padding:12px; gap:8px; }
+    .rv-stat-val { font-size:17px; }
+    .rv-top { flex-direction:column; gap:6px; }
+    .rv-right { flex-direction:row; flex-wrap:wrap; }
+  }
+</style>
+
+<!-- Stat Cards -->
+<div class="rv-stats">
+  <div class="rv-stat">
+    <div class="rv-stat-icon ic-blue"><i class="fas fa-star"></i></div>
+    <div><div class="rv-stat-val">{{ total_count }}</div><div class="rv-stat-lbl">Total Reviews</div></div>
+  </div>
+  <div class="rv-stat">
+    <div class="rv-stat-icon ic-green"><i class="fas fa-eye"></i></div>
+    <div><div class="rv-stat-val">{{ visible_count }}</div><div class="rv-stat-lbl">Approved</div></div>
+  </div>
+  <div class="rv-stat">
+    <div class="rv-stat-icon ic-red"><i class="fas fa-eye-slash"></i></div>
+    <div><div class="rv-stat-val">{{ hidden_count }}</div><div class="rv-stat-lbl">Hidden</div></div>
+  </div>
+  <div class="rv-stat">
+    <div class="rv-stat-icon ic-amber"><i class="fas fa-shield-check"></i></div>
+    <div><div class="rv-stat-val">{{ verified_count }}</div><div class="rv-stat-lbl">Verified Purchase</div></div>
+  </div>
+</div>
+
+<!-- Toolbar -->
+<div class="rv-toolbar">
+  <form method="get" class="rv-search">
+    {% if request.GET.filter %}<input type="hidden" name="filter" value="{{ request.GET.filter }}">{% endif %}
+    <input type="text" name="q" placeholder="Search subject, review, user…" value="{{ keyword }}">
+    <button type="submit"><i class="fas fa-search"></i></button>
+  </form>
+</div>
+
+<!-- Filter Tabs -->
+<div class="rv-tabs">
+  <a href="?{% if keyword %}q={{ keyword }}{% endif %}" class="rv-tab {% if not current_filter %}active{% endif %}">
+    All <span class="rv-tab-count">{{ total_count }}</span>
+  </a>
+  <a href="?{% if keyword %}q={{ keyword }}&{% endif %}filter=visible" class="rv-tab {% if current_filter == 'visible' %}active{% endif %}">
+    Approved <span class="rv-tab-count">{{ visible_count }}</span>
+  </a>
+  <a href="?{% if keyword %}q={{ keyword }}&{% endif %}filter=hidden" class="rv-tab {% if current_filter == 'hidden' %}active{% endif %}">
+    Hidden <span class="rv-tab-count">{{ hidden_count }}</span>
+  </a>
+  <a href="?{% if keyword %}q={{ keyword }}&{% endif %}filter=verified" class="rv-tab {% if current_filter == 'verified' %}active{% endif %}">
+    Verified <span class="rv-tab-count">{{ verified_count }}</span>
+  </a>
+</div>
+
+<!-- Review Cards -->
+{% if reviews %}
+<div class="rv-grid">
+  {% for review in reviews %}
+  <div class="rv-card {% if review.is_visible %}approved{% else %}rejected{% endif %}">
+    <div class="rv-card-body">
+
+      <!-- Avatar -->
+      <div class="rv-avatar" data-name="{{ review.user.first_name|slice:':1'|upper }}" style="background:#6366f1;">
+        {{ review.user.first_name|slice:":1"|upper }}
+      </div>
+
+      <!-- Content -->
+      <div class="rv-content">
+        <div class="rv-top">
+          <div class="rv-meta">
+            <span class="rv-subject">{{ review.subject|default:"No subject" }}</span>
+            <span class="rv-user"><i class="fas fa-user" style="font-size:10px;margin-right:3px;"></i>{{ review.user.email }}</span>
+            <span class="rv-product"><i class="fas fa-box-open" style="font-size:10px;margin-right:3px;"></i>{{ review.product.product_name }}</span>
+          </div>
+          <div class="rv-right">
+            <!-- Stars -->
+            <div class="rv-stars">
+              {% for i in "12345" %}
+              {% if forloop.counter <= review.rating %}
+              <i class="fas fa-star star-full"></i>
+              {% else %}
+              <i class="fas fa-star star-empty"></i>
+              {% endif %}
+              {% endfor %}
+            </div>
+            <span style="font-size:12px;color:#64748b;">{{ review.rating }}/5</span>
+          </div>
+        </div>
+
+        {% if review.review %}
+        <p class="rv-review-text">"{{ review.review }}"</p>
+        {% endif %}
+
+        <div class="rv-footer">
+          <div class="rv-badges">
+            {% if review.is_visible %}
+            <span class="rv-badge b-visible"><i class="fas fa-circle"></i> Approved</span>
+            {% else %}
+            <span class="rv-badge b-hidden"><i class="fas fa-circle"></i> Hidden</span>
+            {% endif %}
+            {% if review.purchase_verified %}
+            <span class="rv-badge b-verified"><i class="fas fa-shield-check"></i> Verified</span>
+            {% endif %}
+            <span class="rv-badge b-date"><i class="fas fa-clock"></i> {{ review.created_at|date:"M d, Y" }}</span>
+          </div>
+          <div class="rv-actions">
+            <a href="{% url 'admin:store_reviewrating_change' review.pk %}" class="rv-act-btn">
+              <i class="fas fa-eye"></i> View
+            </a>
+            {% if review.is_visible %}
+            <form method="post" action="/secureadmin/reviews/{{ review.pk }}/reject/" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="rv-act-btn reject"><i class="fas fa-eye-slash"></i> Hide</button>
+            </form>
+            {% else %}
+            <form method="post" action="/secureadmin/reviews/{{ review.pk }}/approve/" style="display:inline;">
+              {% csrf_token %}
+              <button type="submit" class="rv-act-btn approve"><i class="fas fa-check"></i> Approve</button>
+            </form>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Pagination -->
+{% if reviews.has_other_pages %}
+<div class="pg-wrap">
+  <a class="pg-btn {% if not reviews.has_previous %}disabled{% endif %}"
+     href="{% if reviews.has_previous %}?{% if keyword %}q={{ keyword }}&{% endif %}{% if current_filter %}filter={{ current_filter }}&{% endif %}page={{ reviews.previous_page_number }}{% else %}#{% endif %}">
+    <i class="fas fa-chevron-left"></i>
+  </a>
+  {% for i in reviews.paginator.page_range %}
+  <a class="pg-btn {% if reviews.number == i %}active{% endif %}"
+     href="?{% if keyword %}q={{ keyword }}&{% endif %}{% if current_filter %}filter={{ current_filter }}&{% endif %}page={{ i }}">{{ i }}</a>
+  {% endfor %}
+  <a class="pg-btn {% if not reviews.has_next %}disabled{% endif %}"
+     href="{% if reviews.has_next %}?{% if keyword %}q={{ keyword }}&{% endif %}{% if current_filter %}filter={{ current_filter }}&{% endif %}page={{ reviews.next_page_number }}{% else %}#{% endif %}">
+    <i class="fas fa-chevron-right"></i>
+  </a>
+</div>
+{% endif %}
+
+{% else %}
+<div class="rv-empty">
+  <i class="fas fa-star"></i>
+  <h4 style="font-size:15px;font-weight:600;color:#0f172a;margin-bottom:6px;">No reviews found</h4>
+  <p style="font-size:13px;">{% if keyword %}No results for "{{ keyword }}"{% else %}No reviews yet{% endif %}</p>
+</div>
+{% endif %}
+
+<script>
+  var palette = ['#6366f1','#f43f5e','#22c55e','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#14b8a6'];
+  document.querySelectorAll('.rv-avatar[data-name]').forEach(function(el){
+    var code = el.dataset.name.charCodeAt(0) || 0;
+    el.style.background = palette[code % palette.length];
+  });
+</script>
+{% endblock %}

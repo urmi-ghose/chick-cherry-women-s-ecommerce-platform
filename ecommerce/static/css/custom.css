@@ -1,0 +1,254 @@
+/* Custom styles for checkout shipping form */
+.shipping-address-form .form-control {
+    width: 100% !important;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    display: block;
+}
+
+.shipping-address-form .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.shipping-address-form .col-md-6,
+.shipping-address-form .col-md-4,
+.shipping-address-form .col-md-12 {
+    flex: 1 1 auto;
+    min-width: 150px;
+}
+
+.shipping-address-form .card {
+    padding: 15px;
+    border-radius: 6px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Ensure form fields have consistent height */
+.shipping-address-form input.form-control,
+.shipping-address-form textarea.form-control {
+    height: 38px;
+}
+
+/* Style the card header */
+.shipping-address-form .card-header {
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding-bottom: 10px;
+}
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notification.success {
+    background-color: #28a745;
+}
+
+.notification.error {
+    background-color: #dc3545;
+}
+
+/* ========================= VLOG CARD STYLES ========================= */
+.vlog-card {
+    background: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #f0ebe5;
+}
+
+.vlog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.vlog-thumbnail {
+    position: relative;
+    overflow: hidden;
+    height: 200px;
+}
+
+.vlog-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.vlog-card:hover .vlog-thumbnail img {
+    transform: scale(1.08);
+}
+
+.play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.25);
+    transition: background 0.3s ease;
+}
+
+.vlog-card:hover .play-overlay {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.play-overlay i {
+    font-size: 3.5rem;
+    color: #fff;
+    opacity: 0.9;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.vlog-card:hover .play-overlay i {
+    transform: scale(1.15);
+    opacity: 1;
+}
+
+.vlog-duration {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+}
+
+.vlog-content {
+    padding: 20px;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.vlog-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #3d3d3d;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    transition: color 0.3s ease;
+}
+
+.vlog-card:hover .vlog-title {
+    color: #c48b5f;
+}
+
+.vlog-excerpt {
+    font-size: 0.88rem;
+    color: #777;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    flex: 1 1 auto;
+}
+
+.vlog-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px solid #f5f0eb;
+}
+
+.vlog-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.author-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f5f0eb;
+}
+
+.author-name {
+    font-size: 0.82rem;
+    color: #555;
+    font-weight: 500;
+}
+
+.vlog-views {
+    font-size: 0.8rem;
+    color: #999;
+    font-weight: 500;
+}
+
+.vlog-views i {
+    margin-right: 4px;
+    color: #c48b5f;
+}
+
+/* Section heading soft styling */
+#fashion-vlog .section-heading h3 {
+    color: #3d3d3d;
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+#fashion-vlog .section-heading p {
+    color: #999;
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .vlog-thumbnail {
+        height: 170px;
+    }
+
+    .vlog-content {
+        padding: 16px;
+    }
+
+    .vlog-title {
+        font-size: 1rem;
+    }
+
+    .vlog-excerpt {
+        font-size: 0.82rem;
+    }
+
+    .play-overlay i {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 575px) {
+    .vlog-card {
+        margin-bottom: 20px;
+    }
+}
+/* ========================= VLOG CARD STYLES END// ========================= */
