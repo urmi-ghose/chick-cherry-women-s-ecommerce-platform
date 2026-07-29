@@ -145,11 +145,10 @@
 <script>
   (function(){
     var toastColors = { 'success':'#22c55e', 'error':'#ef4444', 'warning':'#f59e0b', 'info':'#3b82f6' };
-    var toastMsgs = [
-      {% for message in messages %}
-      { "text": "{{ message|escapejs }}", "tag": "{{ message.tags|escapejs }}" }{% if not forloop.last %},{% endif %}
-      {% endfor %}
-    ];
+    var toastMsgs = [];
+    {% for message in messages %}
+    toastMsgs.push({ "text": "{{ message|escapejs }}", "tag": "{{ message.tags|escapejs }}" });
+    {% endfor %}
     toastMsgs.forEach(function(m, i){
       setTimeout(function(){
         var color = toastColors[m.tag] || '#6366f1';
