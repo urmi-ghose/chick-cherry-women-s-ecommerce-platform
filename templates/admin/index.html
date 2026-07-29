@@ -1,0 +1,184 @@
+{% extends "admin/base.html" %}
+{% load i18n static %}
+
+{% block title %}Dashboard | ChicCherry Admin{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<!-- Pass chart data to JS -->
+<script>
+  window._chartLabels = {{ chart_labels_json|safe|default:"[]" }};
+  window._chartData   = {{ chart_data_json|safe|default:"[]" }};
+</script>
+
+<!-- STAT CARDS -->
+<div class="stats-grid">
+  <a href="{% url 'admin:carts_order_changelist' %}" class="stat-card">
+    <div>
+      <div class="stat-label">Total Orders</div>
+      <div class="stat-value">{{ order_count|default:"—" }}</div>
+      <div class="stat-change up"><i class="fas fa-arrow-trend-up"></i> All time</div>
+    </div>
+    <div class="stat-icon indigo"><i class="fas fa-shopping-cart"></i></div>
+  </a>
+
+  <a href="{% url 'admin:carts_order_changelist' %}" class="stat-card">
+    <div>
+      <div class="stat-label">Total Revenue</div>
+      <div class="stat-value">{{ revenue|default:"0" }} BDT</div>
+      <div class="stat-change up"><i class="fas fa-arrow-trend-up"></i> Cumulative</div>
+    </div>
+    <div class="stat-icon green"><i class="fas fa-bangladeshi-taka-sign"></i></div>
+  </a>
+
+  <a href="{% url 'admin:store_product_changelist' %}" class="stat-card">
+    <div>
+      <div class="stat-label">Total Products</div>
+      <div class="stat-value">{{ product_count|default:"—" }}</div>
+      <div class="stat-change up"><i class="fas fa-arrow-trend-up"></i> In catalogue</div>
+    </div>
+    <div class="stat-icon amber"><i class="fas fa-box-open"></i></div>
+  </a>
+
+  <a href="{% url 'admin:accounts_account_changelist' %}" class="stat-card">
+    <div>
+      <div class="stat-label">Total Users</div>
+      <div class="stat-value">{{ user_count|default:"—" }}</div>
+      <div class="stat-change up"><i class="fas fa-arrow-trend-up"></i> Registered</div>
+    </div>
+    <div class="stat-icon rose"><i class="fas fa-users"></i></div>
+  </a>
+</div>
+
+<!-- REVENUE CHART -->
+<div class="card chart-card">
+  <div class="card-header">
+    <span class="card-title"><i class="fas fa-chart-line" style="color:#6366F1;margin-right:8px;"></i>Revenue Overview</span>
+    <span class="card-badge">Last 12 Months</span>
+  </div>
+  <div class="chart-wrap">
+    <canvas id="salesChart"></canvas>
+  </div>
+</div>
+
+<!-- ORDERS + ACTIVITY -->
+<div class="section-grid">
+
+  <!-- Recent Orders -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title"><i class="fas fa-receipt" style="color:#6366F1;margin-right:8px;"></i>Recent Orders</span>
+      <a href="{% url 'admin:carts_order_changelist' %}" class="card-action">View all <i class="fas fa-arrow-right" style="font-size:10px;"></i></a>
+    </div>
+    <div class="card-body">
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Order #</th><th>Customer</th><th>Amount</th>
+              <th>Status</th><th>Payment</th><th>Date</th><th></th>
+            </tr>
+          </thead>
+          <tbody id="recent-orders-body">
+            <tr><td colspan="7" class="empty-row"><i class="fas fa-spinner fa-spin"></i> Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <div class="card">
+    <div class="card-header">
+      <span class="card-title"><i class="fas fa-bolt" style="color:#F59E0B;margin-right:8px;"></i>Recent Activity</span>
+    </div>
+    <div class="card-body">
+      <div class="activity-list">
+        {% for entry in admin_log %}
+        <div class="activity-item">
+          <div class="activity-dot {% if entry.is_addition %}green{% elif entry.is_change %}indigo{% elif entry.is_deletion %}red{% else %}amber{% endif %}"></div>
+          <div>
+            <div class="activity-text">
+              {% if entry.is_addition %}<span class="act-badge add">Added</span>
+              {% elif entry.is_change %}<span class="act-badge change">Changed</span>
+              {% elif entry.is_deletion %}<span class="act-badge del">Deleted</span>{% endif %}
+              {{ entry.object_repr }}
+              <span class="act-model">in {{ entry.content_type }}</span>
+            </div>
+            <div class="activity-time">
+              <i class="fas fa-user" style="font-size:10px;"></i> {{ entry.user }}
+              &nbsp;·&nbsp;
+              <i class="fas fa-clock" style="font-size:10px;"></i> {{ entry.action_time|timesince }} ago
+            </div>
+          </div>
+        </div>
+        {% empty %}
+        <div class="activity-item">
+          <div class="activity-dot amber"></div>
+          <div>
+            <div class="activity-text">No recent activity.</div>
+            <div class="activity-time">Actions will appear here</div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- QUICK LINKS -->
+<div class="quick-links-grid">
+  <a href="{% url 'admin:store_product_add' %}" class="quick-link-card">
+    <div class="ql-icon indigo"><i class="fas fa-plus"></i></div>
+    <div class="ql-text"><div class="ql-title">Add Product</div><div class="ql-sub">Create a new listing</div></div>
+    <i class="fas fa-arrow-right ql-arrow"></i>
+  </a>
+  <a href="{% url 'admin:category_category_add' %}" class="quick-link-card">
+    <div class="ql-icon amber"><i class="fas fa-folder-plus"></i></div>
+    <div class="ql-text"><div class="ql-title">Add Category</div><div class="ql-sub">Organise your store</div></div>
+    <i class="fas fa-arrow-right ql-arrow"></i>
+  </a>
+  <a href="{% url 'admin:accounts_account_add' %}" class="quick-link-card">
+    <div class="ql-icon green"><i class="fas fa-user-plus"></i></div>
+    <div class="ql-text"><div class="ql-title">Add User</div><div class="ql-sub">Register a new account</div></div>
+    <i class="fas fa-arrow-right ql-arrow"></i>
+  </a>
+  <a href="{% url 'admin:carts_order_changelist' %}" class="quick-link-card">
+    <div class="ql-icon rose"><i class="fas fa-list-check"></i></div>
+    <div class="ql-text"><div class="ql-title">Manage Orders</div><div class="ql-sub">View &amp; update orders</div></div>
+    <i class="fas fa-arrow-right ql-arrow"></i>
+  </a>
+</div>
+
+<!-- Render recent orders table from injected JSON -->
+<script>
+(function(){
+  var orders = {{ recent_orders_json|safe|default:"[]" }};
+  var tbody  = document.getElementById('recent-orders-body');
+  var statusCls = {
+    Placed:'badge-placed', Processing:'badge-processing',
+    Shipped:'badge-shipped', Delivered:'badge-delivered', Cancelled:'badge-cancelled'
+  };
+  var payCls = { Paid:'badge-paid', Pending:'badge-pending', Failed:'badge-failed' };
+
+  if(orders.length){
+    tbody.innerHTML = orders.map(function(o){
+      return '<tr>' +
+        '<td><a href="/secureadmin/carts/order/'+o.id+'/change/" style="color:#6366F1;font-weight:600;">#'+o.order_number+'</a></td>' +
+        '<td>'+o.name+'</td>' +
+        '<td style="font-weight:600;">\'+o.total+\' BDT</td>' +
+        '<td><span class="badge '+(statusCls[o.status]||'badge-placed')+'">'+o.status+'</span></td>' +
+        '<td><span class="badge '+(payCls[o.payment]||'badge-pending')+'">'+o.payment+'</span></td>' +
+        '<td class="muted">'+o.date+'</td>' +
+        '<td><a href="/secureadmin/carts/order/'+o.id+'/change/" class="tbl-action"><i class="fas fa-pen-to-square"></i></a></td>' +
+      '</tr>';
+    }).join('');
+  } else {
+    tbody.innerHTML = '<tr><td colspan="7" class="empty-row">No orders yet.</td></tr>';
+  }
+})();
+</script>
+
+{% endblock %}

@@ -1,0 +1,331 @@
+{% extends "admin/base.html" %}
+{% load static %}
+
+{% block title %}Orders | ChicCherry Admin{% endblock %}
+{% block page_title %}Orders{% endblock %}
+
+{% block content %}
+<style>
+  /* ── Stat Cards ── */
+  .ord-stats { display: grid; grid-template-columns: repeat(5,1fr); gap: 14px; margin-bottom: 24px; }
+  .ord-stat {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 16px 18px; display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  }
+  .ord-stat-icon {
+    width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+  }
+  .ic-blue   { background:#eff6ff; color:#3b82f6; }
+  .ic-green  { background:#f0fdf4; color:#22c55e; }
+  .ic-amber  { background:#fffbeb; color:#f59e0b; }
+  .ic-purple { background:#f5f3ff; color:#8b5cf6; }
+  .ic-red    { background:#fff1f2; color:#f43f5e; }
+  .ord-stat-val  { font-size: 20px; font-weight: 700; color: #0f172a; line-height: 1; }
+  .ord-stat-lbl  { font-size: 11px; color: #64748b; margin-top: 2px; }
+
+  /* ── Toolbar ── */
+  .ord-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 16px; gap: 12px; flex-wrap: wrap;
+  }
+  .ord-search {
+    display: flex; align-items: center;
+    border: 1.5px solid #e2e8f0; border-radius: 8px;
+    background: #f8fafc; overflow: hidden; transition: border-color .15s;
+    flex: 1; max-width: 300px;
+  }
+  .ord-search:focus-within { border-color: #6366f1; background: #fff; }
+  .ord-search input {
+    border: none; background: transparent; padding: 8px 12px;
+    font-size: 13px; outline: none; width: 100%; color: #0f172a; min-width: 0;
+  }
+  .ord-search button {
+    border: none; background: #6366f1; color: #fff;
+    padding: 8px 12px; cursor: pointer; font-size: 13px; flex-shrink: 0;
+    transition: background .15s;
+  }
+  .ord-search button:hover { background: #4f46e5; }
+
+  .ord-filter-select {
+    padding: 8px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px;
+    font-size: 13px; background: #f8fafc; color: #374151;
+    outline: none; cursor: pointer; transition: border-color .15s;
+  }
+  .ord-filter-select:focus { border-color: #6366f1; }
+
+  /* ── Filter Tabs ── */
+  .ord-tabs {
+    display: flex; gap: 4px; margin-bottom: 20px;
+    background: #f1f5f9; padding: 4px; border-radius: 10px;
+    width: fit-content; overflow-x: auto; scrollbar-width: none;
+  }
+  .ord-tabs::-webkit-scrollbar { display: none; }
+  .ord-tab {
+    padding: 6px 14px; border-radius: 7px; font-size: 13px; font-weight: 500;
+    color: #64748b; text-decoration: none; transition: all .15s; white-space: nowrap;
+  }
+  .ord-tab:hover { color: #0f172a; }
+  .ord-tab.active { background: #fff; color: #6366f1; font-weight: 600; box-shadow: 0 1px 4px rgba(0,0,0,.08); }
+  .ord-tab-count {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #e2e8f0; color: #64748b; border-radius: 99px;
+    font-size: 10px; font-weight: 700; padding: 1px 6px; margin-left: 4px;
+  }
+  .ord-tab.active .ord-tab-count { background: #eef2ff; color: #6366f1; }
+
+  /* ── Table ── */
+  .ord-table-wrap { overflow-x: auto; border-radius: 14px; }
+  .ord-table {
+    width: 100%; min-width: 700px; border-collapse: collapse;
+    background: #fff; border-radius: 14px; overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+  .ord-table thead tr { background: #f8fafc; }
+  .ord-table th {
+    padding: 11px 14px; text-align: left;
+    font-size: 11px; font-weight: 700; color: #64748b;
+    text-transform: uppercase; letter-spacing: .06em;
+    border-bottom: 1px solid #e2e8f0; white-space: nowrap;
+  }
+  .ord-table th a {
+    color: inherit; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .ord-table th a:hover { color: #6366f1; }
+  .sort-ic { font-size: 9px; opacity: .45; }
+  .sort-ic.on { opacity: 1; color: #6366f1; }
+
+  .ord-table td {
+    padding: 12px 14px; font-size: 13px; color: #0f172a;
+    border-bottom: 1px solid #f1f5f9; vertical-align: middle;
+  }
+  .ord-table tbody tr:last-child td { border-bottom: none; }
+  .ord-table tbody tr:hover td { background: #fafbff; }
+
+  /* customer cell */
+  .ord-cust { display: flex; align-items: center; gap: 10px; }
+  .ord-avatar {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff;
+  }
+  .ord-cust-name  { font-weight: 600; font-size: 13px; }
+  .ord-cust-email { font-size: 11px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px; }
+
+  /* badges */
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 9px; border-radius: 99px;
+    font-size: 11px; font-weight: 600; white-space: nowrap;
+  }
+  .badge i { font-size: 7px; }
+  .b-placed      { background:#eef2ff; color:#6366f1; }
+  .b-processing  { background:#fffbeb; color:#d97706; }
+  .b-shipped     { background:#eff6ff; color:#3b82f6; }
+  .b-delivered   { background:#f0fdf4; color:#16a34a; }
+  .b-cancelled   { background:#fff1f2; color:#e11d48; }
+  .b-completed   { background:#f0fdf4; color:#16a34a; }
+  .b-new         { background:#f5f3ff; color:#7c3aed; }
+  .b-paid        { background:#f0fdf4; color:#16a34a; }
+  .b-pending     { background:#fffbeb; color:#d97706; }
+  .b-failed      { background:#fff1f2; color:#e11d48; }
+
+  /* action btn */
+  .ord-act {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 28px; height: 28px; border-radius: 6px;
+    border: 1.5px solid #e2e8f0; background: #fff; color: #64748b;
+    font-size: 12px; text-decoration: none; transition: all .15s;
+  }
+  .ord-act:hover { border-color: #6366f1; color: #6366f1; background: #eef2ff; }
+
+  /* ── Pagination ── */
+  .pg-wrap { display: flex; justify-content: center; gap: 4px; margin-top: 24px; flex-wrap: wrap; }
+  .pg-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 8px;
+    border: 1.5px solid #e2e8f0; background: #fff;
+    color: #64748b; font-size: 12px; text-decoration: none; transition: all .15s;
+  }
+  .pg-btn:hover { background: #eef2ff; color: #6366f1; border-color: #6366f1; }
+  .pg-btn.active { background: #6366f1; border-color: #6366f1; color: #fff; font-weight: 700; }
+  .pg-btn.disabled { opacity: .35; pointer-events: none; }
+
+  /* ── Empty ── */
+  .ord-empty { text-align: center; padding: 60px 20px; color: #64748b; background: #fff; border-radius: 14px; box-shadow: 0 2px 8px rgba(0,0,0,.06); }
+  .ord-empty i { font-size: 44px; opacity: .15; display: block; margin-bottom: 14px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) { .ord-stats { grid-template-columns: repeat(3,1fr); } }
+  @media (max-width: 768px) {
+    .ord-stats { grid-template-columns: repeat(2,1fr); gap: 10px; }
+    .ord-toolbar { flex-direction: column; align-items: stretch; }
+    .ord-search { max-width: none; }
+    .ord-tabs { width: 100%; }
+    .col-email, .col-date { display: none; }
+  }
+  @media (max-width: 480px) {
+    .ord-stats { grid-template-columns: repeat(2,1fr); gap: 8px; }
+    .ord-stat { padding: 12px; gap: 8px; }
+    .ord-stat-val { font-size: 17px; }
+    .col-payment { display: none; }
+    .pg-btn { width: 28px; height: 28px; font-size: 11px; }
+  }
+</style>
+
+<!-- Stat Cards -->
+<div class="ord-stats">
+  <div class="ord-stat">
+    <div class="ord-stat-icon ic-blue"><i class="fas fa-bag-shopping"></i></div>
+    <div><div class="ord-stat-val">{{ total_orders }}</div><div class="ord-stat-lbl">Total Orders</div></div>
+  </div>
+  <div class="ord-stat">
+    <div class="ord-stat-icon ic-amber"><i class="fas fa-clock"></i></div>
+    <div><div class="ord-stat-val">{{ pending_orders }}</div><div class="ord-stat-lbl">Pending</div></div>
+  </div>
+  <div class="ord-stat">
+    <div class="ord-stat-icon ic-purple"><i class="fas fa-truck"></i></div>
+    <div><div class="ord-stat-val">{{ processing_orders }}</div><div class="ord-stat-lbl">Processing</div></div>
+  </div>
+  <div class="ord-stat">
+    <div class="ord-stat-icon ic-green"><i class="fas fa-circle-check"></i></div>
+    <div><div class="ord-stat-val">{{ delivered_orders }}</div><div class="ord-stat-lbl">Delivered</div></div>
+  </div>
+  <div class="ord-stat">
+    <div class="ord-stat-icon ic-green"><i class="fas fa-bangladeshi-taka-sign"></i></div>
+    <div><div class="ord-stat-val">{{ total_revenue }} BDT</div><div class="ord-stat-lbl">Revenue</div></div>
+  </div>
+</div>
+
+<!-- Toolbar -->
+<div class="ord-toolbar">
+  <form method="get" class="ord-search" id="search-form">
+    {% if request.GET.status %}<input type="hidden" name="status" value="{{ request.GET.status }}">{% endif %}
+    {% if request.GET.payment %}<input type="hidden" name="payment" value="{{ request.GET.payment }}">{% endif %}
+    {% if request.GET.sort %}<input type="hidden" name="sort" value="{{ request.GET.sort }}">{% endif %}
+    <input type="text" name="q" placeholder="Search order #, name, email…" value="{{ keyword }}" id="ord-search-input">
+    <button type="submit"><i class="fas fa-search"></i></button>
+  </form>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;">
+    <form method="get" id="payment-form">
+      {% if keyword %}<input type="hidden" name="q" value="{{ keyword }}">{% endif %}
+      {% if request.GET.status %}<input type="hidden" name="status" value="{{ request.GET.status }}">{% endif %}
+      <select name="payment" class="ord-filter-select" onchange="document.getElementById('payment-form').submit()">
+        <option value="">All Payments</option>
+        <option value="Paid"    {% if request.GET.payment == 'Paid' %}selected{% endif %}>Paid</option>
+        <option value="Pending" {% if request.GET.payment == 'Pending' %}selected{% endif %}>Pending</option>
+        <option value="Failed"  {% if request.GET.payment == 'Failed' %}selected{% endif %}>Failed</option>
+      </select>
+    </form>
+  </div>
+</div>
+
+<!-- Filter Tabs -->
+<div class="ord-tabs">
+  {% for tab in status_tabs %}
+  <a href="?{% if keyword %}q={{ keyword }}&{% endif %}{% if request.GET.payment %}payment={{ request.GET.payment }}&{% endif %}{% if tab.value %}status={{ tab.value }}{% endif %}"
+     class="ord-tab {% if current_status == tab.value %}active{% endif %}">
+    {{ tab.label }}<span class="ord-tab-count">{{ tab.count }}</span>
+  </a>
+  {% endfor %}
+</div>
+
+<!-- Table -->
+{% if orders %}
+<div class="ord-table-wrap">
+<table class="ord-table">
+  <thead>
+    <tr>
+      <th>
+        <a href="?{% if keyword %}q={{ keyword }}&{% endif %}{% if request.GET.status %}status={{ request.GET.status }}&{% endif %}{% if request.GET.payment %}payment={{ request.GET.payment }}&{% endif %}sort={% if request.GET.sort == 'num' %}num_asc{% else %}num{% endif %}">
+          Order <i class="fas fa-sort{% if request.GET.sort == 'num' %}-down{% elif request.GET.sort == 'num_asc' %}-up{% endif %} sort-ic {% if 'num' in request.GET.sort|default:'' %}on{% endif %}"></i>
+        </a>
+      </th>
+      <th>Customer</th>
+      <th class="col-email">Email</th>
+      <th>Status</th>
+      <th class="col-payment">Payment</th>
+      <th>Total</th>
+      <th class="col-date">
+        <a href="?{% if keyword %}q={{ keyword }}&{% endif %}{% if request.GET.status %}status={{ request.GET.status }}&{% endif %}{% if request.GET.payment %}payment={{ request.GET.payment }}&{% endif %}sort={% if request.GET.sort == 'date' %}date_asc{% else %}date{% endif %}">
+          Date <i class="fas fa-sort{% if request.GET.sort == 'date' %}-up{% elif request.GET.sort == 'date_asc' %}-down{% endif %} sort-ic {% if 'date' in request.GET.sort|default:'' %}on{% endif %}"></i>
+        </a>
+      </th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td style="font-weight:600;color:#6366f1;font-size:12px;">#{{ order.order_number }}</td>
+      <td>
+        <div class="ord-cust">
+          <div class="ord-avatar" data-name="{{ order.first_name|slice:':1'|upper }}" style="background:#6366f1;">
+            {{ order.first_name|slice:":1"|upper }}
+          </div>
+          <div>
+            <div class="ord-cust-name">{{ order.first_name }} {{ order.last_name }}</div>
+            <div class="ord-cust-email">{{ order.phone }}</div>
+          </div>
+        </div>
+      </td>
+      <td class="col-email" style="font-size:12px;color:#64748b;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">{{ order.email }}</td>
+      <td>
+        {% with s=order.status|lower %}
+        <span class="badge b-{{ s }}"><i class="fas fa-circle"></i>{{ order.status }}</span>
+        {% endwith %}
+      </td>
+      <td class="col-payment">
+        {% with p=order.payment_status|lower %}
+        <span class="badge b-{{ p }}"><i class="fas fa-circle"></i>{{ order.payment_status }}</span>
+        {% endwith %}
+      </td>
+      <td style="font-weight:700;">{{ order.order_total|floatformat:0 }} BDT</td>
+      <td class="col-date" style="font-size:12px;color:#64748b;white-space:nowrap;">{{ order.created_at|date:"d/m/y" }}</td>
+      <td>
+        <a href="{% url 'admin:carts_order_change' order.pk %}" class="ord-act" title="View Order">
+          <i class="fas fa-eye"></i>
+        </a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<!-- Pagination -->
+{% if orders.has_other_pages %}
+<div class="pg-wrap">
+  <a class="pg-btn {% if not orders.has_previous %}disabled{% endif %}"
+     href="{% if orders.has_previous %}?{% if keyword %}q={{ keyword }}&{% endif %}{% if request.GET.status %}status={{ request.GET.status }}&{% endif %}{% if request.GET.payment %}payment={{ request.GET.payment }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ orders.previous_page_number }}{% else %}#{% endif %}">
+    <i class="fas fa-chevron-left"></i>
+  </a>
+  {% for i in orders.paginator.page_range %}
+  <a class="pg-btn {% if orders.number == i %}active{% endif %}"
+     href="?{% if keyword %}q={{ keyword }}&{% endif %}{% if request.GET.status %}status={{ request.GET.status }}&{% endif %}{% if request.GET.payment %}payment={{ request.GET.payment }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ i }}">{{ i }}</a>
+  {% endfor %}
+  <a class="pg-btn {% if not orders.has_next %}disabled{% endif %}"
+     href="{% if orders.has_next %}?{% if keyword %}q={{ keyword }}&{% endif %}{% if request.GET.status %}status={{ request.GET.status }}&{% endif %}{% if request.GET.payment %}payment={{ request.GET.payment }}&{% endif %}{% if request.GET.sort %}sort={{ request.GET.sort }}&{% endif %}page={{ orders.next_page_number }}{% else %}#{% endif %}">
+    <i class="fas fa-chevron-right"></i>
+  </a>
+</div>
+{% endif %}
+
+{% else %}
+<div class="ord-empty">
+  <i class="fas fa-bag-shopping"></i>
+  <h4 style="font-size:15px;font-weight:600;color:#0f172a;margin-bottom:6px;">No orders found</h4>
+  <p style="font-size:13px;">{% if keyword %}No results for "{{ keyword }}"{% else %}No orders yet{% endif %}</p>
+</div>
+{% endif %}
+
+<script>
+  var palette = ['#6366f1','#f43f5e','#22c55e','#f59e0b','#8b5cf6','#06b6d4','#ec4899','#14b8a6'];
+  document.querySelectorAll('.ord-avatar[data-name]').forEach(function(el){
+    var code = el.dataset.name.charCodeAt(0) || 0;
+    el.style.background = palette[code % palette.length];
+  });
+</script>
+{% endblock %}

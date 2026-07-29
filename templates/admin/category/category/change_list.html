@@ -1,0 +1,250 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_urls static %}
+
+{% block title %}Categories | ChicCherry Admin{% endblock %}
+{% block page_title %}Categories{% endblock %}
+
+{% block extrahead %}{{ block.super }}{{ media }}{% endblock %}
+
+{% block content %}
+<style>
+  /* ── Toolbar ── */
+  .cat-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px; gap: 12px; flex-wrap: wrap;
+  }
+  .cat-toolbar-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; min-width: 0; }
+
+  .cat-search {
+    display: flex; align-items: center;
+    border: 1.5px solid #e2e8f0; border-radius: 8px;
+    background: #f8fafc; overflow: hidden; transition: border-color .15s;
+    flex: 1; max-width: 280px;
+  }
+  .cat-search:focus-within { border-color: #6366f1; background: #fff; }
+  .cat-search input {
+    border: none; background: transparent; padding: 8px 12px;
+    font-size: 13px; outline: none; width: 100%; color: #0f172a; min-width: 0;
+  }
+  .cat-search button {
+    border: none; background: #6366f1; color: #fff;
+    padding: 8px 12px; cursor: pointer; font-size: 13px;
+    transition: background .15s; flex-shrink: 0;
+  }
+  .cat-search button:hover { background: #4f46e5; }
+
+  .cat-btn-add {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 9px 18px; background: #6366f1; color: #fff;
+    border-radius: 8px; font-size: 13px; font-weight: 600;
+    text-decoration: none; transition: background .15s; white-space: nowrap; flex-shrink: 0;
+  }
+  .cat-btn-add:hover { background: #4f46e5; color: #fff; }
+
+  /* ── Stat bar ── */
+  .cat-stat-bar { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+  .cat-stat-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
+    padding: 10px 16px; font-size: 13px; box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+  .cat-stat-pill i { font-size: 14px; }
+  .cat-stat-pill .val { font-weight: 700; color: #0f172a; }
+  .cat-stat-pill .lbl { color: #64748b; }
+
+  /* ── Grid ── */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+
+  /* ── Card ── */
+  .cat-card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    transition: box-shadow .2s, transform .2s;
+    display: flex; flex-direction: column;
+  }
+  .cat-card:hover { box-shadow: 0 6px 24px rgba(99,102,241,.13); transform: translateY(-2px); }
+
+  .cat-img-wrap {
+    position: relative; aspect-ratio: 4/3;
+    background: #f1f5f9; overflow: hidden;
+  }
+  .cat-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .3s;
+  }
+  .cat-card:hover .cat-img-wrap img { transform: scale(1.05); }
+  .cat-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: #cbd5e1; gap: 6px;
+  }
+  .cat-img-placeholder i { font-size: 28px; }
+  .cat-img-placeholder span { font-size: 11px; }
+
+  /* product count badge */
+  .cat-count-badge {
+    position: absolute; top: 8px; right: 8px;
+    background: rgba(0,0,0,.55); color: #fff;
+    font-size: 10px; font-weight: 700; padding: 2px 8px;
+    border-radius: 99px; backdrop-filter: blur(4px);
+  }
+
+  .cat-body { padding: 12px 14px; flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .cat-name {
+    font-size: 13px; font-weight: 700; color: #0f172a;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .cat-slug {
+    font-size: 11px; color: #94a3b8;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+
+  .cat-actions {
+    display: flex; gap: 6px; padding: 8px 12px;
+    border-top: 1px solid #f1f5f9;
+  }
+  .cat-act-btn {
+    flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+    padding: 5px 0; border-radius: 6px; font-size: 11px; font-weight: 500;
+    text-decoration: none; transition: all .15s; border: 1.5px solid #e2e8f0;
+    color: #64748b; background: #fff;
+  }
+  .cat-act-btn:hover { border-color: #6366f1; color: #6366f1; background: #eef2ff; }
+  .cat-act-btn.danger:hover { border-color: #ef4444; color: #ef4444; background: #fef2f2; }
+
+  /* ── Empty ── */
+  .cat-empty { text-align: center; padding: 60px 20px; color: #64748b; }
+  .cat-empty i { font-size: 48px; opacity: .15; display: block; margin-bottom: 16px; }
+  .cat-empty h4 { font-size: 16px; font-weight: 600; color: #0f172a; margin-bottom: 6px; }
+
+  /* ── Pagination ── */
+  .pg-wrap { display: flex; justify-content: center; gap: 4px; margin-top: 28px; flex-wrap: wrap; }
+  .pg-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 8px;
+    border: 1.5px solid #e2e8f0; background: #fff;
+    color: #64748b; font-size: 12px; text-decoration: none; transition: all .15s;
+  }
+  .pg-btn:hover { background: #eef2ff; color: #6366f1; border-color: #6366f1; }
+  .pg-btn.active { background: #6366f1; border-color: #6366f1; color: #fff; font-weight: 700; }
+  .pg-btn.disabled { opacity: .35; pointer-events: none; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) { .cat-grid { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 900px) {
+    .cat-toolbar-left { width: 100%; }
+    .cat-search { max-width: none; flex: 1; }
+    .cat-btn-add { width: auto; align-self: flex-start; }
+  }
+  @media (max-width: 768px) {
+    .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .cat-toolbar { flex-direction: column; align-items: flex-start; }
+    .cat-toolbar-left { width: 100%; flex-direction: column; align-items: stretch; }
+    .cat-search { max-width: none; }
+    .cat-btn-add { width: auto; align-self: flex-start; }
+    .cat-stat-bar { gap: 8px; }
+    .cat-stat-pill { flex: 1; justify-content: center; }
+  }
+  @media (max-width: 480px) {
+    .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .cat-body { padding: 10px; }
+    .cat-actions { padding: 6px 8px; }
+  }
+  @media (max-width: 360px) { .cat-grid { grid-template-columns: 1fr; } }
+</style>
+
+<!-- Toolbar -->
+<div class="cat-toolbar">
+  <div class="cat-toolbar-left">
+    <form method="get" class="cat-search">
+      <input type="text" name="q" placeholder="Search categories…" value="{{ request.GET.q }}">
+      <button type="submit"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+  <a href="{% url 'admin:category_category_add' %}" class="cat-btn-add">
+    <i class="fas fa-plus"></i> Add Category
+  </a>
+</div>
+
+<!-- Stat bar -->
+<div class="cat-stat-bar">
+  <div class="cat-stat-pill">
+    <i class="fas fa-tags" style="color:#6366f1;"></i>
+    <span class="val">{{ total_count }}</span><span class="lbl">Total Categories</span>
+  </div>
+  <div class="cat-stat-pill">
+    <i class="fas fa-image" style="color:#22c55e;"></i>
+    <span class="val">{{ with_image_count }}</span><span class="lbl">With Image</span>
+  </div>
+  <div class="cat-stat-pill">
+    <i class="fas fa-box-open" style="color:#f59e0b;"></i>
+    <span class="val">{{ total_products }}</span><span class="lbl">Total Products</span>
+  </div>
+</div>
+
+<!-- Grid -->
+{% if categories %}
+<div class="cat-grid">
+  {% for cat in categories %}
+  <div class="cat-card">
+    <div class="cat-img-wrap">
+      {% if cat.cat_image %}
+      <img src="{{ cat.cat_image.url }}" alt="{{ cat.category_name }}">
+      {% else %}
+      <div class="cat-img-placeholder">
+        <i class="fas fa-tag"></i>
+        <span>No image</span>
+      </div>
+      {% endif %}
+      <span class="cat-count-badge">{{ cat.product_count }} products</span>
+    </div>
+    <div class="cat-body">
+      <div class="cat-name" title="{{ cat.category_name }}">{{ cat.category_name }}</div>
+      <div class="cat-slug">/{{ cat.slug }}/</div>
+    </div>
+    <div class="cat-actions">
+      <a href="{% url 'admin:category_category_change' cat.pk %}" class="cat-act-btn">
+        <i class="fas fa-pen"></i> Edit
+      </a>
+      <a href="{% url 'admin:category_category_delete' cat.pk %}" class="cat-act-btn danger">
+        <i class="fas fa-trash"></i>
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Pagination -->
+{% if categories.has_other_pages %}
+<div class="pg-wrap">
+  <a class="pg-btn {% if not categories.has_previous %}disabled{% endif %}"
+     href="{% if categories.has_previous %}?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}page={{ categories.previous_page_number }}{% else %}#{% endif %}">
+    <i class="fas fa-chevron-left"></i>
+  </a>
+  {% for i in categories.paginator.page_range %}
+  <a class="pg-btn {% if categories.number == i %}active{% endif %}"
+     href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}page={{ i }}">{{ i }}</a>
+  {% endfor %}
+  <a class="pg-btn {% if not categories.has_next %}disabled{% endif %}"
+     href="{% if categories.has_next %}?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}page={{ categories.next_page_number }}{% else %}#{% endif %}">
+    <i class="fas fa-chevron-right"></i>
+  </a>
+</div>
+{% endif %}
+
+{% else %}
+<div class="cat-empty">
+  <i class="fas fa-tags"></i>
+  <h4>No categories found</h4>
+  <p>{% if request.GET.q %}No results for "{{ request.GET.q }}"{% else %}Start by adding your first category{% endif %}</p>
+  <a href="{% url 'admin:category_category_add' %}" class="cat-btn-add" style="margin-top:16px;display:inline-flex;">
+    <i class="fas fa-plus"></i> Add Category
+  </a>
+</div>
+{% endif %}
+
+{% endblock %}

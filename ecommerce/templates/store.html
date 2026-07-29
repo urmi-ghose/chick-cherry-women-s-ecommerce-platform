@@ -1,0 +1,295 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  :root {
+    --primary: #6366f1;
+    --primary-light: #eef2ff;
+    --primary-dark: #4f46e5;
+    --border: #e2e8f0;
+    --bg: #fff0f3;
+    --surface: #fff;
+    --text: #0f172a;
+    --muted: #64748b;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.06);
+    --shadow-hover: 0 8px 32px rgba(99,102,241,.15);
+  }
+
+  .store-hero {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    padding: 48px 0 36px;
+    color: #fff;
+  }
+  .store-hero h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .store-hero p  { opacity: .8; font-size: 14px; margin: 0; }
+
+  .store-body { background: #fff0f3; padding: 32px 0 48px; }
+
+  .filter-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .filter-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    font-size: 13px; font-weight: 600; color: var(--text);
+  }
+  .filter-card-header i { color: var(--muted); font-size: 11px; transition: transform .2s; }
+  .filter-card-header.collapsed i { transform: rotate(-90deg); }
+  .filter-card-body { padding: 14px 18px; }
+
+  .size-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+  .size-chip {
+    padding: 5px 12px; border-radius: 99px;
+    border: 1px solid var(--border); background: var(--surface);
+    font-size: 12px; font-weight: 500; color: var(--muted);
+    cursor: pointer; transition: all .15s; user-select: none;
+  }
+  .size-chip:hover, .size-chip.active {
+    background: var(--primary-light); border-color: var(--primary); color: var(--primary);
+  }
+  .size-chip input { display: none; }
+
+  .price-inputs { display: flex; gap: 8px; margin-bottom: 12px; }
+  .price-inputs input {
+    flex: 1; padding: 7px 10px;
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    font-size: 13px; color: var(--text); background: var(--bg);
+    transition: border-color .15s; width: 100%;
+  }
+  .price-inputs input:focus { outline: none; border-color: var(--primary); }
+
+  .btn-filter {
+    width: 100%; padding: 8px; border: none; border-radius: var(--radius-sm);
+    background: var(--primary); color: #fff;
+    font-size: 13px; font-weight: 500; cursor: pointer; transition: background .15s;
+  }
+  .btn-filter:hover { background: var(--primary-dark); }
+  .btn-clear {
+    width: 100%; padding: 7px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--surface); color: var(--muted);
+    font-size: 13px; font-weight: 500; cursor: pointer; margin-top: 8px; transition: all .15s;
+    text-align: center; display: block; text-decoration: none;
+  }
+  .btn-clear:hover { border-color: var(--primary); color: var(--primary); }
+
+  .store-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px; flex-wrap: wrap; gap: 10px;
+  }
+  .result-count { font-size: 13px; color: var(--muted); }
+  .result-count b { color: var(--text); }
+
+  .product-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: box-shadow .2s, transform .2s;
+    height: 100%;
+    display: flex; flex-direction: column;
+  }
+  .product-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+
+  .product-img-wrap {
+    position: relative; overflow: hidden;
+    background: var(--bg); aspect-ratio: 1/1;
+  }
+  .product-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .3s;
+  }
+  .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+
+  .product-body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; }
+  .product-name {
+    font-size: 14px; font-weight: 600; color: var(--text);
+    margin-bottom: 6px; line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .product-name:hover { color: var(--primary); }
+  .product-price { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+  .product-price span { font-size: 12px; font-weight: 400; color: var(--muted); }
+
+  .btn-view {
+    display: block; text-align: center;
+    padding: 9px; border-radius: var(--radius-sm);
+    background: var(--primary); color: #fff;
+    font-size: 13px; font-weight: 500;
+    transition: background .15s; margin-top: auto;
+  }
+  .btn-view:hover { background: var(--primary-dark); color: #fff; }
+
+  .empty-state {
+    text-align: center; padding: 60px 20px; color: var(--muted);
+  }
+  .empty-state i { font-size: 48px; margin-bottom: 16px; opacity: .3; }
+  .empty-state h4 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+
+  .pagination .page-link {
+    border-radius: var(--radius-sm) !important;
+    border: 1px solid var(--border);
+    color: var(--muted); font-size: 13px;
+    padding: 6px 12px; margin: 0 2px;
+    transition: all .15s;
+  }
+  .pagination .page-link:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
+  .pagination .page-item.active .page-link { background: var(--primary); border-color: var(--primary); color: #fff; }
+  .pagination .page-item.disabled .page-link { opacity: .4; }
+</style>
+
+<!-- Hero -->
+<div class="store-hero">
+  <div class="container">
+    <h1>{% if 'search' in request.path %}Search Results{% else %}Our Store{% endif %}</h1>
+    <p>{% if keyword %}Showing results for "<strong>{{ keyword }}</strong>"{% else %}Discover our latest collection{% endif %}</p>
+  </div>
+</div>
+
+<!-- Body -->
+<div class="store-body">
+  <div class="container">
+    <div class="row">
+
+      <!-- Sidebar -->
+      <aside class="col-lg-3 col-md-4 mb-4">
+
+        <!-- Size Filter -->
+        <div class="filter-card">
+          <div class="filter-card-header" onclick="toggleFilter(this, 'collapse_size')">
+            <span><i class="fas fa-ruler-combined mr-2" style="color:var(--primary)"></i> Sizes</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="filter-card-body" id="collapse_size">
+            <form method="get" id="size-filter-form">
+              {% if request.GET.keyword %}<input type="hidden" name="keyword" value="{{ request.GET.keyword }}">{% endif %}
+              {% if request.GET.min_price %}<input type="hidden" name="min_price" value="{{ request.GET.min_price }}">{% endif %}
+              {% if request.GET.max_price %}<input type="hidden" name="max_price" value="{{ request.GET.max_price }}">{% endif %}
+              <div class="size-grid">
+                {% for size in available_sizes %}
+                <label class="size-chip {% if size in sizes %}active{% endif %}">
+                  <input type="checkbox" name="size" value="{{ size }}" {% if size in sizes %}checked{% endif %} onchange="this.closest('form').submit()">
+                  {{ size|capfirst }}
+                </label>
+                {% empty %}
+                <p style="font-size:12px;color:var(--muted)">No sizes available</p>
+                {% endfor %}
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Price Filter -->
+        <div class="filter-card">
+          <div class="filter-card-header" onclick="toggleFilter(this, 'collapse_price')">
+            <span><i class="fas fa-tag mr-2" style="color:var(--primary)"></i> Price Range</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="filter-card-body" id="collapse_price">
+            <form method="get" id="price-filter-form">
+              {% for size in sizes %}<input type="hidden" name="size" value="{{ size }}">{% endfor %}
+              {% if request.GET.keyword %}<input type="hidden" name="keyword" value="{{ request.GET.keyword }}">{% endif %}
+              <div class="price-inputs">
+                <input type="number" name="min_price" placeholder="Min BDT" value="{{ min_price }}">
+                <input type="number" name="max_price" placeholder="Max BDT" value="{{ max_price }}">
+              </div>
+              <button type="submit" class="btn-filter">Apply</button>
+            </form>
+            {% if min_price or max_price or sizes %}
+            <a href="{% url 'store' %}{% if keyword %}?keyword={{ keyword }}{% endif %}" class="btn-clear">
+              <i class="fas fa-times mr-1"></i> Clear Filters
+            </a>
+            {% endif %}
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- Products -->
+      <main class="col-lg-9 col-md-8">
+
+        <div class="store-toolbar">
+          <p class="result-count mb-0">
+            <b>{{ product_count }}</b> product{{ product_count|pluralize }} found{% if keyword %} for "<b>{{ keyword }}</b>"{% endif %}
+          </p>
+        </div>
+
+        {% if products %}
+        <div class="row">
+          {% for product in products %}
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <a href="{{ product.get_url }}">
+                  <img src="{{ product.images.url }}" alt="{{ product.product_name }}">
+                </a>
+              </div>
+              <div class="product-body">
+                <a href="{{ product.get_url }}" class="product-name">{{ product.product_name }}</a>
+                <div class="product-price">{{ product.price }} <span>TK</span></div>
+                <a href="{{ product.get_url }}" class="btn-view">View Details</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        {% if products.has_other_pages %}
+        <nav class="mt-2" aria-label="Pagination">
+          <ul class="pagination justify-content-center flex-wrap">
+            <li class="page-item {% if not products.has_previous %}disabled{% endif %}">
+              <a class="page-link" href="{% if products.has_previous %}?{{ params }}&page={{ products.previous_page_number }}{% else %}#{% endif %}">
+                <i class="fas fa-chevron-left"></i>
+              </a>
+            </li>
+            {% for i in products.paginator.page_range %}
+            <li class="page-item {% if products.number == i %}active{% endif %}">
+              <a class="page-link" href="?{{ params }}&page={{ i }}">{{ i }}</a>
+            </li>
+            {% endfor %}
+            <li class="page-item {% if not products.has_next %}disabled{% endif %}">
+              <a class="page-link" href="{% if products.has_next %}?{{ params }}&page={{ products.next_page_number }}{% else %}#{% endif %}">
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        {% endif %}
+
+        {% else %}
+        <div class="empty-state">
+          <i class="fas fa-box-open d-block"></i>
+          <h4>No products found</h4>
+          <p>Try adjusting your filters or search term.</p>
+          <a href="{% url 'store' %}" class="btn-filter d-inline-block mt-2" style="width:auto;padding:9px 24px;">Browse All</a>
+        </div>
+        {% endif %}
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleFilter(header, id) {
+    const body = document.getElementById(id);
+    const collapsed = body.style.display === 'none';
+    body.style.display = collapsed ? 'block' : 'none';
+    header.classList.toggle('collapsed', !collapsed);
+  }
+  document.querySelectorAll('.size-chip input:checked').forEach(cb => cb.closest('.size-chip').classList.add('active'));
+  document.querySelectorAll('.size-chip input').forEach(cb => {
+    cb.addEventListener('change', () => cb.closest('.size-chip').classList.toggle('active', cb.checked));
+  });
+</script>
+{% endblock %}

@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OTP Verification — ChicCherry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="{% static 'fonts/fontawesome/css/all.min.css' %}" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: #f1f5f9;
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .card {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.10);
+      padding: 40px 36px;
+      width: 100%; max-width: 420px;
+      animation: fadeUp 0.4s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .brand { text-align: center; margin-bottom: 24px; }
+    .brand-name { font-size: 26px; font-weight: 800; color: #0f172a; letter-spacing: -0.5px; }
+    .brand-name span { color: #e11d48; }
+    .card-title { font-size: 20px; font-weight: 700; color: #0f172a; text-align: center; margin-bottom: 6px; }
+    .card-sub { font-size: 13.5px; color: #64748b; text-align: center; margin-bottom: 24px; }
+    .alert { padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: 16px; }
+    .alert-error   { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+    .alert-success { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+    .alert-warning { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+    .alert-info    { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    label { display: block; font-size: 13px; font-weight: 500; color: #374151; margin-bottom: 6px; }
+    input[type="text"] {
+      width: 100%; padding: 11px 14px;
+      border: 1.5px solid #e2e8f0; border-radius: 10px;
+      font-size: 18px; font-weight: 600; letter-spacing: 6px; text-align: center;
+      color: #0f172a; background: #f8fafc; outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    input[type="text"]:focus {
+      border-color: #e11d48; background: #fff;
+      box-shadow: 0 0 0 3px rgba(225,29,72,0.12);
+    }
+    .btn-verify {
+      width: 100%; padding: 11px; margin-top: 20px;
+      background: #e11d48; color: #fff;
+      font-size: 15px; font-weight: 600; font-family: inherit;
+      border: none; border-radius: 10px; cursor: pointer;
+      transition: background .2s;
+    }
+    .btn-verify:hover { background: #be123c; }
+    .links { text-align: center; margin-top: 18px; font-size: 13px; color: #64748b; }
+    .links a { color: #e11d48; font-weight: 500; text-decoration: none; }
+    .links a:hover { text-decoration: underline; }
+    .divider { margin: 6px 0; }
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="brand">
+    <div class="brand-name">Chic<span>Cherry</span></div>
+  </div>
+  <div class="card-title">OTP Verification</div>
+  <div class="card-sub">Enter the 6-digit code sent to your email address.</div>
+
+  <form method="post" action="{% url 'accounts:verify_otp' %}">
+    {% csrf_token %}
+    <label for="otp">Verification Code</label>
+    <input type="text" name="otp" id="otp" placeholder="000000" required maxlength="6" autocomplete="one-time-code">
+    <button type="submit" class="btn-verify">Verify OTP</button>
+  </form>
+
+  <div class="links">
+    <div class="divider">Didn't receive the code?</div>
+    <form method="post" action="{% url 'accounts:resend_otp' %}" style="margin:8px 0;">
+      {% csrf_token %}
+      <input type="hidden" name="email" value="{{ otp_email }}">
+      <button type="submit"
+        style="width:100%;padding:9px;background:#f1f5f9;color:#374151;border:1.5px solid #e2e8f0;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;">
+        Resend OTP
+      </button>
+    </form>
+    <div class="divider"><a href="{% url 'accounts:register' %}">Back to Register</a></div>
+  </div>
+</div>
+
+</body>
+</html>

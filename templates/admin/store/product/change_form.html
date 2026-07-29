@@ -1,0 +1,543 @@
+{% extends "admin/change_form.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+/* ── Reset & Base ── */
+#content h1, #content h2, .object-tools,
+#content .submit-row, #content fieldset h2,
+.breadcrumbs { display: none !important; }
+#content fieldset { border: none !important; padding: 0 !important; margin: 0 !important; }
+.form-row { margin: 0 !important; padding: 0 !important; }
+p.help { display: none; }
+
+/* ── Container ── */
+.pf-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Header ── */
+.pf-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 24px; gap: 12px; flex-wrap: wrap;
+}
+.pf-header-title { font-size: 20px; font-weight: 700; color: #0f172a; margin: 0 0 2px; }
+.pf-header-sub { font-size: 13px; color: #64748b; margin: 0; }
+.pf-header-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+/* ── Buttons ── */
+.pf-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 9px 18px; border-radius: 10px; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all .15s; text-decoration: none;
+  border: none; font-family: inherit; white-space: nowrap;
+}
+.pf-btn-primary   { background: #6366f1; color: #fff; }
+.pf-btn-primary:hover { background: #4f46e5; color: #fff; }
+.pf-btn-ghost     { background: #fff; color: #374151; border: 1.5px solid #e2e8f0; }
+.pf-btn-ghost:hover { border-color: #6366f1; color: #6366f1; background: #f5f3ff; }
+.pf-btn-danger    { background: #fff; color: #ef4444; border: 1.5px solid #fecaca; }
+.pf-btn-danger:hover { background: #fef2f2; border-color: #ef4444; }
+.pf-btn-full      { width: 100%; justify-content: center; }
+.pf-btn-sm        { padding: 6px 12px; font-size: 12px; border-radius: 7px; }
+
+/* ── Grid ── */
+.pf-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  align-items: start;
+}
+.pf-main { display: flex; flex-direction: column; gap: 20px; }
+.pf-side { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 80px; }
+
+/* ── Card ── */
+.pf-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+  overflow: hidden;
+}
+.pf-card-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 20px; border-bottom: 1px solid #f1f5f9;
+  background: #fafbff;
+}
+.pf-card-head i { color: #6366f1; font-size: 14px; width: 16px; text-align: center; }
+.pf-card-head-title { font-size: 13px; font-weight: 600; color: #111827; }
+.pf-card-body { padding: 20px; }
+
+/* ── Form groups ── */
+.pf-group {
+  display: flex; flex-direction: column; gap: 6px;
+  margin-bottom: 16px;
+}
+.pf-group:last-child { margin-bottom: 0; }
+.pf-label {
+  font-size: 13px; font-weight: 500; color: #374151;
+}
+.pf-label .req { color: #ef4444; margin-left: 2px; }
+.pf-help { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+
+.pf-card-body input[type=text],
+.pf-card-body input[type=number],
+.pf-card-body select,
+.pf-card-body textarea {
+  width: 100%; padding: 9px 13px;
+  border: 1.5px solid #e5e7eb; border-radius: 10px;
+  font-size: 13px; font-family: inherit; color: #111827;
+  background: #f9fafb; outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.pf-card-body input:focus,
+.pf-card-body select:focus,
+.pf-card-body textarea:focus {
+  border-color: #6366f1; background: #fff;
+  box-shadow: 0 0 0 3px rgba(99,102,241,.1);
+}
+.pf-card-body textarea { resize: vertical; min-height: 100px; }
+.pf-card-body select { cursor: pointer; }
+
+/* 2-col grid */
+.pf-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+/* availability toggle */
+.pf-toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 16px; background: #f9fafb;
+  border: 1.5px solid #e5e7eb; border-radius: 10px; margin-top: 4px;
+}
+.pf-toggle-label { font-size: 13px; color: #374151; font-weight: 500; }
+.pf-toggle-row input[type=checkbox] {
+  width: 18px; height: 18px; accent-color: #6366f1; cursor: pointer;
+}
+
+/* ── Image ── */
+.pf-img-box {
+  width: 100%; aspect-ratio: 4/3; border-radius: 12px;
+  overflow: hidden; background: #f3f4f6;
+  border: 1px solid #e5e7eb; margin-bottom: 12px;
+  display: flex; align-items: center; justify-content: center;
+}
+.pf-img-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.pf-img-placeholder { text-align: center; color: #9ca3af; }
+.pf-img-placeholder i { font-size: 32px; display: block; margin-bottom: 6px; opacity: .4; }
+.pf-img-placeholder span { font-size: 12px; }
+
+/* ── Meta rows ── */
+.pf-meta-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 12px;
+}
+.pf-meta-row:last-child { border-bottom: none; padding-bottom: 0; }
+.pf-meta-key { color: #6b7280; }
+.pf-meta-val { font-weight: 600; color: #111827; }
+
+/* ── Variations inline ── */
+.pf-var-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 60px 40px;
+  gap: 10px; align-items: center;
+  padding: 10px 20px; border-bottom: 1px solid #f1f5f9;
+}
+.pf-var-row:last-child { border-bottom: none; }
+.pf-var-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr 60px 40px;
+  gap: 10px; padding: 8px 20px;
+  background: #f8fafc; border-bottom: 1px solid #e5e7eb;
+  font-size: 11px; font-weight: 700; color: #6b7280;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.pf-var-row input[type=text],
+.pf-var-row select {
+  width: 100%; padding: 7px 10px;
+  border: 1.5px solid #e5e7eb; border-radius: 8px;
+  font-size: 12px; background: #f9fafb; outline: none;
+  transition: border-color .15s;
+}
+.pf-var-row input:focus, .pf-var-row select:focus {
+  border-color: #6366f1; background: #fff;
+}
+.pf-var-row input[type=checkbox] { accent-color: #6366f1; width: 16px; height: 16px; }
+.pf-var-del label { color: #ef4444; font-size: 12px; cursor: pointer; }
+
+/* ── Gallery inline ── */
+.pf-gallery-row {
+  display: grid;
+  grid-template-columns: 72px 1fr 40px;
+  gap: 12px; align-items: center;
+  padding: 10px 20px; border-bottom: 1px solid #f1f5f9;
+}
+.pf-gallery-row:last-child { border-bottom: none; }
+.pf-gallery-head {
+  display: grid;
+  grid-template-columns: 72px 1fr 40px;
+  gap: 12px; padding: 8px 20px;
+  background: #f8fafc; border-bottom: 1px solid #e5e7eb;
+  font-size: 11px; font-weight: 700; color: #6b7280;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.pf-gallery-thumb {
+  width: 64px; height: 64px; object-fit: cover;
+  border-radius: 8px; border: 1px solid #e5e7eb;
+}
+.pf-gallery-empty {
+  width: 64px; height: 64px; background: #f3f4f6;
+  border-radius: 8px; border: 1px dashed #d1d5db;
+  display: flex; align-items: center; justify-content: center;
+}
+.pf-gallery-row input[type=file] { font-size: 12px; }
+.pf-gallery-del label { color: #ef4444; font-size: 12px; cursor: pointer; }
+
+/* ── Mobile save bar ── */
+.pf-mobile-save {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+  background: #fff; border-top: 1px solid #e5e7eb;
+  padding: 12px 16px; gap: 10px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,.08);
+}
+
+/* ── Error ── */
+.pf-error { font-size: 11px; color: #ef4444; margin-top: 3px; }
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .pf-grid { grid-template-columns: 3fr 2fr; gap: 18px; }
+}
+@media (max-width: 768px) {
+  .pf-grid { grid-template-columns: 1fr; }
+  .pf-side { position: static; order: -1; }
+  .pf-grid-2 { grid-template-columns: 1fr 1fr; }
+  .pf-header-actions .pf-btn-primary { display: none; }
+  .pf-mobile-save { display: flex; }
+  .pf-card-body { padding: 16px; }
+  #admin-content { padding-bottom: 80px; }
+}
+@media (max-width: 480px) {
+  .pf-grid-2 { grid-template-columns: 1fr; }
+  .pf-header { flex-direction: column; align-items: stretch; }
+  .pf-header-actions { flex-wrap: wrap; }
+  .pf-header-actions .pf-btn { flex: 1; justify-content: center; }
+  .pf-var-row, .pf-var-head { grid-template-columns: 1fr 1fr 50px 36px; gap: 6px; }
+  .pf-gallery-row, .pf-gallery-head { grid-template-columns: 56px 1fr 36px; }
+}
+</style>
+{% endblock %}
+
+{% block extrahead %}{{ block.super }}{% endblock %}
+{% block content_title %}{% endblock %}
+{% block object-tools %}{% endblock %}
+{% block admin_change_form_document_ready %}{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data" id="pf-form" novalidate>
+{% csrf_token %}
+{% for field in adminform.form.hidden_fields %}{{ field }}{% endfor %}
+
+<div class="pf-wrap">
+
+  <!-- ── Header ── -->
+  <div class="pf-header">
+    <div>
+      <h1 class="pf-header-title">{% if original %}Edit Product{% else %}Add Product{% endif %}</h1>
+      <p class="pf-header-sub">{% if original %}{{ original.product_name }}{% else %}Fill in the details to create a new product{% endif %}</p>
+    </div>
+    <div class="pf-header-actions">
+      <a href="/secureadmin/store/product/list/" class="pf-btn pf-btn-ghost">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+      {% if original %}
+      <a href="{% url 'admin:store_product_delete' original.pk %}" class="pf-btn pf-btn-danger">
+        <i class="fas fa-trash"></i> Delete
+      </a>
+      {% endif %}
+      <button type="submit" name="_save" class="pf-btn pf-btn-primary">
+        <i class="fas fa-check"></i> Save
+      </button>
+    </div>
+  </div>
+
+  <!-- ── Grid ── -->
+  <div class="pf-grid">
+
+    <!-- ════ MAIN ════ -->
+    <div class="pf-main">
+
+      <!-- Basic Info -->
+      <div class="pf-card">
+        <div class="pf-card-head">
+          <i class="fas fa-pen-to-square"></i>
+          <span class="pf-card-head-title">Basic Information</span>
+        </div>
+        <div class="pf-card-body">
+          {% with f=adminform.form.product_name %}
+          <div class="pf-group">
+            <label class="pf-label">{{ f.label }}<span class="req">*</span></label>
+            {{ f }}
+            {% if f.errors %}<p class="pf-error">{{ f.errors.0 }}</p>{% endif %}
+          </div>
+          {% endwith %}
+          {% if adminform.form.slug %}
+          {% with f=adminform.form.slug %}
+          <div class="pf-group">
+            <label class="pf-label">{{ f.label }}</label>
+            {{ f }}
+            <p class="pf-help">Auto-generated from product name. Used in the URL.</p>
+          </div>
+          {% endwith %}
+          {% else %}
+          <div class="pf-group">
+            <label class="pf-label">Slug</label>
+            <input type="text" value="{{ original.slug }}" disabled style="background:#f3f4f6;color:#6b7280;">
+          </div>
+          {% endif %}
+          {% with f=adminform.form.description %}
+          <div class="pf-group">
+            <label class="pf-label">{{ f.label }}</label>
+            {{ f }}
+          </div>
+          {% endwith %}
+        </div>
+      </div>
+
+      <!-- Pricing & Stock -->
+      <div class="pf-card">
+        <div class="pf-card-head">
+          <i class="fas fa-bangladeshi-taka-sign"></i>
+          <span class="pf-card-head-title">Pricing & Stock</span>
+        </div>
+        <div class="pf-card-body">
+          <div class="pf-grid-2">
+            {% with f=adminform.form.price %}
+            <div class="pf-group">
+              <label class="pf-label">Price (BDT)<span class="req">*</span></label>
+              {{ f }}
+              {% if f.errors %}<p class="pf-error">{{ f.errors.0 }}</p>{% endif %}
+            </div>
+            {% endwith %}
+            {% with f=adminform.form.discount_percent %}
+            <div class="pf-group">
+              <label class="pf-label">Discount %</label>
+              {{ f }}
+              <p class="pf-help">Enter 0–100. Set 0 for no discount.</p>
+            </div>
+            {% endwith %}
+            {% with f=adminform.form.stock %}
+            <div class="pf-group">
+              <label class="pf-label">Stock<span class="req">*</span></label>
+              {{ f }}
+              {% if f.errors %}<p class="pf-error">{{ f.errors.0 }}</p>{% endif %}
+            </div>
+            {% endwith %}
+            {% with f=adminform.form.category %}
+            <div class="pf-group">
+              <label class="pf-label">Category<span class="req">*</span></label>
+              {{ f }}
+              {% if f.errors %}<p class="pf-error">{{ f.errors.0 }}</p>{% endif %}
+            </div>
+            {% endwith %}
+          </div>
+          {% with f=adminform.form.is_available %}
+          <div class="pf-toggle-row">
+            <span class="pf-toggle-label"><i class="fas fa-store" style="color:#6366f1;margin-right:8px;"></i>Available in store</span>
+            {{ f }}
+          </div>
+          {% endwith %}
+        </div>
+      </div>
+
+      <!-- Variations -->
+      {% for inline_admin_formset in inline_admin_formsets %}
+      {% if inline_admin_formset.opts.verbose_name == 'variation' %}
+      <div class="pf-card">
+        <div class="pf-card-head">
+          <i class="fas fa-sliders"></i>
+          <span class="pf-card-head-title">Variations</span>
+        </div>
+        {{ inline_admin_formset.formset.management_form }}
+        <div class="pf-var-head">
+          <span>Category</span><span>Value</span><span>Active</span><span>Del</span>
+        </div>
+        {% for form in inline_admin_formset.formset.forms %}
+        <div class="pf-var-row">
+          {% for field in form.hidden_fields %}{{ field }}{% endfor %}
+          {% for field in form.visible_fields %}
+            {% if field.name == 'DELETE' %}{% else %}
+            <div>{{ field }}{{ field.errors }}</div>
+            {% endif %}
+          {% endfor %}
+          <div class="pf-var-del">{{ form.DELETE }}</div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endfor %}
+
+      <!-- Gallery -->
+      {% for inline_admin_formset in inline_admin_formsets %}
+      {% if inline_admin_formset.opts.verbose_name == 'productgallery' %}
+      <div class="pf-card">
+        <div class="pf-card-head">
+          <i class="fas fa-images"></i>
+          <span class="pf-card-head-title">Product Gallery</span>
+        </div>
+        {{ inline_admin_formset.formset.management_form }}
+        <div class="pf-gallery-head">
+          <span>Preview</span><span>Image File</span><span>Del</span>
+        </div>
+        {% for form in inline_admin_formset.formset.forms %}
+        <div class="pf-gallery-row">
+          {% for field in form.hidden_fields %}{{ field }}{% endfor %}
+          <div>
+            {% if form.instance.image %}
+            <img src="{{ form.instance.image.url }}" class="pf-gallery-thumb">
+            {% else %}
+            <div class="pf-gallery-empty"><i class="fas fa-image" style="color:#d1d5db;font-size:20px;"></i></div>
+            {% endif %}
+          </div>
+          <div>
+            {% for field in form.visible_fields %}
+              {% if field.name != 'DELETE' %}{{ field }}{{ field.errors }}{% endif %}
+            {% endfor %}
+          </div>
+          <div class="pf-gallery-del">
+            {% for field in form.visible_fields %}
+              {% if field.name == 'DELETE' %}{{ field }}{% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endfor %}
+
+    </div>
+    <!-- ════ END MAIN ════ -->
+
+    <!-- ════ SIDEBAR ════ -->
+    <div class="pf-side">
+
+      <!-- Main Image -->
+      <div class="pf-card">
+        <div class="pf-card-head">
+          <i class="fas fa-image"></i>
+          <span class="pf-card-head-title">Main Image</span>
+        </div>
+        <div class="pf-card-body">
+          <div class="pf-img-box">
+            {% if original.images %}
+            <img src="{{ original.images.url }}" id="img-preview" alt="Product image">
+            {% else %}
+            <div class="pf-img-placeholder" id="img-placeholder">
+              <i class="fas fa-cloud-upload-alt"></i>
+              <span>No image uploaded</span>
+            </div>
+            <img src="" id="img-preview" style="display:none;width:100%;height:100%;object-fit:cover;" alt="">
+            {% endif %}
+          </div>
+          {% with f=adminform.form.images %}
+          <div class="pf-group">
+            <label class="pf-label">{{ f.label }}</label>
+            {{ f }}
+          </div>
+          {% endwith %}
+        </div>
+      </div>
+
+      <!-- Save Options -->
+      <div class="pf-card">
+        <div class="pf-card-head">
+          <i class="fas fa-floppy-disk"></i>
+          <span class="pf-card-head-title">Save Options</span>
+        </div>
+        <div class="pf-card-body" style="display:flex;flex-direction:column;gap:8px;">
+          <button type="submit" name="_save" class="pf-btn pf-btn-primary pf-btn-full">
+            <i class="fas fa-check"></i> Save
+          </button>
+          <button type="submit" name="_continue" class="pf-btn pf-btn-ghost pf-btn-full">
+            <i class="fas fa-pen"></i> Save & Continue Editing
+          </button>
+          <button type="submit" name="_addanother" class="pf-btn pf-btn-ghost pf-btn-full">
+            <i class="fas fa-plus"></i> Save & Add Another
+          </button>
+        </div>
+      </div>
+
+      <!-- Meta -->
+      {% if original %}
+      <div class="pf-card">
+        <div class="pf-card-head">
+          <i class="fas fa-circle-info"></i>
+          <span class="pf-card-head-title">Product Info</span>
+        </div>
+        <div class="pf-card-body">
+          <div class="pf-meta-row">
+            <span class="pf-meta-key">ID</span>
+            <span class="pf-meta-val">#{{ original.pk }}</span>
+          </div>
+          <div class="pf-meta-row">
+            <span class="pf-meta-key">Created</span>
+            <span class="pf-meta-val">{{ original.created_date|date:"M d, Y" }}</span>
+          </div>
+          <div class="pf-meta-row">
+            <span class="pf-meta-key">Modified</span>
+            <span class="pf-meta-val">{{ original.modified_date|date:"M d, Y" }}</span>
+          </div>
+          <div class="pf-meta-row">
+            <span class="pf-meta-key">Category</span>
+            <span class="pf-meta-val">{{ original.category }}</span>
+          </div>
+          <div class="pf-meta-row">
+            <span class="pf-meta-key">Stock</span>
+            <span class="pf-meta-val"
+              style="color:{% if original.stock == 0 %}#ef4444{% elif original.stock <= 5 %}#f59e0b{% else %}#22c55e{% endif %};">
+              {{ original.stock }} units
+            </span>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+    <!-- ════ END SIDEBAR ════ -->
+
+  </div>
+</div>
+
+<!-- Mobile sticky save bar -->
+<div class="pf-mobile-save">
+  <button type="submit" name="_save" class="pf-btn pf-btn-primary" style="flex:1;justify-content:center;">
+    <i class="fas fa-check"></i> Save
+  </button>
+  <button type="submit" name="_continue" class="pf-btn pf-btn-ghost" style="flex:1;justify-content:center;">
+    <i class="fas fa-pen"></i> Save & Continue
+  </button>
+</div>
+
+</form>
+
+<script>
+(function(){
+  // Live image preview
+  var inp = document.querySelector('input[name="images"]');
+  if(inp) inp.addEventListener('change', function(e){
+    var file = e.target.files[0];
+    if(!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      var preview = document.getElementById('img-preview');
+      var placeholder = document.getElementById('img-placeholder');
+      preview.src = ev.target.result;
+      preview.style.display = 'block';
+      if(placeholder) placeholder.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+  });
+})();
+</script>
+{% endblock %}

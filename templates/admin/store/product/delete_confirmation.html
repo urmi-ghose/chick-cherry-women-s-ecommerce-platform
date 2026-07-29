@@ -1,0 +1,216 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_urls static %}
+
+{% block title %}Delete Product | ChicCherry Admin{% endblock %}
+{% block page_title %}Delete Product{% endblock %}
+
+{% block extrahead %}{{ block.super }}{{ media }}{% endblock %}
+
+{% block content %}
+<style>
+  .del-wrap {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ── Danger card ── */
+  .del-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+    overflow: hidden;
+  }
+
+  /* red top stripe */
+  .del-card-stripe {
+    height: 4px;
+    background: linear-gradient(90deg, #ef4444, #f97316);
+  }
+
+  .del-card-body { padding: 32px; }
+
+  /* icon */
+  .del-icon-wrap {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: #fef2f2; border: 2px solid #fecaca;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px;
+  }
+  .del-icon-wrap i { font-size: 26px; color: #ef4444; }
+
+  .del-title {
+    font-size: 20px; font-weight: 700; color: #111827;
+    text-align: center; margin: 0 0 8px;
+  }
+  .del-subtitle {
+    font-size: 14px; color: #6b7280;
+    text-align: center; margin: 0 0 24px; line-height: 1.6;
+  }
+  .del-subtitle strong { color: #111827; }
+
+  /* product preview */
+  .del-product-box {
+    display: flex; align-items: center; gap: 14px;
+    background: #fafafa; border: 1px solid #e5e7eb;
+    border-radius: 12px; padding: 14px 16px;
+    margin-bottom: 24px;
+  }
+  .del-product-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: #fee2e2; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .del-product-icon i { color: #ef4444; font-size: 18px; }
+  .del-product-name { font-size: 14px; font-weight: 600; color: #111827; }
+  .del-product-type { font-size: 12px; color: #9ca3af; margin-top: 2px; }
+
+  /* related objects */
+  .del-related {
+    background: #fffbeb; border: 1px solid #fde68a;
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 24px;
+  }
+  .del-related-title {
+    font-size: 12px; font-weight: 700; color: #92400e;
+    text-transform: uppercase; letter-spacing: .05em;
+    margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
+  }
+  .del-related-title i { font-size: 12px; }
+  #deleted-objects, #deleted-objects ul {
+    margin: 0; padding-left: 18px;
+    font-size: 13px; color: #78350f; line-height: 1.8;
+  }
+
+  /* perms / protected */
+  .del-blocked {
+    background: #fef2f2; border: 1px solid #fecaca;
+    border-radius: 10px; padding: 14px 16px; margin-bottom: 24px;
+    font-size: 13px; color: #991b1b; line-height: 1.6;
+  }
+  .del-blocked ul { margin: 8px 0 0; padding-left: 18px; }
+
+  /* actions */
+  .del-actions {
+    display: flex; gap: 10px; flex-wrap: wrap;
+  }
+  .del-btn {
+    flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+    padding: 11px 20px; border-radius: 10px; font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all .15s; text-decoration: none;
+    border: none; font-family: inherit;
+  }
+  .del-btn-danger  { background: #ef4444; color: #fff; }
+  .del-btn-danger:hover  { background: #dc2626; color: #fff; }
+  .del-btn-cancel  { background: #fff; color: #374151; border: 1.5px solid #e5e7eb; }
+  .del-btn-cancel:hover  { border-color: #6366f1; color: #6366f1; background: #f5f3ff; }
+
+  /* warning note */
+  .del-warning {
+    display: flex; align-items: flex-start; gap: 10px;
+    background: #fef2f2; border-radius: 10px;
+    padding: 12px 14px; margin-bottom: 24px;
+    font-size: 12px; color: #991b1b; line-height: 1.5;
+  }
+  .del-warning i { font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+
+  /* responsive */
+  @media (max-width: 640px) {
+    .del-card-body { padding: 24px 18px; }
+    .del-actions { flex-direction: column; }
+    .del-btn { flex: none; width: 100%; }
+  }
+</style>
+
+<div class="del-wrap">
+  <div class="del-card">
+    <div class="del-card-stripe"></div>
+    <div class="del-card-body">
+
+      <!-- Icon -->
+      <div class="del-icon-wrap">
+        <i class="fas fa-trash-can"></i>
+      </div>
+
+      <!-- Title -->
+      <h1 class="del-title">Delete Product</h1>
+      <p class="del-subtitle">
+        You are about to permanently delete<br>
+        <strong>"{{ object }}"</strong>
+      </p>
+
+      <!-- Product box -->
+      <div class="del-product-box">
+        <div class="del-product-icon"><i class="fas fa-box-open"></i></div>
+        <div>
+          <div class="del-product-name">{{ object }}</div>
+          <div class="del-product-type">{{ object_name|capfirst }}</div>
+        </div>
+      </div>
+
+      {% if perms_lacking %}
+      <!-- No permission -->
+      <div class="del-blocked">
+        <strong><i class="fas fa-lock" style="margin-right:6px;"></i>Permission Denied</strong><br>
+        Deleting this {{ object_name }} would require deleting related objects, but your account doesn't have permission to delete:
+        <ul>{{ perms_lacking|unordered_list }}</ul>
+      </div>
+      <div class="del-actions">
+        <a href="{% url opts|admin_urlname:'changelist' %}" class="del-btn del-btn-cancel">
+          <i class="fas fa-arrow-left"></i> Back to List
+        </a>
+      </div>
+
+      {% elif protected %}
+      <!-- Protected -->
+      <div class="del-blocked">
+        <strong><i class="fas fa-shield-halved" style="margin-right:6px;"></i>Cannot Delete</strong><br>
+        This {{ object_name }} is protected by related objects:
+        <ul>{{ protected|unordered_list }}</ul>
+      </div>
+      <div class="del-actions">
+        <a href="{% url opts|admin_urlname:'change' object.pk|admin_urlquote %}" class="del-btn del-btn-cancel">
+          <i class="fas fa-arrow-left"></i> Back to Edit
+        </a>
+      </div>
+
+      {% else %}
+      <!-- Related objects warning -->
+      {% if deleted_objects %}
+      <div class="del-related">
+        <div class="del-related-title">
+          <i class="fas fa-triangle-exclamation"></i> The following related items will also be deleted
+        </div>
+        <ul id="deleted-objects">{{ deleted_objects|unordered_list }}</ul>
+      </div>
+      {% endif %}
+
+      <!-- Warning note -->
+      <div class="del-warning">
+        <i class="fas fa-circle-exclamation"></i>
+        <span>This action <strong>cannot be undone</strong>. The product and all its related data (variations, gallery images, reviews) will be permanently removed.</span>
+      </div>
+
+      <!-- Confirm form -->
+      <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="post" value="yes">
+        {% if is_popup %}<input type="hidden" name="{{ is_popup_var }}" value="1">{% endif %}
+        {% if to_field %}<input type="hidden" name="{{ to_field_var }}" value="{{ to_field }}">{% endif %}
+        <div class="del-actions">
+          <a href="/secureadmin/store/product/list/" class="del-btn del-btn-cancel">
+            <i class="fas fa-arrow-left"></i> Back
+          </a>
+          <a href="{% url opts|admin_urlname:'change' object.pk|admin_urlquote %}" class="del-btn del-btn-cancel">
+            <i class="fas fa-xmark"></i> Cancel
+          </a>
+          <button type="submit" class="del-btn del-btn-danger">
+            <i class="fas fa-trash-can"></i> Yes, Delete
+          </button>
+        </div>
+      </form>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+{% endblock %}

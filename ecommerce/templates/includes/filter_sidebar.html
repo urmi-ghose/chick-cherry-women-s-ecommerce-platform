@@ -1,0 +1,66 @@
+<div class="card">
+    <article class="filter-group">
+        <header class="card-header">
+            <a href="#" data-toggle="collapse" data-target="#collapse_size" aria-expanded="true" class="">
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">Sizes</h6>
+            </a>
+        </header>
+        <div class="filter-content collapse show" id="collapse_size" style="">
+            <div class="card-body">
+                <form method="get" id="size-filter-form">
+                    {% for size in sizes %}
+                        <input type="hidden" name="size" value="{{ size }}">
+                    {% endfor %}
+                    {% if request.GET.keyword %}
+                        <input type="hidden" name="keyword" value="{{ request.GET.keyword }}">
+                    {% endif %}
+                    {% if request.GET.min_price %}
+                        <input type="hidden" name="min_price" value="{{ request.GET.min_price }}">
+                    {% endif %}
+                    {% if request.GET.max_price %}
+                        <input type="hidden" name="max_price" value="{{ request.GET.max_price }}">
+                    {% endif %}
+                    <ul class="list-menu">
+                        {% for size in available_sizes %}
+                        <li><input type="checkbox" name="size" value="{{ size }}" id="size_{{ size }}" {% if size in sizes %}checked{% endif %}><label for="size_{{ size }}"> {{ size|capfirst }}</label></li>
+                        {% endfor %}
+                    </ul>
+                    <button type="submit" class="btn btn-primary btn-sm mt-2">Filter</button>
+                </form>
+            </div>
+        </div>
+    </article>
+</div>
+
+<div class="card mt-3">
+    <article class="filter-group">
+        <header class="card-header">
+            <a href="#" data-toggle="collapse" data-target="#collapse_price" aria-expanded="true" class="">
+                <i class="icon-control fa fa-chevron-down"></i>
+                <h6 class="title">Price Range</h6>
+            </a>
+        </header>
+        <div class="filter-content collapse show" id="collapse_price" style="">
+            <div class="card-body">
+                <form method="get" id="price-filter-form">
+                    {% for size in sizes %}
+                        <input type="hidden" name="size" value="{{ size }}">
+                    {% endfor %}
+                    {% if request.GET.keyword %}
+                        <input type="hidden" name="keyword" value="{{ request.GET.keyword }}">
+                    {% endif %}
+                    <div class="form-group">
+                        <label for="min_price">Min Price</label>
+                        <input type="number" class="form-control" name="min_price" id="min_price" placeholder="0" value="{{ min_price }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="max_price">Max Price</label>
+                        <input type="number" class="form-control" name="max_price" id="max_price" placeholder="1000" value="{{ max_price }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm mt-2">Filter</button>
+                </form>
+            </div>
+        </div>
+    </article>
+</div>

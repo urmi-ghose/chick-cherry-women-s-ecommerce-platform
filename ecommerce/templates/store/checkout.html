@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="section-content padding-y bg">
+<div class="container">
+
+{% if not cart_items %}
+    <h2 class="text-center">Your Shopping Cart is Empty</h2>
+    <br>
+    <div class="text-center">
+        <a href="{% url 'store' %}" class="btn btn-primary">Continue Shopping</a>
+    </div>
+{% else %}
+
+<!-- Cart Items (outside form, no nesting issues) -->
+<div class="row">
+    <div class="col-lg-9">
+        <div class="card">
+            <table class="table table-borderless table-shopping-cart">
+                <thead class="text-muted">
+                    <tr class="small text-uppercase">
+                        <th scope="col">Product</th>
+                        <th scope="col" width="120">Quantity</th>
+                        <th scope="col" width="120">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for cart_item in cart_items %}
+                <tr>
+                    <td>
+                        <figure class="itemside align-items-center">
+                            <div class="aside"><img src="{{ cart_item.product.images.url }}" class="img-sm"></div>
+                            <figcaption class="info">
+                                <a href="{{ cart_item.product.get_url }}" class="title text-dark">
+                                    {{ cart_item.product.product_name }}
+                                    {% if cart_item.variations.all %}
+                                        ({% for item in cart_item.variations.all %}
+                                            {{ item.variation_category|capfirst }}: {{ item.variation_value|capfirst }}
+                                            {% if not forloop.last %}, {% endif %}
+                                        {% endfor %})
+                                    {% endif %}
+                                </a>
+                            </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control" value="{{ cart_item.quantity }}" readonly>
+                    </td>
+                    <td>
+                        <div class="price-wrap">
+                            <var class="price">{{ cart_item.sub_total }} BDT</var>
+                            <small class="text-muted"> {{ cart_item.product.price }} BDT each </small>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Shipping / OTP Form + Summary -->
+<form method="post" novalidate>
+{% csrf_token %}
+<div class="row mt-3">
+    <div class="col-lg-9">
+
+        {% if step == 'shipping' %}
+        <div class="card">
+            <div class="card-header"><h5>Shipping Address</h5></div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">{{ form.first_name.label_tag }}{{ form.first_name }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">{{ form.last_name.label_tag }}{{ form.last_name }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">{{ form.phone.label_tag }}{{ form.phone }}</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">{{ form.email.label_tag }}{{ form.email }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">{{ form.address_line_1.label_tag }}{{ form.address_line_1 }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">{{ form.address_line_2.label_tag }}{{ form.address_line_2 }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">{{ form.city.label_tag }}{{ form.city }}</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">{{ form.state.label_tag }}{{ form.state }}</div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">{{ form.country.label_tag }}{{ form.country }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">{{ form.order_note.label_tag }}{{ form.order_note }}</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">{{ form.additional_info.label_tag }}{{ form.additional_info }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="card">
+            <div class="card-header"><h5>Verify Your Email</h5></div>
+            <div class="card-body">
+                <p>An OTP has been sent to your email. Please enter it below to complete your order.</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">{{ form.email_otp.label_tag }}{{ form.email_otp }}</div>
+                    </div>
+                </div>
+                {% if form.errors %}
+                <div class="text-danger">
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}{{ error }}{% endfor %}
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+    <div class="col-lg-3">
+        <div class="card">
+            <div class="card-body">
+                <dl class="dlist-align">
+                    <dt>Total price:</dt>
+                    <dd class="text-right">{{total}} BDT</dd>
+                </dl>
+                <dl class="dlist-align">
+                    <dt>Tax:</dt>
+                    <dd class="text-right">{{tax}} BDT</dd>
+                </dl>
+                <dl class="dlist-align">
+                    <dt>Grand Total:</dt>
+                    <dd class="text-right text-dark b"><strong>{{grand_total}} BDT</strong></dd>
+                </dl>
+                <hr>
+                <p class="text-center mb-3">
+                    <img src="{% static './images/misc/payments.png' %}" height="26">
+                </p>
+                <button type="submit" class="btn btn-primary btn-block">
+                    {% if step == 'shipping' %}Send OTP and Proceed{% else %}Verify OTP and Place Order{% endif %}
+                </button>
+                <a href="{% url 'carts:cart' %}" class="btn btn-light btn-block">Back to Cart</a>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
+
+{% endif %}
+
+</div>
+</section>
+
+{% endblock %}

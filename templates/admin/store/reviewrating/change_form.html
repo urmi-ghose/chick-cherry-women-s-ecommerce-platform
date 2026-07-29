@@ -1,0 +1,419 @@
+{% extends "admin/change_form.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+/* ── Hide Django chrome ── */
+#content h1, #content h2, .object-tools,
+#content .submit-row, #content fieldset h2,
+.breadcrumbs { display: none !important; }
+#content fieldset { border: none !important; padding: 0 !important; margin: 0 !important; }
+.form-row { margin: 0 !important; padding: 0 !important; }
+p.help { display: none; }
+
+/* ── Wrap ── */
+.rw-wrap { max-width: 960px; margin: 0 auto; }
+
+/* ── Header ── */
+.rw-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 24px; gap: 12px; flex-wrap: wrap;
+}
+.rw-header-left h1 { font-size: 20px; font-weight: 700; color: #111827; margin: 0 0 6px; }
+.rw-header-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.rw-header-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+/* ── Badges ── */
+.rw-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 12px; border-radius: 99px;
+  font-size: 12px; font-weight: 600; white-space: nowrap;
+}
+.rw-badge i { font-size: 8px; }
+.b-approved  { background: #f0fdf4; color: #16a34a; }
+.b-hidden    { background: #fff1f2; color: #e11d48; }
+.b-verified  { background: #eff6ff; color: #3b82f6; }
+
+/* ── Buttons ── */
+.rw-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 9px; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all .15s; text-decoration: none;
+  border: none; font-family: inherit; white-space: nowrap;
+}
+.rw-btn-primary  { background: #6366f1; color: #fff; }
+.rw-btn-primary:hover  { background: #4f46e5; color: #fff; }
+.rw-btn-ghost    { background: #fff; color: #374151; border: 1.5px solid #e2e8f0; }
+.rw-btn-ghost:hover    { border-color: #6366f1; color: #6366f1; background: #f5f3ff; }
+.rw-btn-approve  { background: #f0fdf4; color: #16a34a; border: 1.5px solid #bbf7d0; }
+.rw-btn-approve:hover  { background: #dcfce7; }
+.rw-btn-reject   { background: #fff1f2; color: #ef4444; border: 1.5px solid #fecaca; }
+.rw-btn-reject:hover   { background: #fee2e2; }
+.rw-btn-full     { width: 100%; justify-content: center; }
+
+/* ── Grid ── */
+.rw-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 20px; align-items: start;
+}
+.rw-main { display: flex; flex-direction: column; gap: 16px; }
+.rw-side { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 80px; }
+
+/* ── Card ── */
+.rw-card {
+  background: #fff; border: 1px solid #e5e7eb;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.rw-card-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 18px; border-bottom: 1px solid #f1f5f9;
+  background: #fafbff;
+}
+.rw-card-head i { color: #6366f1; font-size: 13px; width: 16px; text-align: center; }
+.rw-card-head-title { font-size: 13px; font-weight: 600; color: #111827; flex: 1; }
+.rw-card-body { padding: 18px; }
+
+/* ── Review content ── */
+.rw-stars { display: flex; gap: 3px; margin-bottom: 12px; }
+.rw-stars i { font-size: 18px; }
+.star-full  { color: #f59e0b; }
+.star-empty { color: #e2e8f0; }
+
+.rw-quote {
+  font-size: 15px; color: #374151; line-height: 1.7;
+  padding: 16px 20px; background: #f9fafb;
+  border-left: 4px solid #6366f1; border-radius: 0 10px 10px 0;
+  margin-bottom: 0; font-style: italic;
+}
+.rw-quote-empty { color: #9ca3af; font-style: italic; font-size: 13px; }
+
+/* ── Info rows ── */
+.rw-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.rw-info-item { display: flex; flex-direction: column; gap: 3px; }
+.rw-info-label { font-size: 11px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: .05em; }
+.rw-info-val   { font-size: 13px; color: #111827; font-weight: 500; }
+
+/* ── Meta rows ── */
+.rw-meta-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px;
+}
+.rw-meta-row:last-child { border-bottom: none; padding-bottom: 0; }
+.rw-meta-key { color: #6b7280; font-size: 12px; }
+.rw-meta-val { font-weight: 600; color: #111827; font-size: 13px; }
+
+/* ── Audit trail ── */
+.rw-audit-item {
+  display: flex; gap: 12px; padding: 12px 0;
+  border-bottom: 1px solid #f3f4f6;
+}
+.rw-audit-item:last-child { border-bottom: none; }
+.rw-audit-dot {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #fff;
+}
+.dot-approved { background: #22c55e; }
+.dot-rejected { background: #ef4444; }
+.dot-default  { background: #94a3b8; }
+.rw-audit-action { font-size: 13px; font-weight: 600; color: #111827; text-transform: capitalize; }
+.rw-audit-by   { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+.rw-audit-note { font-size: 12px; color: #6b7280; margin-top: 4px; font-style: italic; }
+.rw-audit-time { font-size: 11px; color: #9ca3af; white-space: nowrap; margin-left: auto; padding-top: 2px; }
+
+/* ── Visibility toggle ── */
+.rw-toggle-box {
+  padding: 14px 16px; border-radius: 10px; margin-bottom: 12px;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+}
+.rw-toggle-box.visible { background: #f0fdf4; border: 1.5px solid #bbf7d0; }
+.rw-toggle-box.hidden  { background: #fff1f2; border: 1.5px solid #fecaca; }
+.rw-toggle-label { font-size: 13px; font-weight: 600; }
+.rw-toggle-box.visible .rw-toggle-label { color: #16a34a; }
+.rw-toggle-box.hidden  .rw-toggle-label { color: #ef4444; }
+
+/* ── Mobile save ── */
+.rw-mobile-save {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+  background: #fff; border-top: 1px solid #e5e7eb;
+  padding: 12px 16px; gap: 10px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,.08);
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .rw-grid { grid-template-columns: 1fr; }
+  .rw-side { position: static; order: -1; }
+  .rw-info-grid { grid-template-columns: 1fr 1fr; }
+  .rw-header-actions .rw-btn-primary { display: none; }
+  .rw-mobile-save { display: flex; }
+  #admin-content { padding-bottom: 80px; }
+  .rw-card-body { padding: 14px; }
+}
+@media (max-width: 480px) {
+  .rw-header { flex-direction: column; align-items: stretch; }
+  .rw-header-actions { flex-wrap: wrap; }
+  .rw-header-actions .rw-btn { flex: 1; justify-content: center; }
+  .rw-info-grid { grid-template-columns: 1fr; }
+}
+</style>
+{% endblock %}
+
+{% block content_title %}{% endblock %}
+{% block object-tools %}{% endblock %}
+
+{% block content %}
+<form method="post" id="rw-form" novalidate>
+{% csrf_token %}
+{% for field in adminform.form.hidden_fields %}{{ field }}{% endfor %}
+
+<div class="rw-wrap">
+
+  <!-- Header -->
+  <div class="rw-header">
+    <div class="rw-header-left">
+      <h1>Review #{{ original.pk }}</h1>
+      <div class="rw-header-badges">
+        {% if original.is_visible %}
+        <span class="rw-badge b-approved"><i class="fas fa-circle"></i> Approved</span>
+        {% else %}
+        <span class="rw-badge b-hidden"><i class="fas fa-circle"></i> Hidden</span>
+        {% endif %}
+        {% if original.purchase_verified %}
+        <span class="rw-badge b-verified"><i class="fas fa-shield-check"></i> Verified Purchase</span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="rw-header-actions">
+      <a href="/secureadmin/reviews/" class="rw-btn rw-btn-ghost">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+      <button type="submit" name="_save" class="rw-btn rw-btn-primary">
+        <i class="fas fa-check"></i> Save
+      </button>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="rw-grid">
+
+    <!-- ═══ MAIN ═══ -->
+    <div class="rw-main">
+
+      <!-- Review Content -->
+      <div class="rw-card">
+        <div class="rw-card-head">
+          <i class="fas fa-star"></i>
+          <span class="rw-card-head-title">{{ original.subject|default:"Review" }}</span>
+          <span style="font-size:13px;font-weight:700;color:#f59e0b;">{{ original.rating }}/5</span>
+        </div>
+        <div class="rw-card-body">
+          <!-- Stars -->
+          <div class="rw-stars">
+            {% for i in "12345" %}
+            {% if forloop.counter <= original.rating %}
+            <i class="fas fa-star star-full"></i>
+            {% else %}
+            <i class="fas fa-star star-empty"></i>
+            {% endif %}
+            {% endfor %}
+          </div>
+          <!-- Review text -->
+          {% if original.review %}
+          <p class="rw-quote">"{{ original.review }}"</p>
+          {% else %}
+          <p class="rw-quote-empty">No review text provided.</p>
+          {% endif %}
+          <!-- Review image -->
+          {% if original.image %}
+          <div style="margin-top:14px;">
+            <p style="font-size:11px;font-weight:600;color:#9ca3af;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;">Attached Image</p>
+            <img src="{{ original.image.url }}" style="max-width:200px;border-radius:10px;border:1px solid #e5e7eb;">
+          </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Customer & Product -->
+      <div class="rw-card">
+        <div class="rw-card-head">
+          <i class="fas fa-user"></i>
+          <span class="rw-card-head-title">Customer & Product</span>
+        </div>
+        <div class="rw-card-body">
+          <div class="rw-info-grid">
+            <div class="rw-info-item">
+              <span class="rw-info-label">Customer</span>
+              <span class="rw-info-val">{{ original.user.get_full_name|default:original.user.email }}</span>
+            </div>
+            <div class="rw-info-item">
+              <span class="rw-info-label">Email</span>
+              <span class="rw-info-val" style="word-break:break-all;">{{ original.user.email }}</span>
+            </div>
+            <div class="rw-info-item">
+              <span class="rw-info-label">Product</span>
+              <span class="rw-info-val">{{ original.product.product_name }}</span>
+            </div>
+            <div class="rw-info-item">
+              <span class="rw-info-label">Verified Purchase</span>
+              <span class="rw-info-val" style="color:{% if original.purchase_verified %}#16a34a{% else %}#ef4444{% endif %};">
+                {% if original.purchase_verified %}<i class="fas fa-check-circle"></i> Yes{% else %}<i class="fas fa-times-circle"></i> No{% endif %}
+              </span>
+            </div>
+            <div class="rw-info-item">
+              <span class="rw-info-label">Submitted</span>
+              <span class="rw-info-val">{{ original.created_at|date:"M d, Y H:i" }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audit Trail -->
+      {% for inline_admin_formset in inline_admin_formsets %}
+      <div class="rw-card">
+        <div class="rw-card-head">
+          <i class="fas fa-clock-rotate-left"></i>
+          <span class="rw-card-head-title">Moderation History</span>
+          <span style="font-size:11px;color:#9ca3af;margin-left:auto;">{{ inline_admin_formset.formset.forms|length }} record{{ inline_admin_formset.formset.forms|length|pluralize }}</span>
+        </div>
+        <div class="rw-card-body" style="padding:{% if inline_admin_formset.formset.forms %}0{% else %}18px{% endif %};">
+          {{ inline_admin_formset.formset.management_form }}
+          {% if inline_admin_formset.formset.forms %}
+          {% for form in inline_admin_formset.formset.forms %}
+          {% if form.instance.pk %}
+          <div class="rw-audit-item" style="padding:12px 18px;">
+            <div class="rw-audit-dot dot-{{ form.instance.action|lower }}">
+              {% if form.instance.action == 'approved' %}<i class="fas fa-check" style="font-size:10px;"></i>
+              {% elif form.instance.action == 'rejected' %}<i class="fas fa-xmark" style="font-size:10px;"></i>
+              {% else %}<i class="fas fa-circle" style="font-size:8px;"></i>{% endif %}
+            </div>
+            <div style="flex:1;min-width:0;">
+              <div class="rw-audit-action">{{ form.instance.action }}</div>
+              {% if form.instance.performed_by %}
+              <div class="rw-audit-by"><i class="fas fa-user-shield" style="font-size:10px;margin-right:3px;"></i>{{ form.instance.performed_by }}</div>
+              {% endif %}
+              {% if form.instance.notes %}
+              <div class="rw-audit-note">"{{ form.instance.notes }}"</div>
+              {% endif %}
+            </div>
+            <div class="rw-audit-time">{{ form.instance.timestamp|date:"M d, Y H:i" }}</div>
+          </div>
+          {% endif %}
+          {% endfor %}
+          {% else %}
+          <p style="font-size:13px;color:#9ca3af;text-align:center;padding:20px 0;">No moderation history yet.</p>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+    <!-- ═══ END MAIN ═══ -->
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <div class="rw-side">
+
+      <!-- Moderation -->
+      <div class="rw-card">
+        <div class="rw-card-head">
+          <i class="fas fa-shield-halved"></i>
+          <span class="rw-card-head-title">Moderation</span>
+        </div>
+        <div class="rw-card-body">
+          <!-- Current status box -->
+          <div class="rw-toggle-box {% if original.is_visible %}visible{% else %}hidden{% endif %}">
+            <div>
+              <div class="rw-toggle-label">
+                {% if original.is_visible %}<i class="fas fa-eye"></i> Visible{% else %}<i class="fas fa-eye-slash"></i> Hidden{% endif %}
+              </div>
+              <div style="font-size:11px;color:#6b7280;margin-top:2px;">
+                {% if original.is_visible %}Shown to customers{% else %}Not shown to customers{% endif %}
+              </div>
+            </div>
+          </div>
+          <!-- is_visible field hidden, controlled by buttons -->
+          <div style="display:none;">{% with f=adminform.form.is_visible %}{{ f }}{% endwith %}</div>
+          <!-- Toggle buttons -->
+          {% if original.is_visible %}
+          <button type="button" onclick="setVisibility(false)" class="rw-btn rw-btn-reject rw-btn-full" style="margin-bottom:8px;">
+            <i class="fas fa-eye-slash"></i> Hide Review
+          </button>
+          {% else %}
+          <button type="button" onclick="setVisibility(true)" class="rw-btn rw-btn-approve rw-btn-full" style="margin-bottom:8px;">
+            <i class="fas fa-check"></i> Approve Review
+          </button>
+          {% endif %}
+          <button type="submit" name="_save" class="rw-btn rw-btn-primary rw-btn-full">
+            <i class="fas fa-floppy-disk"></i> Save
+          </button>
+        </div>
+      </div>
+
+      <!-- Review Meta -->
+      <div class="rw-card">
+        <div class="rw-card-head">
+          <i class="fas fa-circle-info"></i>
+          <span class="rw-card-head-title">Details</span>
+        </div>
+        <div class="rw-card-body">
+          <div class="rw-meta-row">
+            <span class="rw-meta-key">Review ID</span>
+            <span class="rw-meta-val">#{{ original.pk }}</span>
+          </div>
+          <div class="rw-meta-row">
+            <span class="rw-meta-key">Rating</span>
+            <span class="rw-meta-val" style="color:#f59e0b;">
+              {% for i in "12345" %}{% if forloop.counter <= original.rating %}★{% else %}☆{% endif %}{% endfor %}
+              {{ original.rating }}
+            </span>
+          </div>
+          <div class="rw-meta-row">
+            <span class="rw-meta-key">Status</span>
+            {% if original.is_visible %}
+            <span class="rw-badge b-approved" style="font-size:11px;"><i class="fas fa-circle"></i> Approved</span>
+            {% else %}
+            <span class="rw-badge b-hidden" style="font-size:11px;"><i class="fas fa-circle"></i> Hidden</span>
+            {% endif %}
+          </div>
+          <div class="rw-meta-row">
+            <span class="rw-meta-key">Verified</span>
+            <span class="rw-meta-val" style="color:{% if original.purchase_verified %}#16a34a{% else %}#ef4444{% endif %};">
+              {% if original.purchase_verified %}Yes{% else %}No{% endif %}
+            </span>
+          </div>
+          <div class="rw-meta-row">
+            <span class="rw-meta-key">Date</span>
+            <span class="rw-meta-val">{{ original.created_at|date:"M d, Y" }}</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- ═══ END SIDEBAR ═══ -->
+
+  </div>
+</div>
+
+<!-- Mobile save bar -->
+<div class="rw-mobile-save">
+  <button type="submit" name="_save" class="rw-btn rw-btn-primary" style="flex:1;justify-content:center;">
+    <i class="fas fa-check"></i> Save
+  </button>
+  <a href="/secureadmin/reviews/" class="rw-btn rw-btn-ghost" style="flex:1;justify-content:center;">
+    <i class="fas fa-arrow-left"></i> Back
+  </a>
+</div>
+
+</form>
+
+<script>
+function setVisibility(val) {
+  var cb = document.getElementById('id_is_visible');
+  if(cb) cb.checked = val;
+  document.getElementById('rw-form').submit();
+}
+</script>
+{% endblock %}

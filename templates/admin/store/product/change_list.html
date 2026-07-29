@@ -1,0 +1,296 @@
+{% extends "admin/base.html" %}
+{% load i18n admin_urls static %}
+
+{% block title %}Products | ChicCherry Admin{% endblock %}
+{% block page_title %}Products{% endblock %}
+
+{% block content %}
+<style>
+  /* ── Toolbar ── */
+  .prod-toolbar {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 20px; flex-wrap: wrap; gap: 10px;
+  }
+  .prod-toolbar-left {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap; flex: 1; min-width: 0;
+  }
+  .search-box {
+    display: flex; align-items: center;
+    border: 1.5px solid #e2e8f0; border-radius: 8px;
+    background: #f8fafc; overflow: hidden; transition: border-color .15s;
+  }
+  .search-box:focus-within { border-color: #6366f1; background: #fff; }
+  .search-box input {
+    border: none; background: transparent; padding: 8px 12px;
+    font-size: 13px; outline: none; width: 180px; color: #0f172a; min-width: 0;
+  }
+  .search-box button {
+    border: none; background: #6366f1; color: #fff;
+    padding: 8px 12px; cursor: pointer; font-size: 13px; transition: background .15s; flex-shrink: 0;
+  }
+  .search-box button:hover { background: #4f46e5; }
+  .filter-select {
+    padding: 7px 10px; border: 1.5px solid #e2e8f0; border-radius: 8px;
+    font-size: 13px; background: #f8fafc; color: #374151;
+    outline: none; cursor: pointer; transition: border-color .15s; max-width: 150px;
+  }
+  .filter-select:focus { border-color: #6366f1; }
+  .btn-add {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 8px 16px; background: #6366f1; color: #fff;
+    border-radius: 8px; font-size: 13px; font-weight: 600;
+    text-decoration: none; transition: background .15s; white-space: nowrap; flex-shrink: 0;
+  }
+  .btn-add:hover { background: #4f46e5; color: #fff; }
+
+  /* ── Stat bar ── */
+  .stat-bar {
+    display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;
+  }
+  .stat-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 10px;
+    padding: 10px 16px; font-size: 13px; box-shadow: 0 1px 3px rgba(0,0,0,.04);
+  }
+  .stat-pill i { font-size: 14px; }
+  .stat-pill .val { font-weight: 700; color: #0f172a; }
+  .stat-pill .lbl { color: #64748b; }
+
+  /* ── Grid ── */
+  .prod-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+
+  .prod-card {
+    overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    transition: box-shadow .2s, transform .2s;
+    display: flex; flex-direction: column;
+  }
+  .prod-card:hover { box-shadow: 0 6px 24px rgba(99,102,241,.13); transform: translateY(-2px); }
+
+  .prod-img-wrap {
+    position: relative; aspect-ratio: 3/2;
+    background: #f8fafc; overflow: hidden;
+  }
+  .prod-img-wrap img {
+    width: 100%; height: 100%; object-fit: cover;
+    transition: transform .3s;
+  }
+  .prod-card:hover .prod-img-wrap img { transform: scale(1.05); }
+
+  .badge-discount {
+    position: absolute; top: 8px; left: 8px;
+    background: #ef4444; color: #fff;
+    font-size: 10px; font-weight: 700; padding: 2px 7px;
+    border-radius: 99px;
+  }
+  .badge-unavail {
+    position: absolute; top: 8px; right: 8px;
+    background: #64748b; color: #fff;
+    font-size: 10px; font-weight: 700; padding: 2px 7px;
+    border-radius: 99px;
+  }
+
+  .prod-body { padding: 8px 10px; flex: 1; display: flex; flex-direction: column; gap: 3px; }
+
+  .prod-name { font-size: 12px; font-weight: 600; color: #0f172a; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .prod-cat { font-size: 10px; color: #6366f1; font-weight: 500; background: #eef2ff; padding: 1px 6px; border-radius: 99px; display: inline-block; width: fit-content; }
+  .prod-meta { display: flex; align-items: center; justify-content: space-between; margin-top: 2px; }
+  .prod-price { font-size: 12px; font-weight: 700; color: #0f172a; }
+  .prod-price-old { font-size: 10px; color: #94a3b8; text-decoration: line-through; margin-left: 3px; }
+  .prod-price-disc { font-size: 12px; font-weight: 700; color: #ef4444; }
+  .stock-badge { font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 99px; }
+  .stock-ok   { background: #dcfce7; color: #15803d; }
+  .stock-low  { background: #fef3c7; color: #b45309; }
+  .stock-out  { background: #fee2e2; color: #b91c1c; }
+
+  .prod-actions { display: flex; gap: 5px; padding: 6px 10px; border-top: 1px solid #f1f5f9; }
+  .act-btn {
+    flex: 1; display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+    padding: 4px 0; border-radius: 6px; font-size: 11px; font-weight: 500;
+    text-decoration: none; transition: all .15s; border: 1.5px solid #e2e8f0;
+    color: #64748b; background: #fff;
+  }
+  .act-btn:hover { border-color: #6366f1; color: #6366f1; background: #eef2ff; }
+  .act-btn.danger:hover { border-color: #ef4444; color: #ef4444; background: #fef2f2; }
+
+  /* ── Empty ── */
+  .empty-state { text-align: center; padding: 60px 20px; color: #64748b; }
+  .empty-state i { font-size: 48px; opacity: .15; display: block; margin-bottom: 16px; }
+
+  /* ── Pagination ── */
+  .pg-wrap { display: flex; justify-content: center; gap: 4px; margin-top: 28px; flex-wrap: wrap; }
+  .pg-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 32px; height: 32px; border-radius: 8px;
+    border: 1.5px solid #e2e8f0; background: #fff;
+    color: #64748b; font-size: 12px; text-decoration: none; transition: all .15s;
+  }
+  .pg-btn:hover { background: #eef2ff; color: #6366f1; border-color: #6366f1; }
+  .pg-btn.active { background: #6366f1; border-color: #6366f1; color: #fff; font-weight: 700; }
+  .pg-btn.disabled { opacity: .35; pointer-events: none; }
+
+  /* ── Responsive ── */
+  @media (max-width: 1100px) {
+    /* sidebar gone — toolbar fits in one row, shrink search */
+    .search-box input { width: 150px; }
+    .filter-select { max-width: 130px; }
+  }
+  @media (max-width: 900px) {
+    /* toolbar wraps: left side (search+filters) full width, add button right */
+    .prod-toolbar { flex-wrap: wrap; }
+    .prod-toolbar-left { width: 100%; }
+    .search-box { flex: 1; }
+    .search-box input { width: 100%; }
+    .filter-select { flex: 1; max-width: none; }
+    .btn-add { width: auto; justify-content: center; align-self: flex-end; }
+    .prod-grid { grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  }
+  @media (max-width: 768px) {
+    .prod-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .stat-bar { gap: 8px; }
+    .stat-pill { flex: 1; justify-content: center; }
+  }
+  @media (max-width: 480px) {
+    .prod-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .prod-body { padding: 8px; }
+    .prod-actions { padding: 6px 8px; }
+    .stat-pill { padding: 8px 10px; font-size: 12px; }
+    .stat-bar { gap: 6px; }
+  }
+  @media (max-width: 360px) {
+    .prod-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<!-- Toolbar -->
+<div class="prod-toolbar">
+  <div class="prod-toolbar-left">
+    <form method="get" class="search-box">
+      {% if request.GET.cat %}<input type="hidden" name="cat" value="{{ request.GET.cat }}">{% endif %}
+      {% if request.GET.avail %}<input type="hidden" name="avail" value="{{ request.GET.avail }}">{% endif %}
+      <input type="text" name="q" placeholder="Search products…" value="{{ request.GET.q }}">
+      <button type="submit"><i class="fas fa-search"></i></button>
+    </form>
+
+    <form method="get" id="filter-form">
+      {% if request.GET.q %}<input type="hidden" name="q" value="{{ request.GET.q }}">{% endif %}
+      <select name="cat" class="filter-select" onchange="document.getElementById('filter-form').submit()">
+        <option value="">All Categories</option>
+        {% for cat in all_categories %}
+        <option value="{{ cat.id }}" {% if request.GET.cat == cat.id|stringformat:"s" %}selected{% endif %}>{{ cat.category_name }}</option>
+        {% endfor %}
+      </select>
+    </form>
+
+    <form method="get" id="avail-form">
+      {% if request.GET.q %}<input type="hidden" name="q" value="{{ request.GET.q }}">{% endif %}
+      {% if request.GET.cat %}<input type="hidden" name="cat" value="{{ request.GET.cat }}">{% endif %}
+      <select name="avail" class="filter-select" onchange="document.getElementById('avail-form').submit()">
+        <option value="">All Status</option>
+        <option value="1" {% if request.GET.avail == '1' %}selected{% endif %}>Available</option>
+        <option value="0" {% if request.GET.avail == '0' %}selected{% endif %}>Unavailable</option>
+      </select>
+    </form>
+  </div>
+
+  <a href="{% url 'admin:store_product_add' %}" class="btn-add">
+    <i class="fas fa-plus"></i> Add Product
+  </a>
+</div>
+
+<!-- Stat bar -->
+<div class="stat-bar">
+  <div class="stat-pill">
+    <i class="fas fa-box-open" style="color:#6366f1;"></i>
+    <span class="val">{{ total_count }}</span><span class="lbl">Total</span>
+  </div>
+  <div class="stat-pill">
+    <i class="fas fa-check-circle" style="color:#22c55e;"></i>
+    <span class="val">{{ available_count }}</span><span class="lbl">Available</span>
+  </div>
+  <div class="stat-pill">
+    <i class="fas fa-tag" style="color:#ef4444;"></i>
+    <span class="val">{{ discount_count }}</span><span class="lbl">On Sale</span>
+  </div>
+  <div class="stat-pill">
+    <i class="fas fa-exclamation-triangle" style="color:#f59e0b;"></i>
+    <span class="val">{{ low_stock_count }}</span><span class="lbl">Low Stock</span>
+  </div>
+</div>
+
+<!-- Grid -->
+{% if products %}
+<div class="prod-grid">
+  {% for p in products %}
+  <div class="prod-card">
+    <div class="prod-img-wrap">
+      <img src="{{ p.images.url }}" alt="{{ p.product_name }}">
+      {% if p.discount_percent > 0 %}
+      <span class="badge-discount">-{{ p.discount_percent }}%</span>
+      {% endif %}
+      {% if not p.is_available %}
+      <span class="badge-unavail">Unavailable</span>
+      {% endif %}
+    </div>
+    <div class="prod-body">
+      <div class="prod-name" title="{{ p.product_name }}">{{ p.product_name }}</div>
+      <span class="prod-cat">{{ p.category.category_name }}</span>
+      <div class="prod-meta">
+        <div>
+          {% if p.discount_percent > 0 %}
+          <span class="prod-price-disc">{{ p.discounted_price }} BDT</span>
+          <span class="prod-price-old">{{ p.price }} BDT</span>
+          {% else %}
+          <span class="prod-price">{{ p.price }} BDT</span>
+          {% endif %}
+        </div>
+        {% if p.stock == 0 %}
+        <span class="stock-badge stock-out">Out</span>
+        {% elif p.stock <= 5 %}
+        <span class="stock-badge stock-low">{{ p.stock }} left</span>
+        {% else %}
+        <span class="stock-badge stock-ok">{{ p.stock }}</span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="prod-actions">
+      <a href="{% url 'admin:store_product_change' p.pk %}" class="act-btn">
+        <i class="fas fa-pen"></i> Edit
+      </a>
+      <a href="{% url 'admin:store_product_delete' p.pk %}" class="act-btn danger">
+        <i class="fas fa-trash"></i>
+      </a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<!-- Pagination -->
+{% if products.has_other_pages %}
+<div class="pg-wrap">
+  <a class="pg-btn {% if not products.has_previous %}disabled{% endif %}"
+     href="{% if products.has_previous %}?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.cat %}cat={{ request.GET.cat }}&{% endif %}{% if request.GET.avail %}avail={{ request.GET.avail }}&{% endif %}page={{ products.previous_page_number }}{% else %}#{% endif %}">
+    <i class="fas fa-chevron-left"></i>
+  </a>
+  {% for i in products.paginator.page_range %}
+  <a class="pg-btn {% if products.number == i %}active{% endif %}"
+     href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.cat %}cat={{ request.GET.cat }}&{% endif %}{% if request.GET.avail %}avail={{ request.GET.avail }}&{% endif %}page={{ i }}">{{ i }}</a>
+  {% endfor %}
+  <a class="pg-btn {% if not products.has_next %}disabled{% endif %}"
+     href="{% if products.has_next %}?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.cat %}cat={{ request.GET.cat }}&{% endif %}{% if request.GET.avail %}avail={{ request.GET.avail }}&{% endif %}page={{ products.next_page_number }}{% else %}#{% endif %}">
+    <i class="fas fa-chevron-right"></i>
+  </a>
+</div>
+{% endif %}
+
+{% else %}
+<div class="empty-state">
+  <i class="fas fa-box-open"></i>
+  <h4 style="font-size:16px;font-weight:600;color:#0f172a;margin-bottom:6px;">No products found</h4>
+  <p style="font-size:13px;">{% if request.GET.q %}No results for "{{ request.GET.q }}"{% else %}Start by adding your first product{% endif %}</p>
+  <a href="{% url 'admin:store_product_add' %}" class="btn-add" style="margin-top:16px;display:inline-flex;">
+    <i class="fas fa-plus"></i> Add Product
+  </a>
+</div>
+{% endif %}
+
+{% endblock %}

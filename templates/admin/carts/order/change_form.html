@@ -1,0 +1,578 @@
+{% extends "admin/change_form.html" %}
+{% load i18n static %}
+
+{% block extrastyle %}
+{{ block.super }}
+<style>
+/* ── Hide Django chrome ── */
+#content h1, #content h2, .object-tools,
+#content .submit-row, #content fieldset h2,
+.breadcrumbs { display: none !important; }
+#content fieldset { border: none !important; padding: 0 !important; margin: 0 !important; }
+.form-row { margin: 0 !important; padding: 0 !important; }
+p.help { display: none; }
+
+/* ── Wrap ── */
+.od-wrap { max-width: 1200px; margin: 0 auto; }
+
+/* ── Header ── */
+.od-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 24px; gap: 12px; flex-wrap: wrap;
+}
+.od-header-left h1 { font-size: 20px; font-weight: 700; color: #111827; margin: 0 0 6px; }
+.od-header-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+.od-header-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+
+/* ── Badges ── */
+.od-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 12px; border-radius: 99px;
+  font-size: 12px; font-weight: 600; white-space: nowrap;
+}
+.od-badge i { font-size: 7px; }
+.b-placed      { background:#eef2ff; color:#6366f1; }
+.b-processing  { background:#fffbeb; color:#d97706; }
+.b-shipped     { background:#eff6ff; color:#3b82f6; }
+.b-delivered   { background:#f0fdf4; color:#16a34a; }
+.b-cancelled   { background:#fff1f2; color:#e11d48; }
+.b-completed   { background:#f0fdf4; color:#16a34a; }
+.b-new         { background:#f5f3ff; color:#7c3aed; }
+.b-paid        { background:#f0fdf4; color:#16a34a; }
+.b-pending     { background:#fffbeb; color:#d97706; }
+.b-failed      { background:#fff1f2; color:#e11d48; }
+
+/* ── Buttons ── */
+.od-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 16px; border-radius: 9px; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all .15s; text-decoration: none;
+  border: none; font-family: inherit; white-space: nowrap;
+}
+.od-btn-primary { background: #6366f1; color: #fff; }
+.od-btn-primary:hover { background: #4f46e5; color: #fff; }
+.od-btn-ghost   { background: #fff; color: #374151; border: 1.5px solid #e2e8f0; }
+.od-btn-ghost:hover { border-color: #6366f1; color: #6366f1; background: #f5f3ff; }
+.od-btn-full    { width: 100%; justify-content: center; }
+
+/* ── Grid ── */
+.od-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px; align-items: start;
+}
+.od-main { display: flex; flex-direction: column; gap: 16px; }
+.od-side { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 80px; }
+
+/* ── Card ── */
+.od-card {
+  background: #fff; border: 1px solid #e5e7eb;
+  border-radius: 16px; overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,.05);
+}
+.od-card-head {
+  display: flex; align-items: center; gap: 10px;
+  padding: 13px 18px; border-bottom: 1px solid #f1f5f9;
+  background: #fafbff;
+}
+.od-card-head i { color: #6366f1; font-size: 13px; width: 16px; text-align: center; }
+.od-card-head-title { font-size: 13px; font-weight: 600; color: #111827; flex: 1; }
+.od-card-body { padding: 18px; }
+
+/* ── Order Items ── */
+.od-items-table { width: 100%; border-collapse: collapse; }
+.od-items-table th {
+  padding: 8px 12px; text-align: left;
+  font-size: 11px; font-weight: 700; color: #6b7280;
+  text-transform: uppercase; letter-spacing: .05em;
+  background: #f9fafb; border-bottom: 1px solid #e5e7eb;
+}
+.od-items-table td {
+  padding: 12px; border-bottom: 1px solid #f3f4f6;
+  font-size: 13px; color: #111827; vertical-align: middle;
+}
+.od-items-table tbody tr:last-child td { border-bottom: none; }
+.od-item-img {
+  width: 44px; height: 44px; object-fit: cover;
+  border-radius: 8px; border: 1px solid #e5e7eb;
+}
+.od-item-img-placeholder {
+  width: 44px; height: 44px; background: #f3f4f6;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+}
+.od-item-name { font-weight: 600; font-size: 13px; }
+.od-item-var  { font-size: 11px; color: #9ca3af; margin-top: 2px; }
+.od-total-row td { padding: 10px 12px; font-weight: 700; background: #f9fafb; }
+
+/* ── Info grid ── */
+.od-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.od-info-item { display: flex; flex-direction: column; gap: 3px; }
+.od-info-label { font-size: 11px; font-weight: 600; color: #9ca3af; text-transform: uppercase; letter-spacing: .05em; }
+.od-info-val   { font-size: 13px; color: #111827; font-weight: 500; }
+
+/* ── Status form fields ── */
+.od-field { margin-bottom: 12px; }
+.od-field:last-child { margin-bottom: 0; }
+.od-label { font-size: 12px; font-weight: 600; color: #374151; margin-bottom: 5px; display: block; text-transform: uppercase; letter-spacing: .04em; }
+.od-card-body select,
+.od-card-body input[type=text],
+.od-card-body textarea {
+  width: 100%; padding: 8px 12px;
+  border: 1.5px solid #e5e7eb; border-radius: 9px;
+  font-size: 13px; font-family: inherit; color: #111827;
+  background: #f9fafb; outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.od-card-body select:focus,
+.od-card-body input:focus,
+.od-card-body textarea:focus {
+  border-color: #6366f1; background: #fff;
+  box-shadow: 0 0 0 3px rgba(99,102,241,.1);
+}
+.od-card-body textarea { resize: vertical; min-height: 70px; }
+
+/* ── Timeline ── */
+.od-timeline { padding: 4px 0; }
+.od-tl-item {
+  display: flex; gap: 14px; padding: 10px 0;
+  border-bottom: 1px solid #f3f4f6; position: relative;
+}
+.od-tl-item:last-child { border-bottom: none; }
+.od-tl-dot {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff; margin-top: 2px;
+}
+.tl-placed     { background: #6366f1; }
+.tl-processing { background: #f59e0b; }
+.tl-shipped    { background: #3b82f6; }
+.tl-delivered  { background: #22c55e; }
+.tl-cancelled  { background: #ef4444; }
+.tl-completed  { background: #22c55e; }
+.tl-default    { background: #94a3b8; }
+.bl-placed     { border-left-color: #6366f1 !important; }
+.bl-processing { border-left-color: #f59e0b !important; }
+.bl-shipped    { border-left-color: #3b82f6 !important; }
+.bl-delivered  { border-left-color: #22c55e !important; }
+.bl-cancelled  { border-left-color: #ef4444 !important; }
+.bl-completed  { border-left-color: #22c55e !important; }
+.bl-default    { border-left-color: #94a3b8 !important; }
+.od-feed-row { display: flex; gap: 14px; padding: 14px 18px; border-bottom: 1px solid #f3f4f6; }
+.od-feed-row.last-row { border-bottom: none; }
+.od-tl-status  { font-size: 13px; font-weight: 600; color: #111827; }
+.od-tl-note    { font-size: 12px; color: #6b7280; margin-top: 2px; }
+.od-tl-time    { font-size: 11px; color: #9ca3af; margin-top: 3px; }
+
+/* ── Meta rows ── */
+.od-meta-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 13px;
+}
+.od-meta-row:last-child { border-bottom: none; padding-bottom: 0; }
+.od-meta-key { color: #6b7280; font-size: 12px; }
+.od-meta-val { font-weight: 600; color: #111827; }
+
+/* ── Inline status update table ── */
+.od-inline-wrap { overflow-x: auto; }
+.od-inline-table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 500px; }
+.od-inline-table thead th {
+  padding: 8px 12px; text-align: left;
+  font-size: 11px; font-weight: 700; color: #6b7280;
+  text-transform: uppercase; letter-spacing: .05em;
+  background: #f9fafb; border-bottom: 1px solid #e5e7eb; white-space: nowrap;
+}
+.od-inline-table tbody td {
+  padding: 8px 12px; border-bottom: 1px solid #f3f4f6; vertical-align: middle;
+}
+.od-inline-table tbody tr:last-child td { border-bottom: none; }
+.od-inline-table select,
+.od-inline-table input[type=text],
+.od-inline-table textarea {
+  width: 100%; padding: 6px 10px;
+  border: 1.5px solid #e5e7eb; border-radius: 7px;
+  font-size: 12px; background: #f9fafb; outline: none;
+  transition: border-color .15s;
+}
+.od-inline-table select:focus,
+.od-inline-table input:focus,
+.od-inline-table textarea:focus { border-color: #6366f1; background: #fff; }
+.od-inline-table input[type=checkbox] { accent-color: #6366f1; width: 15px; height: 15px; }
+
+/* ── Mobile save ── */
+.od-mobile-save {
+  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+  background: #fff; border-top: 1px solid #e5e7eb;
+  padding: 12px 16px; gap: 10px;
+  box-shadow: 0 -4px 16px rgba(0,0,0,.08);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) { .od-grid { grid-template-columns: 1fr 260px; } }
+@media (max-width: 768px) {
+  .od-grid { grid-template-columns: 1fr; }
+  .od-side { position: static; order: -1; }
+  .od-info-grid { grid-template-columns: 1fr 1fr; }
+  .od-header-actions .od-btn-primary { display: none; }
+  .od-mobile-save { display: flex; }
+  #admin-content { padding-bottom: 80px; }
+  .od-card-body { padding: 14px; }
+}
+@media (max-width: 480px) {
+  .od-header { flex-direction: column; align-items: stretch; }
+  .od-header-actions { flex-wrap: wrap; }
+  .od-header-actions .od-btn { flex: 1; justify-content: center; }
+  .od-info-grid { grid-template-columns: 1fr; }
+}
+</style>
+{% endblock %}
+
+{% block content_title %}{% endblock %}
+{% block object-tools %}{% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data" id="od-form" novalidate>
+{% csrf_token %}
+{% for field in adminform.form.hidden_fields %}{{ field }}{% endfor %}
+
+<div class="od-wrap">
+
+  <!-- Header -->
+  <div class="od-header">
+    <div class="od-header-left">
+      <h1>Order #{{ original.order_number }}</h1>
+      <div class="od-header-badges">
+        {% with s=original.status|lower %}
+        <span class="od-badge b-{{ s }}"><i class="fas fa-circle"></i>{{ original.status }}</span>
+        {% endwith %}
+        {% with p=original.payment_status|lower %}
+        <span class="od-badge b-{{ p }}"><i class="fas fa-circle"></i>{{ original.payment_status }}</span>
+        {% endwith %}
+        {% if original.email_verified %}
+        <span class="od-badge" style="background:#f0fdf4;color:#16a34a;"><i class="fas fa-shield-check"></i> Email Verified</span>
+        {% endif %}
+      </div>
+    </div>
+    <div class="od-header-actions">
+      <a href="/secureadmin/orders/" class="od-btn od-btn-ghost">
+        <i class="fas fa-arrow-left"></i> Back
+      </a>
+      <button type="submit" name="_save" class="od-btn od-btn-primary">
+        <i class="fas fa-check"></i> Save
+      </button>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="od-grid">
+
+    <!-- ═══ MAIN ═══ -->
+    <div class="od-main">
+
+      <!-- Order Items -->
+      <div class="od-card">
+        <div class="od-card-head">
+          <i class="fas fa-bag-shopping"></i>
+          <span class="od-card-head-title">Order Items</span>
+        </div>
+        <div class="od-card-body" style="padding:0;">
+          <table class="od-items-table">
+            <thead>
+              <tr>
+                <th style="width:52px;">Image</th>
+                <th>Product</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for item in order_items %}
+              <tr>
+                <td>
+                  {% if item.product.images %}
+                  <img src="{{ item.product.images.url }}" class="od-item-img" alt="{{ item.product.product_name }}">
+                  {% else %}
+                  <div class="od-item-img-placeholder"><i class="fas fa-image" style="color:#d1d5db;font-size:16px;"></i></div>
+                  {% endif %}
+                </td>
+                <td>
+                  <div class="od-item-name">{{ item.product.product_name }}</div>
+                  {% if item.variations.all %}
+                  <div class="od-item-var">
+                    {% for v in item.variations.all %}{{ v }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                  </div>
+                  {% endif %}
+                </td>
+                <td style="color:#6b7280;">× {{ item.quantity }}</td>
+                <td>{{ item.product_price|floatformat:0 }} BDT</td>
+                <td style="font-weight:600;">BDT{% widthratio item.product_price 1 item.quantity %}</td>
+              </tr>
+              {% empty %}
+              <tr><td colspan="5" style="text-align:center;color:#9ca3af;padding:20px;">No items found</td></tr>
+              {% endfor %}
+            </tbody>
+            <tfoot>
+              <tr class="od-total-row">
+                <td colspan="3"></td>
+                <td style="color:#6b7280;font-size:12px;">Tax</td>
+                <td>{{ original.tax|floatformat:0 }} BDT</td>
+              </tr>
+              <tr class="od-total-row">
+                <td colspan="3"></td>
+                <td style="font-size:14px;">Total</td>
+                <td style="font-size:15px;color:#6366f1;">{{ original.order_total|floatformat:0 }} BDT</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <!-- Customer & Shipping -->
+      <div class="od-card">
+        <div class="od-card-head">
+          <i class="fas fa-user"></i>
+          <span class="od-card-head-title">Customer & Shipping</span>
+        </div>
+        <div class="od-card-body">
+          <div class="od-info-grid">
+            <div class="od-info-item">
+              <span class="od-info-label">Full Name</span>
+              <span class="od-info-val">{{ original.first_name }} {{ original.last_name }}</span>
+            </div>
+            <div class="od-info-item">
+              <span class="od-info-label">Email</span>
+              <span class="od-info-val" style="word-break:break-all;">{{ original.email }}</span>
+            </div>
+            <div class="od-info-item">
+              <span class="od-info-label">Phone</span>
+              <span class="od-info-val">{{ original.phone }}</span>
+            </div>
+            <div class="od-info-item">
+              <span class="od-info-label">City / State</span>
+              <span class="od-info-val">{{ original.city }}, {{ original.state }}</span>
+            </div>
+            <div class="od-info-item" style="grid-column:1/-1;">
+              <span class="od-info-label">Address</span>
+              <span class="od-info-val">{{ original.address_line_1 }}{% if original.address_line_2 %}, {{ original.address_line_2 }}{% endif %}, {{ original.country }}</span>
+            </div>
+            {% if original.order_note %}
+            <div class="od-info-item" style="grid-column:1/-1;">
+              <span class="od-info-label">Order Note</span>
+              <span class="od-info-val">{{ original.order_note }}</span>
+            </div>
+            {% endif %}
+            {% if original.additional_info %}
+            <div class="od-info-item" style="grid-column:1/-1;">
+              <span class="od-info-label">Additional Info</span>
+              <span class="od-info-val">{{ original.additional_info }}</span>
+            </div>
+            {% endif %}
+            {% if payment_account %}
+            <div class="od-info-item">
+              <span class="od-info-label">Payment Method</span>
+              <span class="od-info-val" style="display:flex;align-items:center;gap:6px;">
+                <i class="fas fa-wallet" style="color:#6366f1;font-size:13px;"></i>
+                {{ payment_account.get_payment_method_display }}
+              </span>
+            </div>
+            <div class="od-info-item">
+              <span class="od-info-label">Account Number</span>
+              <span class="od-info-val">{{ payment_account.masked_account_number }}</span>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Update Inline — hidden fields for Django form submission -->
+      {% for inline_admin_formset in inline_admin_formsets %}
+      <div style="display:none;">
+        {{ inline_admin_formset.formset.management_form }}
+        {% for form in inline_admin_formset.formset.forms %}
+          {% for field in form.hidden_fields %}{{ field }}{% endfor %}
+          {% for field in form.visible_fields %}{{ field }}{% endfor %}
+          {{ form.DELETE }}
+        {% endfor %}
+      </div>
+      {% endfor %}
+
+      <!-- Status Activity Feed -->
+      {% if status_history %}
+      <div class="od-card">
+        <div class="od-card-head">
+          <i class="fas fa-clock-rotate-left"></i>
+          <span class="od-card-head-title">Status Activity</span>
+          <span style="font-size:11px;color:#9ca3af;margin-left:auto;">{{ status_history|length }} update{{ status_history|length|pluralize }}</span>
+        </div>
+        <div class="od-card-body" style="padding:0;">
+          {% for update in status_history %}
+          <div class="od-feed-row {% if forloop.last %}last-row{% endif %}">
+            <!-- dot + line -->
+            <div style="display:flex;flex-direction:column;align-items:center;gap:0;flex-shrink:0;">
+              <div class="tl-{{ update.status|lower|default:'default' }}" style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;">
+                {% if update.status == 'Placed' %}<i class="fas fa-check"></i>
+                {% elif update.status == 'Processing' %}<i class="fas fa-gear"></i>
+                {% elif update.status == 'Shipped' %}<i class="fas fa-truck"></i>
+                {% elif update.status == 'Delivered' %}<i class="fas fa-house"></i>
+                {% elif update.status == 'Cancelled' %}<i class="fas fa-xmark"></i>
+                {% else %}<i class="fas fa-circle" style="font-size:8px;"></i>{% endif %}
+              </div>
+              {% if not forloop.last %}
+              <div style="width:2px;flex:1;min-height:16px;background:#f1f5f9;margin:4px 0;"></div>
+              {% endif %}
+            </div>
+            <!-- content -->
+            <div style="flex:1;min-width:0;padding-top:6px;">
+              <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;">
+                <span style="font-size:13px;font-weight:600;color:#111827;">{{ update.status }}</span>
+                <span style="font-size:11px;color:#9ca3af;white-space:nowrap;">{{ update.timestamp|date:"M d, Y" }} &middot; {{ update.timestamp|date:"H:i" }}</span>
+              </div>
+              {% if update.notes %}
+              <div class="bl-{{ update.status|lower|default:'default' }}" style="margin-top:5px;padding:8px 12px;background:#f9fafb;border-radius:8px;border-left:3px solid transparent; font-size:12px;color:#374151;line-height:1.5;">
+                {{ update.notes }}
+              </div>
+              {% endif %}
+              {% if update.updated_by %}
+              <div style="margin-top:5px;font-size:11px;color:#9ca3af;display:flex;align-items:center;gap:4px;">
+                <i class="fas fa-user-shield" style="font-size:10px;"></i> {{ update.updated_by }}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+    <!-- ═══ END MAIN ═══ -->
+
+    <!-- ═══ SIDEBAR ═══ -->
+    <div class="od-side">
+
+      <!-- Order Summary -->
+      <div class="od-card">
+        <div class="od-card-head">
+          <i class="fas fa-receipt"></i>
+          <span class="od-card-head-title">Order Summary</span>
+        </div>
+        <div class="od-card-body">
+          <div class="od-meta-row">
+            <span class="od-meta-key">Order #</span>
+            <span class="od-meta-val" style="color:#6366f1;">#{{ original.order_number }}</span>
+          </div>
+          <div class="od-meta-row">
+            <span class="od-meta-key">Placed</span>
+            <span class="od-meta-val">{{ original.created_at|date:"M d, Y" }}</span>
+          </div>
+          <div class="od-meta-row">
+            <span class="od-meta-key">Updated</span>
+            <span class="od-meta-val">{{ original.updated_at|date:"M d, Y" }}</span>
+          </div>
+          <div class="od-meta-row">
+            <span class="od-meta-key">Total</span>
+            <span class="od-meta-val" style="color:#6366f1;font-size:15px;">{{ original.order_total|floatformat:0 }} BDT</span>
+          </div>
+          <div class="od-meta-row">
+            <span class="od-meta-key">Status</span>
+            {% with s=original.status|lower %}
+            <span class="od-badge b-{{ s }}" style="font-size:11px;"><i class="fas fa-circle"></i>{{ original.status }}</span>
+            {% endwith %}
+          </div>
+          <div class="od-meta-row">
+            <span class="od-meta-key">Payment</span>
+            {% with p=original.payment_status|lower %}
+            <span class="od-badge b-{{ p }}" style="font-size:11px;"><i class="fas fa-circle"></i>{{ original.payment_status }}</span>
+            {% endwith %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Status Edit -->
+      <div class="od-card">
+        <div class="od-card-head">
+          <i class="fas fa-pen"></i>
+          <span class="od-card-head-title">Edit Status</span>
+        </div>
+        <div class="od-card-body">
+          {% with f=adminform.form.status %}
+          <div class="od-field">
+            <label class="od-label">Order Status</label>
+            {% if original.status == 'Delivered' %}
+            <div style="padding:9px 13px;background:#f0fdf4;border:1.5px solid #bbf7d0;border-radius:9px;display:flex;align-items:center;gap:8px;">
+              <span class="od-badge b-delivered" style="font-size:12px;"><i class="fas fa-circle"></i>Delivered</span>
+              <span style="font-size:12px;color:#16a34a;">— order completed</span>
+            </div>
+            <div style="display:none;">{{ f }}</div>
+            {% else %}
+            {{ f }}
+            {% endif %}
+          </div>
+          {% endwith %}
+          {% with f=adminform.form.payment_status %}
+          <div style="display:none;">{{ f }}</div>
+          {% endwith %}
+          <div class="od-field">
+            <label class="od-label">Payment Status</label>
+            {% with p=original.payment_status|lower %}
+            <div style="padding:9px 13px;background:#f9fafb;border:1.5px solid #e5e7eb;border-radius:9px;display:flex;align-items:center;gap:8px;">
+              <span class="od-badge b-{{ p }}" style="font-size:12px;"><i class="fas fa-circle"></i>{{ original.payment_status }}</span>
+              <span style="font-size:12px;color:#9ca3af;">— set by payment gateway</span>
+            </div>
+            {% endwith %}
+          </div>
+          <button type="submit" name="_save" class="od-btn od-btn-primary od-btn-full" style="margin-top:4px;">
+            <i class="fas fa-check"></i> Save Changes
+          </button>
+        </div>
+      </div>
+
+      <!-- Status Timeline -->
+      {% if status_history %}
+      <div class="od-card">
+        <div class="od-card-head">
+          <i class="fas fa-timeline"></i>
+          <span class="od-card-head-title">Status History</span>
+        </div>
+        <div class="od-card-body" style="padding:14px 18px;">
+          <div class="od-timeline">
+            {% for update in status_history %}
+            <div class="od-tl-item">
+              <div class="od-tl-dot tl-{{ update.status|lower }}">
+                {% if update.status == 'Placed' %}<i class="fas fa-check" style="font-size:10px;"></i>
+                {% elif update.status == 'Processing' %}<i class="fas fa-gear" style="font-size:10px;"></i>
+                {% elif update.status == 'Shipped' %}<i class="fas fa-truck" style="font-size:10px;"></i>
+                {% elif update.status == 'Delivered' %}<i class="fas fa-house" style="font-size:10px;"></i>
+                {% elif update.status == 'Cancelled' %}<i class="fas fa-xmark" style="font-size:10px;"></i>
+                {% else %}<i class="fas fa-circle" style="font-size:8px;"></i>{% endif %}
+              </div>
+              <div>
+                <div class="od-tl-status">{{ update.status }}</div>
+                {% if update.notes %}<div class="od-tl-note">{{ update.notes }}</div>{% endif %}
+                <div class="od-tl-time">{{ update.timestamp|date:"M d, Y H:i" }}</div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+    <!-- ═══ END SIDEBAR ═══ -->
+
+  </div>
+</div>
+
+<!-- Mobile save bar -->
+<div class="od-mobile-save">
+  <button type="submit" name="_save" class="od-btn od-btn-primary" style="flex:1;justify-content:center;">
+    <i class="fas fa-check"></i> Save Changes
+  </button>
+  <a href="/secureadmin/orders/" class="od-btn od-btn-ghost" style="flex:1;justify-content:center;">
+    <i class="fas fa-arrow-left"></i> Back
+  </a>
+</div>
+
+</form>
+{% endblock %}

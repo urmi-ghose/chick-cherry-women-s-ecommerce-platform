@@ -1,0 +1,10 @@
+Django==5.2.6
+Pillow==11.3.0
+requests
+stripe==8.0.0
+minio==7.2.7
+django-storages==1.14.4
+# NOTE: install sslcommerz-python separately via `pip install sslcommerz-python==0.0.7 --no-deps` to avoid dependency build errors on Windows.
+# sslcommerz-python==0.0.7
+django-session-timeout
+python-decouple

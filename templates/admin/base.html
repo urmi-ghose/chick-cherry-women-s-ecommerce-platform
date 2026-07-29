@@ -1,0 +1,172 @@
+{% load i18n static %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE|default:'en-us' }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>{% block title %}ChicCherry Admin{% endblock %}</title>
+<meta name="robots" content="NONE,NOARCHIVE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="{% static 'admin/css/admin_custom.css' %}">
+{% block extrastyle %}{% endblock %}
+{% block extrahead %}{% endblock %}
+</head>
+
+<body class="{% if is_popup %}popup{% endif %}" data-admin-utc-offset="{% now 'Z' %}">
+
+<div id="sidebar-overlay"></div>
+
+<div id="admin-shell">
+
+  <!-- SIDEBAR — hidden via CSS when body.popup -->
+  <aside id="admin-sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon"><i class="fas fa-shopping-bag"></i></div>
+      <div>
+        <div class="logo-text">ChicCherry</div>
+        <div class="logo-sub">Admin Panel</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="{% url 'admin:index' %}" class="nav-item" data-path="/secureadmin/">
+        <i class="fas fa-gauge-high"></i><span>Dashboard</span>
+      </a>
+
+      <div class="nav-section-label">Manage</div>
+      <a href="{% url 'admin:accounts_account_changelist' %}" class="nav-item" data-path="/secureadmin/accounts/">
+        <i class="fas fa-users"></i><span>Administrators</span>
+      </a>
+      <a href="/secureadmin/users/" class="nav-item" data-path="/secureadmin/users/">
+        <i class="fas fa-user"></i><span>Users</span>
+      </a>
+      <a href="/secureadmin/store/product/list/" class="nav-item" data-path="/secureadmin/store/product/">
+        <i class="fas fa-box-open"></i><span>Products</span>
+      </a>
+      <a href="{% url 'admin:store_product_add' %}" class="nav-item" data-path="/secureadmin/store/product/add/">
+        <i class="fas fa-plus"></i><span>Add Product</span>
+      </a>
+      <a href="{% url 'admin:store_variationcategory_add' %}" class="nav-item" data-path="/secureadmin/store/variationcategory/add/">
+        <i class="fas fa-sliders"></i><span>Add Variation Category</span>
+      </a>
+      <a href="/secureadmin/category/list/" class="nav-item" data-path="/secureadmin/category/category/">
+        <i class="fas fa-tags"></i><span>Categories</span>
+      </a>
+      <a href="/secureadmin/orders/" class="nav-item" data-path="/secureadmin/carts/order/">
+        <i class="fas fa-shopping-cart"></i><span>Orders</span>
+      </a>
+      <a href="/secureadmin/reviews/" class="nav-item" data-path="/secureadmin/store/reviewrating/">
+        <i class="fas fa-star"></i><span>Reviews</span>
+      </a>
+      <a href="/secureadmin/discounts/" class="nav-item" data-path="/secureadmin/discounts/">
+        <i class="fas fa-tag"></i><span>Discount Products</span>
+      </a>
+
+      <a href="/secureadmin/manage-website/" class="nav-item" data-path="/secureadmin/manage-website/">
+        <i class="fas fa-globe"></i><span>Website Manage</span>
+      </a>
+
+      <div class="nav-section-label">System</div>
+      <a href="{% url 'admin:password_change' %}" class="nav-item" data-path="/secureadmin/password_change/">
+        <i class="fas fa-gear"></i><span>Settings</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <i class="fas fa-circle" style="color:#22C55E;font-size:8px;margin-right:6px;"></i>System Online
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div id="admin-main">
+
+    <!-- TOPBAR -->
+    <header id="admin-topbar">
+      <div class="topbar-left">
+        <button id="sidebar-toggle" aria-label="Toggle sidebar"><i class="fas fa-bars"></i></button>
+        <span class="page-title">{% block page_title %}{% if title %}{{ title }}{% else %}Dashboard{% endif %}{% endblock %}</span>
+      </div>
+      <div class="topbar-right">
+        <a href="/secureadmin/store-preview/" class="topbar-btn"><i class="fas fa-store"></i><span>View Store</span></a>
+        {% if has_permission %}
+        <div class="profile-wrap">
+          <button class="profile-btn" id="profile-btn" type="button">
+            <div class="profile-avatar">{{ user.get_short_name|default:user.get_username|slice:":1"|upper }}</div>
+            <div class="profile-info">
+              <div class="profile-name">{% firstof user.get_short_name user.get_username %}</div>
+              <div class="profile-email">{{ user.email }}</div>
+            </div>
+            <i class="fas fa-chevron-down profile-caret"></i>
+          </button>
+          <div class="profile-dropdown" id="profile-dropdown">
+            <a href="{% url 'admin:password_change' %}" class="dropdown-item"><i class="fas fa-key"></i> Change Password</a>
+            <a href="/secureadmin/store-preview/" class="dropdown-item"><i class="fas fa-arrow-up-right-from-square"></i> View Store</a>
+            <div class="dropdown-divider"></div>
+            <form id="logout-form" method="post" action="{% url 'admin:logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="dropdown-item danger"><i class="fas fa-right-from-bracket"></i> Log Out</button>
+            </form>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <main id="admin-content">
+      {% block messages %}{% endblock %}
+
+      <div id="content" class="{% block coltype %}colM{% endblock %}">
+        {% block pretitle %}{% endblock %}
+        {% block content_title %}{% endblock %}
+        {% block content_subtitle %}{% endblock %}
+        {% block content %}
+          {% block object-tools %}{% endblock %}
+          {{ content }}
+        {% endblock %}
+        {% block sidebar %}{% endblock %}
+      </div>
+    </main>
+
+  </div>
+</div>
+
+<script src="{% static 'admin/js/admin_custom.js' %}"></script>
+{% block extrabody %}{% endblock %}
+
+<!-- Toast Notifications -->
+<div id="toast-container"></div>
+{% if messages %}
+<script>
+  (function(){
+    var map = { success:'#22c55e', error:'#ef4444', warning:'#f59e0b', info:'#3b82f6' };
+    var messages = [
+      {% for message in messages %}
+      { text: "{{ message|escapejs }}", tag: "{{ message.tags }}" }{% if not forloop.last %},{% endif %}
+      {% endfor %}
+    ];
+    messages.forEach(function(m, i){
+      setTimeout(function(){
+        var color = map[m.tag] || '#6366f1';
+        var el = document.createElement('div');
+        el.style.cssText = 'display:flex;align-items:center;gap:10px;background:'+color+';color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.15);font-size:14px;font-family:Inter,sans-serif;font-weight:500;min-width:260px;max-width:360px;animation:toastIn .3s ease;';
+        el.innerHTML = '<span style="flex:1">'+m.text+'</span><button onclick="this.parentElement.remove()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;line-height:1;opacity:.8;">&times;</button>';
+        document.getElementById('toast-container').appendChild(el);
+        setTimeout(function(){ el.style.animation='toastOut .3s ease forwards'; setTimeout(function(){ el.remove(); }, 300); }, 4000);
+      }, i * 200);
+    });
+  })();
+</script>
+{% endif %}
+<style>
+  #toast-container { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:10px; }
+  @keyframes toastIn  { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
+  @keyframes toastOut { from { opacity:1; transform:translateX(0); } to { opacity:0; transform:translateX(40px); } }
+</style>
+</body>
+</html>

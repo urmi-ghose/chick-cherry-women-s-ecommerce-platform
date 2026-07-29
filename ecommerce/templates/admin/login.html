@@ -1,0 +1,427 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login — ChicCherry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .wrapper {
+      display: flex;
+      width: 100%;
+      max-width: 960px;
+      min-height: 560px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+      animation: fadeUp 0.45s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Left branding panel ── */
+    .brand-panel {
+      flex: 1;
+      background: linear-gradient(145deg, #4f46e5 0%, #6366f1 60%, #818cf8 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 40px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .brand-logo {
+      width: 68px;
+      height: 68px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      backdrop-filter: blur(6px);
+    }
+
+    .brand-logo svg { width: 36px; height: 36px; }
+
+    .brand-name {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+
+    .brand-tagline {
+      font-size: 15px;
+      opacity: 0.82;
+      line-height: 1.6;
+      max-width: 240px;
+    }
+
+    .brand-features {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      width: 100%;
+      max-width: 260px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      text-align: left;
+    }
+
+    .feature-item svg { width: 18px; height: 18px; flex-shrink: 0; fill: #c7d2fe; }
+
+    /* ── Right form panel ── */
+    .form-panel {
+      flex: 1;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 40px;
+    }
+
+    .form-card { width: 100%; max-width: 360px; }
+
+    .form-title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+
+    .form-subtitle {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 28px;
+    }
+
+    /* Django error list */
+    .errornote, .errorlist {
+      background: #fef2f2;
+      color: #b91c1c;
+      border: 1px solid #fecaca;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      margin-bottom: 18px;
+      list-style: none;
+    }
+
+    /* Form fields */
+    .field { margin-bottom: 18px; }
+
+    label {
+      display: block;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #0f172a;
+      background: #f8fafc;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #6366f1;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+    }
+
+    input.is-invalid { border-color: #f87171; }
+    .error-msg { font-size: 12px; color: #ef4444; margin-top: 5px; display: none; }
+    .error-msg.visible { display: block; }
+
+    /* Password wrapper */
+    .pw-wrap { position: relative; }
+    .pw-wrap input { padding-right: 42px; }
+    .pw-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      color: #94a3b8;
+      display: flex;
+      align-items: center;
+    }
+    .pw-toggle:hover { color: #6366f1; }
+    .pw-toggle svg { width: 18px; height: 18px; }
+
+    /* Remember + forgot row */
+    .row-check {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .check-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13.5px;
+      color: #475569;
+      cursor: pointer;
+    }
+
+    input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: #6366f1;
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      font-size: 13.5px;
+      color: #6366f1;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .forgot-link:hover { text-decoration: underline; }
+
+    /* Submit button */
+    .btn-login {
+      width: 100%;
+      padding: 11px;
+      background: #6366f1;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: inherit;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-login:hover:not(:disabled) { background: #4f46e5; }
+    .btn-login:active:not(:disabled) { transform: scale(0.98); }
+    .btn-login:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    .spinner {
+      width: 18px; height: 18px;
+      border: 2.5px solid rgba(255,255,255,0.4);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      display: none;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .btn-login.loading .spinner { display: block; }
+    .btn-login.loading .btn-text { display: none; }
+
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .brand-panel { display: none; }
+      .form-panel { padding: 36px 28px; }
+      .wrapper { border-radius: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <!-- Left: Branding -->
+  <div class="brand-panel">
+    <div class="brand-logo">
+      <!-- Shopping bag icon -->
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <line x1="3" y1="6" x2="21" y2="6" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        <path d="M16 10a4 4 0 01-8 0" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="brand-name">ChicCherry</div>
+    <div class="brand-tagline">Manage your store efficiently with a powerful admin dashboard.</div>
+
+    <div class="brand-features">
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z"/></svg>
+        Real-time sales analytics
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8h16v10z"/></svg>
+        Order &amp; inventory control
+      </div>
+      <div class="feature-item">
+        <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+        Customer management
+      </div>
+    </div>
+  </div>
+
+  <!-- Right: Login Form -->
+  <div class="form-panel">
+    <div class="form-card">
+      <div class="form-title">{% trans "Welcome Back" %}</div>
+      <div class="form-subtitle">{% trans "Please sign in to your account" %}</div>
+
+      {% if form.errors %}
+        <ul class="errorlist">
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+          {% if form.errors and not form.non_field_errors %}
+            <li>{% trans "Please enter the correct username and password for a staff account. Note that both fields may be case-sensitive." %}</li>
+          {% endif %}
+        </ul>
+      {% endif %}
+
+      <form method="post" action="{{ request.path }}" id="loginForm" novalidate>
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}" />
+
+        <div class="field">
+          <label for="id_username">{% trans "Username" %}</label>
+          <input type="text" id="id_username" name="username"
+                 value="{{ form.username.value|default:'' }}"
+                 autocomplete="username" autofocus required />
+          <div class="error-msg" id="userErr">{% trans "Username is required." %}</div>
+        </div>
+
+        <div class="field">
+          <label for="id_password">{% trans "Password" %}</label>
+          <div class="pw-wrap">
+            <input type="password" id="id_password" name="password"
+                   autocomplete="current-password" required />
+            <button type="button" class="pw-toggle" id="pwToggle" aria-label="Toggle password visibility">
+              <svg id="eyeShow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+              </svg>
+              <svg id="eyeHide" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                <line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </button>
+          </div>
+          <div class="error-msg" id="pwErr">{% trans "Password is required." %}</div>
+        </div>
+
+        <div class="row-check">
+          <label class="check-label">
+            <input type="checkbox" name="remember" id="remember" />
+            {% trans "Remember me" %}
+          </label>
+          <a href="{% url 'admin:password_change' %}" class="forgot-link">{% trans "Forgot password?" %}</a>
+        </div>
+
+        <button type="submit" class="btn-login" id="loginBtn">
+          <span class="spinner"></span>
+          <span class="btn-text">{% trans "Sign In" %}</span>
+        </button>
+      </form>
+
+      <div class="form-footer">
+        &copy; {% now "Y" %} ChicCherry. All rights reserved.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Password show/hide
+  const pwInput = document.getElementById('id_password');
+  const eyeShow = document.getElementById('eyeShow');
+  const eyeHide = document.getElementById('eyeHide');
+  document.getElementById('pwToggle').addEventListener('click', () => {
+    const isText = pwInput.type === 'text';
+    pwInput.type = isText ? 'password' : 'text';
+    eyeShow.style.display = isText ? '' : 'none';
+    eyeHide.style.display = isText ? 'none' : '';
+  });
+
+  // Inline validation + loading state
+  const form    = document.getElementById('loginForm');
+  const userEl  = document.getElementById('id_username');
+  const userErr = document.getElementById('userErr');
+  const pwErr   = document.getElementById('pwErr');
+  const loginBtn = document.getElementById('loginBtn');
+
+  form.addEventListener('submit', (e) => {
+    let valid = true;
+    if (!userEl.value.trim()) {
+      userEl.classList.add('is-invalid');
+      userErr.classList.add('visible');
+      valid = false;
+    } else {
+      userEl.classList.remove('is-invalid');
+      userErr.classList.remove('visible');
+    }
+    if (!pwInput.value) {
+      pwInput.classList.add('is-invalid');
+      pwErr.classList.add('visible');
+      valid = false;
+    } else {
+      pwInput.classList.remove('is-invalid');
+      pwErr.classList.remove('visible');
+    }
+    if (!valid) { e.preventDefault(); return; }
+    loginBtn.classList.add('loading');
+    loginBtn.disabled = true;
+  });
+
+  userEl.addEventListener('input', () => { userEl.classList.remove('is-invalid'); userErr.classList.remove('visible'); });
+  pwInput.addEventListener('input', () => { pwInput.classList.remove('is-invalid'); pwErr.classList.remove('visible'); });
+</script>
+
+</body>
+</html>

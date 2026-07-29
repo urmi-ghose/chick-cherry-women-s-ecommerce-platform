@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section-content padding-y bg">
+<div class="container">
+
+<h2>Order Confirmation</h2>
+
+<div class="card">
+    <div class="card-body">
+        {% if already_confirmed %}
+        <div class="alert alert-info">
+            <h5>Order Already Confirmed!</h5>
+            <p>This order has already been confirmed and payment received.</p>
+        </div>
+        {% else %}
+        <h5>Thank you for your order!</h5>
+        {% endif %}
+        <p>Order Number: {{ order.order_number }}</p>
+        <p>Status: {{ order.status }}</p>
+        <p>Total Amount: {{ order.order_total }} BDT</p>
+
+        <h6>Order Items:</h6>
+        <ul>
+            {% for item in order_items %}
+            <li>
+                {{ item.product.product_name }} - Quantity: {{ item.quantity }} - Price: {{ item.product_price }} BDT
+                {% if item.variations.all %}
+                    <br><small class="text-muted">
+                        {% for variation in item.variations.all %}
+                            {{ variation.variation_category | capfirst }}: {{ variation.variation_value | capfirst }}
+                            {% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </small>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+
+        <h6>Shipping Address:</h6>
+        <p>{{ order.full_name }}</p>
+        <p>{{ order.full_address }}</p>
+        <p>{{ order.city }}, {{ order.state }}, {{ order.country }}</p>
+        <p>Phone: {{ order.phone }}</p>
+        <p>Email: {{ order.email }}</p>
+
+        <a href="{% url 'store' %}" class="btn btn-primary">Continue Shopping</a>
+    </div>
+</div>
+
+</div>
+</section>
+{% endblock %}

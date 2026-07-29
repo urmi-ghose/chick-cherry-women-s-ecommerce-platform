@@ -1,0 +1,22 @@
+{
+  "name": "email-service",
+  "version": "1.0.0",
+  "description": "Email service using nodemailer for Django e-commerce",
+  "main": "emailService.js",
+  "scripts": {
+    "start": "node emailService.js",
+    "dev": "nodemon emailService.js",
+    "serve": "concurrently \"npm run dev\" \"env\\Scripts\\python manage.py runserver 8000 --settings=ecommerce.settings_store\" \"env\\Scripts\\python manage.py runserver 8001 --settings=ecommerce.settings_admin\""
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "i": "^0.3.7",
+    "nodemailer": "^6.9.7"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.0.2"
+  }
+}

@@ -1,0 +1,236 @@
+/* ============================================================
+   ChicCherry Admin — Custom Header
+   ============================================================ */
+
+/* ---------- Header shell ---------- */
+#header {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 2px solid #e91e8c;
+}
+
+#header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+/* ---------- Branding ---------- */
+#branding {
+  display: flex;
+  align-items: center;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none !important;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #e91e8c, #ff6b35);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(233, 30, 140, 0.4);
+  flex-shrink: 0;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 1px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.brand-subtitle {
+  font-size: 10px;
+  color: #e91e8c;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+/* ---------- User tools ---------- */
+#user-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+/* Action buttons (View Site, Change Password) */
+.header-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 8px;
+  color: #cbd5e1 !important;
+  text-decoration: none !important;
+  font-size: 12.5px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.header-action-btn i {
+  font-size: 13px;
+  color: #e91e8c;
+}
+
+.header-action-btn:hover {
+  background: rgba(233, 30, 140, 0.15);
+  border-color: #e91e8c;
+  color: #ffffff !important;
+}
+
+/* ---------- User avatar block ---------- */
+.user-avatar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin: 0 4px;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, #e91e8c, #ff6b35);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.user-greeting {
+  font-size: 10px;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.user-name {
+  font-size: 13px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* ---------- Logout button ---------- */
+#logout-form {
+  margin: 0;
+  padding: 0;
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+  color: #fca5a5 !important;
+  font-size: 12.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.logout-btn i {
+  font-size: 13px;
+}
+
+.logout-btn:hover {
+  background: rgba(239, 68, 68, 0.3);
+  border-color: #ef4444;
+  color: #ffffff !important;
+}
+
+/* ---------- Breadcrumbs ---------- */
+.breadcrumbs {
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 10px 24px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.breadcrumbs a {
+  color: #e91e8c;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.breadcrumbs a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 767px) {
+  #header {
+    height: auto;
+    padding: 10px 14px;
+  }
+
+  #header-inner {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .header-action-btn span,
+  .logout-btn span,
+  .user-info {
+    display: none;
+  }
+
+  .header-action-btn,
+  .logout-btn {
+    padding: 8px 10px;
+  }
+
+  .user-avatar-wrap {
+    padding: 6px 8px;
+  }
+
+  .brand-subtitle {
+    display: none;
+  }
+}

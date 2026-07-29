@@ -1,0 +1,248 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+  :root {
+    --primary: #6366f1; --primary-light: #eef2ff; --primary-dark: #4f46e5;
+    --border: #e2e8f0; --bg: #fff0f3; --surface: #fff; --text: #0f172a;
+    --muted: #64748b; --radius: 14px; --radius-sm: 8px;
+    --shadow: 0 1px 3px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.06);
+    --shadow-hover: 0 8px 32px rgba(99,102,241,.15);
+  }
+
+  .store-hero { background: linear-gradient(135deg, #e11d48 0%, #f97316 100%); padding: 48px 0 36px; color: #fff; }
+  .store-hero h1 { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+  .store-hero p  { opacity: .8; font-size: 14px; margin: 0; }
+
+  .store-body { background: #fff0f3; padding: 32px 0 48px; }
+
+  .filter-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow);
+    overflow: hidden; margin-bottom: 16px;
+  }
+  .filter-card-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px; border-bottom: 1px solid var(--border);
+    font-size: 13px; font-weight: 600; color: var(--text);
+    cursor: pointer;
+  }
+  .filter-card-header i { color: var(--muted); font-size: 11px; transition: transform .2s; }
+  .filter-card-header.collapsed i { transform: rotate(-90deg); }
+  .filter-card-body { padding: 14px 18px; }
+
+  /* Search inside sidebar */
+  .search-input-wrap {
+    display: flex; align-items: center;
+    border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--bg); overflow: hidden; margin-bottom: 10px;
+  }
+  .search-input-wrap input {
+    flex: 1; border: none; background: transparent;
+    padding: 8px 12px; font-size: 13px; color: var(--text); outline: none;
+  }
+  .search-input-wrap button {
+    border: none; background: transparent; padding: 8px 12px;
+    color: var(--muted); cursor: pointer; font-size: 13px;
+  }
+  .search-input-wrap:focus-within { border-color: var(--primary); }
+
+  /* Price inputs */
+  .price-inputs { display: flex; gap: 8px; margin-bottom: 12px; }
+  .price-inputs input {
+    flex: 1; padding: 7px 10px; border: 1px solid var(--border);
+    border-radius: var(--radius-sm); font-size: 13px; color: var(--text);
+    background: var(--bg); transition: border-color .15s; width: 100%;
+  }
+  .price-inputs input:focus { outline: none; border-color: var(--primary); }
+
+  .btn-filter {
+    width: 100%; padding: 8px; border: none; border-radius: var(--radius-sm);
+    background: var(--primary); color: #fff; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: background .15s;
+  }
+  .btn-filter:hover { background: var(--primary-dark); }
+  .btn-clear {
+    width: 100%; padding: 7px; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    background: var(--surface); color: var(--muted); font-size: 13px; font-weight: 500;
+    cursor: pointer; margin-top: 8px; transition: all .15s;
+    text-align: center; display: block; text-decoration: none;
+  }
+  .btn-clear:hover { border-color: var(--primary); color: var(--primary); }
+
+  /* Products */
+  .product-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden; transition: box-shadow .2s, transform .2s;
+    height: 100%; display: flex; flex-direction: column;
+  }
+  .product-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+  .product-img-wrap { position: relative; overflow: hidden; background: var(--bg); aspect-ratio: 1/1; }
+  .product-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+  .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+  .discount-badge {
+    position: absolute; top: 10px; left: 10px;
+    background: #e11d48; color: #fff; font-size: 11px; font-weight: 700;
+    padding: 3px 8px; border-radius: 99px;
+  }
+  .product-body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; }
+  .product-name {
+    font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; line-height: 1.4;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .product-name:hover { color: var(--primary); }
+  .price-original { font-size: 12px; color: var(--muted); text-decoration: line-through; }
+  .price-discounted { font-size: 16px; font-weight: 700; color: #e11d48; }
+  .btn-view {
+    display: block; text-align: center; padding: 9px; border-radius: var(--radius-sm);
+    background: var(--primary); color: #fff; font-size: 13px; font-weight: 500;
+    transition: background .15s; margin-top: auto;
+  }
+  .btn-view:hover { background: var(--primary-dark); color: #fff; }
+
+  .pagination .page-link {
+    border-radius: var(--radius-sm) !important; border: 1px solid var(--border);
+    color: var(--muted); font-size: 13px; padding: 6px 12px; margin: 0 2px; transition: all .15s;
+  }
+  .pagination .page-link:hover { background: var(--primary-light); color: var(--primary); border-color: var(--primary); }
+  .pagination .page-item.active .page-link { background: var(--primary); border-color: var(--primary); color: #fff; }
+  .pagination .page-item.disabled .page-link { opacity: .4; }
+</style>
+
+<!-- Hero -->
+<div class="store-hero">
+  <div class="container">
+    <h1>🔥 Discount Products</h1>
+    <p>{{ product_count }} product{{ product_count|pluralize }} on sale</p>
+  </div>
+</div>
+
+<!-- Body -->
+<div class="store-body">
+  <div class="container">
+    <div class="row">
+
+      <!-- Sidebar -->
+      <aside class="col-lg-3 col-md-4 mb-4">
+
+        <!-- Search -->
+        <div class="filter-card">
+          <div class="filter-card-header" onclick="toggleFilter(this, 'collapse_search')">
+            <span><i class="fas fa-search mr-2" style="color:var(--primary)"></i>Search</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="filter-card-body" id="collapse_search">
+            <form method="get">
+              {% if min_price %}<input type="hidden" name="min_price" value="{{ min_price }}">{% endif %}
+              {% if max_price %}<input type="hidden" name="max_price" value="{{ max_price }}">{% endif %}
+              <div class="search-input-wrap">
+                <input type="text" name="keyword" placeholder="Search deals..." value="{{ keyword|default:'' }}">
+                <button type="submit"><i class="fas fa-search"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Price Filter -->
+        <div class="filter-card">
+          <div class="filter-card-header" onclick="toggleFilter(this, 'collapse_price')">
+            <span><i class="fas fa-tag mr-2" style="color:var(--primary)"></i>Price Range</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="filter-card-body" id="collapse_price">
+            <form method="get">
+              {% if keyword %}<input type="hidden" name="keyword" value="{{ keyword }}">{% endif %}
+              <div class="price-inputs">
+                <input type="number" name="min_price" placeholder="Min BDT" value="{{ min_price|default:'' }}">
+                <input type="number" name="max_price" placeholder="Max BDT" value="{{ max_price|default:'' }}">
+              </div>
+              <button type="submit" class="btn-filter">Apply</button>
+            </form>
+          </div>
+        </div>
+
+        {% if keyword or min_price or max_price %}
+        <a href="{% url 'discount_products' %}" class="btn-clear">
+          <i class="fas fa-times mr-1"></i>Clear Filters
+        </a>
+        {% endif %}
+
+      </aside>
+
+      <!-- Products -->
+      <main class="col-lg-9 col-md-8">
+        <p class="text-muted mb-3" style="font-size:13px;">
+          <b style="color:var(--text);">{{ product_count }}</b> product{{ product_count|pluralize }} on sale
+          {% if keyword %} for "<b>{{ keyword }}</b>"{% endif %}
+        </p>
+
+        {% if products %}
+        <div class="row">
+          {% for product in products %}
+          <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="product-card">
+              <div class="product-img-wrap">
+                <a href="{{ product.get_url }}">
+                  <img src="{{ product.images.url }}" alt="{{ product.product_name }}">
+                </a>
+                <span class="discount-badge">-{{ product.discount_percent }}%</span>
+              </div>
+              <div class="product-body">
+                <a href="{{ product.get_url }}" class="product-name">{{ product.product_name }}</a>
+                <div class="mb-2">
+                  <span class="price-original">{{ product.price }} BDT</span>
+                  <span class="price-discounted ml-2">{{ product.discounted_price }} BDT</span>
+                </div>
+                <a href="{{ product.get_url }}" class="btn-view">View Details</a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        {% if products.has_other_pages %}
+        <nav class="mt-2" aria-label="Pagination">
+          <ul class="pagination justify-content-center flex-wrap">
+            <li class="page-item {% if not products.has_previous %}disabled{% endif %}">
+              <a class="page-link" href="{% if products.has_previous %}?{{ params }}&page={{ products.previous_page_number }}{% else %}#{% endif %}">
+                <i class="fas fa-chevron-left"></i>
+              </a>
+            </li>
+            {% for i in products.paginator.page_range %}
+            <li class="page-item {% if products.number == i %}active{% endif %}">
+              <a class="page-link" href="?{{ params }}&page={{ i }}">{{ i }}</a>
+            </li>
+            {% endfor %}
+            <li class="page-item {% if not products.has_next %}disabled{% endif %}">
+              <a class="page-link" href="{% if products.has_next %}?{{ params }}&page={{ products.next_page_number }}{% else %}#{% endif %}">
+                <i class="fas fa-chevron-right"></i>
+              </a>
+            </li>
+          </ul>
+        </nav>
+        {% endif %}
+
+        {% else %}
+        <div class="text-center py-5 text-muted">
+          <i class="fas fa-search fa-3x mb-3 d-block" style="opacity:.3"></i>
+          <h5>No products found</h5>
+          <p>Try adjusting your search or price range.</p>
+          <a href="{% url 'discount_products' %}" class="btn-filter d-inline-block mt-2" style="width:auto;padding:9px 24px;">Clear & Browse All Deals</a>
+        </div>
+        {% endif %}
+
+      </main>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleFilter(header, id) {
+    const body = document.getElementById(id);
+    const collapsed = body.style.display === 'none';
+    body.style.display = collapsed ? 'block' : 'none';
+    header.classList.toggle('collapsed', !collapsed);
+  }
+</script>
+{% endblock %}

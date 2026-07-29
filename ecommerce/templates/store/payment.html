@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section-content padding-y bg">
+<div class="container">
+
+<h2>Payment</h2>
+
+<div class="card">
+    <div class="card-body">
+        <h5>Order Number: {{ order.order_number }}</h5>
+        <p>Total Amount: {{ order.order_total }} BDT</p>
+        <p>Tax: {{ order.tax }} BDT</p>
+
+        <h6>Order Items:</h6>
+        <ul>
+            {% for item in order_items %}
+            <li>
+                {{ item.product.product_name }} - Quantity: {{ item.quantity }} - Price: {{ item.product_price }} BDT
+                {% if item.variations.all %}
+                    <br><small class="text-muted">
+                        {% for variation in item.variations.all %}
+                            {{ variation.variation_category | capfirst }}: {{ variation.variation_value | capfirst }}
+                            {% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </small>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+
+        {% if order.status == "Completed" or order.payment_status == "Paid" %}
+            <div class="alert alert-success">
+                <h5>Order Already Confirmed!</h5>
+                <p>Your order has been successfully processed and payment received.</p>
+                <a href="{% url 'carts:confirmation' order.id %}" class="btn btn-primary">View Order Confirmation</a>
+            </div>
+        {% elif user.is_authenticated or order.user %}
+            <!-- Payment Method Selection for Authenticated Users -->
+            <h6>Select Payment Method:</h6>
+            <form method="post" id="payment-form">
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                    <select class="form-control" id="payment-method-select" name="payment_method" required>
+                        <option value="">Choose a payment method...</option>
+                        {% for option in payment_options %}
+                        <option value="{{ option.method }}" data-image="{% static option.image %}" data-name="{{ option.name }}" data-has-saved="{{ option.saved_account|yesno:'true,false' }}" data-saved-account="{{ option.saved_account.masked_account_number|default:'' }}">{{ option.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div id="payment-details" class="d-none">
+                    <div class="card border">
+                        <div class="card-body text-center">
+                            <img id="method-image" src="" alt="" class="img-fluid mb-2" style="max-height: 40px;">
+                            <div id="saved-account-section" class="mb-3 d-none">
+                                <p class="mb-2">Saved Account: <span id="saved-account-number"></span></p>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="account_choice" id="use-saved" value="saved" checked>
+                                    <label class="form-check-label" for="use-saved">
+                                        Use saved account
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="account_choice" id="use-new" value="new">
+                                    <label class="form-check-label" for="use-new">
+                                        Use different account
+                                    </label>
+                                </div>
+                            </div>
+                            <div id="account-input-section">
+                                <input type="text" name="account_number" id="account-number-input" class="form-control mb-2" placeholder="Account Number">
+                                <div id="validation-message" class="text-danger small mb-2 d-none"></div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block" id="pay-button">Pay Now</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        {% else %}
+            <!-- Simulated Payment for Guest Users -->
+            <form method="post" action="{% url 'carts:confirm_payment' order.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">Confirm Payment (Demo)</button>
+            </form>
+        {% endif %}
+    </div>
+</div>
+
+</div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentMethodSelect = document.getElementById('payment-method-select');
+    const paymentDetails = document.getElementById('payment-details');
+    const methodImage = document.getElementById('method-image');
+    const savedAccountSection = document.getElementById('saved-account-section');
+    const savedAccountNumber = document.getElementById('saved-account-number');
+    const accountInputSection = document.getElementById('account-input-section');
+    const accountInput = document.getElementById('account-number-input');
+    const validationMessage = document.getElementById('validation-message');
+    const payButton = document.getElementById('pay-button');
+    const useSavedRadio = document.getElementById('use-saved');
+    const useNewRadio = document.getElementById('use-new');
+
+    // Payment method validation rules
+    const validationRules = {
+        'visa': { min: 13, max: 16, pattern: /^\d{13,16}$/, message: 'Visa account number must be 13-16 digits' },
+        'mastercard': { min: 16, max: 16, pattern: /^\d{16}$/, message: 'Mastercard account number must be 16 digits' },
+        'rocket': { min: 10, max: 16, pattern: /^\d{10,16}$/, message: 'Rocket account number must be 10-16 digits' },
+        'bkash': { min: 11, max: 11, pattern: /^\d{11}$/, message: 'bKash account number must be 11 digits' },
+        'upay': { min: 11, max: 11, pattern: /^\d{11}$/, message: 'Upay account number must be 11 digits' },
+        'nogod': { min: 11, max: 11, pattern: /^\d{11}$/, message: 'Nogod account number must be 11 digits' }
+    };
+
+    paymentMethodSelect.addEventListener('change', function() {
+        const selectedOption = this.options[this.selectedIndex];
+        if (this.value) {
+            const method = this.value;
+            const name = selectedOption.getAttribute('data-name');
+            const image = selectedOption.getAttribute('data-image');
+            const hasSaved = selectedOption.getAttribute('data-has-saved') === 'true';
+            const savedAccount = selectedOption.getAttribute('data-saved-account');
+
+            // Update payment details
+            methodImage.src = image;
+            methodImage.alt = name;
+
+            if (hasSaved) {
+                savedAccountSection.classList.remove('d-none');
+                savedAccountNumber.textContent = savedAccount;
+                useSavedRadio.checked = true;
+                accountInputSection.classList.add('d-none');
+            } else {
+                savedAccountSection.classList.add('d-none');
+                accountInputSection.classList.remove('d-none');
+            }
+
+            paymentDetails.classList.remove('d-none');
+            payButton.textContent = `Pay with ${name}`;
+        } else {
+            paymentDetails.classList.add('d-none');
+        }
+    });
+
+    // Handle radio button changes
+    useSavedRadio.addEventListener('change', function() {
+        if (this.checked) {
+            accountInputSection.classList.add('d-none');
+            validationMessage.classList.add('d-none');
+        }
+    });
+
+    useNewRadio.addEventListener('change', function() {
+        if (this.checked) {
+            accountInputSection.classList.remove('d-none');
+            accountInput.focus();
+        }
+    });
+
+    // Account number validation
+    accountInput.addEventListener('input', function() {
+        const method = paymentMethodSelect.value;
+        const value = this.value.trim();
+
+        if (!method || !value) {
+            validationMessage.classList.add('d-none');
+            return;
+        }
+
+        const rule = validationRules[method];
+        if (!rule.pattern.test(value)) {
+            validationMessage.textContent = rule.message;
+            validationMessage.classList.remove('d-none');
+        } else {
+            validationMessage.classList.add('d-none');
+        }
+    });
+
+    // Form submission
+    document.getElementById('payment-form').addEventListener('submit', function(e) {
+        const method = paymentMethodSelect.value;
+        const accountChoice = document.querySelector('input[name="account_choice"]:checked')?.value;
+        const accountNumber = accountInput.value.trim();
+        const isSavedSectionVisible = !savedAccountSection.classList.contains('d-none');
+
+        if (accountChoice === 'saved' && isSavedSectionVisible) {
+            // Using saved account — add hidden use_saved field
+            let hiddenInput = document.getElementById('use-saved-hidden');
+            if (!hiddenInput) {
+                hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'use_saved';
+                hiddenInput.id = 'use-saved-hidden';
+                hiddenInput.value = '1';
+                this.appendChild(hiddenInput);
+            }
+        } else {
+            // Remove hidden input if it exists
+            let hiddenInput = document.getElementById('use-saved-hidden');
+            if (hiddenInput) {
+                hiddenInput.remove();
+            }
+            // Validate account number for new entry
+            const rule = validationRules[method];
+            if (!rule.pattern.test(accountNumber)) {
+                e.preventDefault();
+                validationMessage.textContent = rule.message;
+                validationMessage.classList.remove('d-none');
+                accountInput.focus();
+                return;
+            }
+        }
+
+        // Set the form action based on selected method
+        this.action = `{% url 'carts:visa_payment' order.id %}`.replace('visa', method);
+    });
+});
+</script>
+{% endblock %}

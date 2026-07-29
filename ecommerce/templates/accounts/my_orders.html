@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card mt-5">
+                <div class="card-header">
+                    <h3 class="text-center">My Orders</h3>
+                </div>
+                <div class="card-body">
+                    {% if orders %}
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Order #</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                        <td>{{ order.order_number }}</td>
+                                        <td>{{ order.created_at|date:"M d, Y" }}</td>
+                                        <td>
+                                            {% if order.status == 'Placed' %}
+                                                <span class="badge badge-primary">{{ order.status }}</span>
+                                            {% elif order.status == 'Processing' %}
+                                                <span class="badge badge-warning">{{ order.status }}</span>
+                                            {% elif order.status == 'Shipped' %}
+                                                <span class="badge badge-info">{{ order.status }}</span>
+                                            {% elif order.status == 'Delivered' %}
+                                                <span class="badge badge-success">{{ order.status }}</span>
+                                            {% else %}
+                                                <span class="badge badge-danger">{{ order.status }}</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ order.order_total }} BDT</td>
+                                        <td>
+                                            <a href="{% url 'accounts:order_detail' order.id %}" class="btn btn-sm btn-primary">View Details</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="text-center">
+                            <p>You haven't placed any orders yet.</p>
+                            <a href="{% url 'store' %}" class="btn btn-primary">Start Shopping</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
