@@ -144,20 +144,23 @@
 {% if messages %}
 <script>
   (function(){
-    var map = { success:'#22c55e', error:'#ef4444', warning:'#f59e0b', info:'#3b82f6' };
-    var messages = [
+    var toastColors = { 'success':'#22c55e', 'error':'#ef4444', 'warning':'#f59e0b', 'info':'#3b82f6' };
+    var toastMsgs = [
       {% for message in messages %}
-      { text: "{{ message|escapejs }}", tag: "{{ message.tags }}" }{% if not forloop.last %},{% endif %}
+      { "text": "{{ message|escapejs }}", "tag": "{{ message.tags|escapejs }}" }{% if not forloop.last %},{% endif %}
       {% endfor %}
     ];
-    messages.forEach(function(m, i){
+    toastMsgs.forEach(function(m, i){
       setTimeout(function(){
-        var color = map[m.tag] || '#6366f1';
+        var color = toastColors[m.tag] || '#6366f1';
         var el = document.createElement('div');
-        el.style.cssText = 'display:flex;align-items:center;gap:10px;background:'+color+';color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.15);font-size:14px;font-family:Inter,sans-serif;font-weight:500;min-width:260px;max-width:360px;animation:toastIn .3s ease;';
-        el.innerHTML = '<span style="flex:1">'+m.text+'</span><button onclick="this.parentElement.remove()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;line-height:1;opacity:.8;">&times;</button>';
+        el.style.cssText = 'display:flex;align-items:center;gap:10px;background:' + color + ';color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.15);font-size:14px;font-family:Inter,sans-serif;font-weight:500;min-width:260px;max-width:360px;animation:toastIn .3s ease;';
+        el.innerHTML = '<span style="flex:1">' + m.text + '</span><button onclick="this.parentElement.remove()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;line-height:1;opacity:.8;">&times;</button>';
         document.getElementById('toast-container').appendChild(el);
-        setTimeout(function(){ el.style.animation='toastOut .3s ease forwards'; setTimeout(function(){ el.remove(); }, 300); }, 4000);
+        setTimeout(function(){ 
+            el.style.animation = 'toastOut .3s ease forwards'; 
+            setTimeout(function(){ el.remove(); }, 300); 
+        }, 4000);
       }, i * 200);
     });
   })();
