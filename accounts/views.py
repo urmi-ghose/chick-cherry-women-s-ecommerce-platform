@@ -260,11 +260,27 @@ def forgotPassword(request):
             )
             send_email.attach_alternative(message, "text/html")
 
-            send_email.send()
+            email_sent = False
+            try:
+                send_email.send()
+                email_sent = True
+            except Exception as e:
+                print(f"Password reset email failed: {e}")
 
-            messages.success(
-                request, "Password reset email has been sent to your email address."
-            )
+            if email_sent:
+                messages.success(
+                    request, "Password reset email has been sent to your email address."
+                )
+            else:
+                if settings.DEBUG:
+                    reset_link = f"http://{current_site}/accounts/resetpassword_validate/{urlsafe_base64_encode(force_bytes(user.pk))}/{default_token_generator.make_token(user)}/"
+                    messages.warning(
+                        request, f"DEBUG MODE: Email failed to send. Your reset link is: {reset_link}"
+                    )
+                else:
+                    messages.error(
+                        request, "Failed to send password reset email. Please try again later."
+                    )
             return redirect("accounts:login")
         else:
             messages.error(request, "Account does not exist!")

@@ -466,12 +466,31 @@ def checkout(request):
                     print(f"DEBUG OTP SEND RESULT: sent={sent} to={email} otp={otp_code}")
                 except Exception as e:
                     print(f"DEBUG OTP SEND EXCEPTION: {e}")
+                
                 if not sent:
-                    messages.error(request, "Failed to send OTP email. Please check your email address or try again later.")
-                    return render(request, "store/checkout.html", {
-                        "cart_items": cart_items, "total": total, "quantity": quantity,
-                        "tax": tax, "grand_total": grand_total, "form": form, "step": "shipping",
-                    })
+                    try:
+                        from django.core.mail import send_mail
+                        send_mail(
+                            subject,
+                            message,
+                            settings.EMAIL_HOST_USER,
+                            [email],
+                            fail_silently=False,
+                        )
+                        sent = True
+                    except Exception as e:
+                        print(f"DEBUG OTP SEND DJANGO EXCEPTION: {e}")
+
+                if not sent:
+                    if settings.DEBUG:
+                        messages.warning(request, f"DEBUG MODE: Email failed to send. Your OTP is: {otp_code}")
+                        return redirect("carts:checkout")
+                    else:
+                        messages.error(request, "Failed to send OTP email. Please check your email address or try again later.")
+                        return render(request, "store/checkout.html", {
+                            "cart_items": cart_items, "total": total, "quantity": quantity,
+                            "tax": tax, "grand_total": grand_total, "form": form, "step": "shipping",
+                        })
                 messages.success(request, "OTP sent to your email. Please enter it to proceed.")
                 return redirect("carts:checkout")
         else:
