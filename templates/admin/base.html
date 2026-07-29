@@ -42,10 +42,10 @@
       <a href="{% url 'admin:accounts_account_changelist' %}" class="nav-item" data-path="/secureadmin/accounts/">
         <i class="fas fa-users"></i><span>Administrators</span>
       </a>
-      <a href="/secureadmin/users/" class="nav-item" data-path="/secureadmin/users/">
+      <a href="{% url 'admin:accounts_account_changelist' %}?is_staff__exact=0" class="nav-item" data-path="/secureadmin/accounts/">
         <i class="fas fa-user"></i><span>Users</span>
       </a>
-      <a href="/secureadmin/store/product/list/" class="nav-item" data-path="/secureadmin/store/product/">
+      <a href="{% url 'admin:store_product_changelist' %}" class="nav-item" data-path="/secureadmin/store/product/">
         <i class="fas fa-box-open"></i><span>Products</span>
       </a>
       <a href="{% url 'admin:store_product_add' %}" class="nav-item" data-path="/secureadmin/store/product/add/">
@@ -54,13 +54,13 @@
       <a href="{% url 'admin:store_variationcategory_add' %}" class="nav-item" data-path="/secureadmin/store/variationcategory/add/">
         <i class="fas fa-sliders"></i><span>Add Variation Category</span>
       </a>
-      <a href="/secureadmin/category/list/" class="nav-item" data-path="/secureadmin/category/category/">
+      <a href="{% url 'admin:category_category_changelist' %}" class="nav-item" data-path="/secureadmin/category/category/">
         <i class="fas fa-tags"></i><span>Categories</span>
       </a>
-      <a href="/secureadmin/orders/" class="nav-item" data-path="/secureadmin/carts/order/">
+      <a href="{% url 'admin:carts_order_changelist' %}" class="nav-item" data-path="/secureadmin/carts/order/">
         <i class="fas fa-shopping-cart"></i><span>Orders</span>
       </a>
-      <a href="/secureadmin/reviews/" class="nav-item" data-path="/secureadmin/store/reviewrating/">
+      <a href="{% url 'admin:store_reviewrating_changelist' %}" class="nav-item" data-path="/secureadmin/store/reviewrating/">
         <i class="fas fa-star"></i><span>Reviews</span>
       </a>
       <a href="/secureadmin/discounts/" class="nav-item" data-path="/secureadmin/discounts/">
