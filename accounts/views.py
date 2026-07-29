@@ -5,6 +5,7 @@ from carts.models import Order, OrderItem as OrderProduct, OTP
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.conf import settings
 
 # Verification email
 from django.contrib.sites.shortcuts import get_current_site
@@ -102,10 +103,16 @@ def register(request):
                                 f"Email send failed after {max_retries} attempts: {e}. Proceeding with OTP verification."
                             )
                 if not email_sent:
-                    messages.warning(
-                        request,
-                        "We encountered an issue sending the email. Please check your email later or use the resend OTP option.",
-                    )
+                    if settings.DEBUG:
+                        messages.warning(
+                            request,
+                            f"DEBUG MODE: Email failed to send. Your OTP is: {otp_obj.otp_code}",
+                        )
+                    else:
+                        messages.warning(
+                            request,
+                            "We encountered an issue sending the email. Please check your email later or use the resend OTP option.",
+                        )
 
             messages.success(
                 request,
@@ -472,10 +479,16 @@ def resend_otp(request):
                                     f"Email send failed after {max_retries} attempts: {e}. Proceeding with OTP verification."
                                 )
                     if not email_sent:
-                        messages.warning(
-                            request,
-                            "We encountered an issue sending the email. Please check your email later or use the resend OTP option.",
-                        )
+                        if settings.DEBUG:
+                            messages.warning(
+                                request,
+                                f"DEBUG MODE: Email failed to send. Your OTP is: {otp_obj.otp_code}",
+                            )
+                        else:
+                            messages.warning(
+                                request,
+                                "We encountered an issue sending the email. Please check your email later or use the resend OTP option.",
+                            )
                 messages.success(
                     request, "A new OTP has been sent to your email address."
                 )
