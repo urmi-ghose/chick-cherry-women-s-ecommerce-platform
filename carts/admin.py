@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import Cart, CartItem, Order, OrderItem, OrderStatusUpdate
 from email_utils import send_email_via_nodemailer
+from django.core.mail import send_mail
+from django.conf import settings
 from django.conf import settings
 from django.utils import timezone
 
@@ -80,12 +82,28 @@ Phone: {order.phone}
 
 Email: {order.email}
 """
-                    send_email_via_nodemailer(
-                        to_email=order.email,
-                        subject=subject,
-                        html_content=None,
-                        text_content=message,
-                    )
+                    sent = False
+                    try:
+                        sent = send_email_via_nodemailer(
+                            to_email=order.email,
+                            subject=subject,
+                            html_content=None,
+                            text_content=message,
+                        )
+                    except Exception as e:
+                        print(f"DEBUG ADMIN EMAIL SEND EXCEPTION: {e}")
+                    
+                    if not sent:
+                        try:
+                            send_mail(
+                                subject,
+                                message,
+                                settings.EMAIL_HOST_USER,
+                                [order.email],
+                                fail_silently=False,
+                            )
+                        except Exception as e:
+                            print(f"DEBUG ADMIN EMAIL SEND DJANGO EXCEPTION: {e}")
             for obj in formset.deleted_objects:
                 obj.delete()
             formset.save_m2m()
@@ -132,7 +150,23 @@ Phone: {obj.phone}
 
 Email: {obj.email}
 """
-            send_email_via_nodemailer(to_email=obj.email, subject=subject, html_content=None, text_content=message)
+            sent = False
+            try:
+                sent = send_email_via_nodemailer(to_email=obj.email, subject=subject, html_content=None, text_content=message)
+            except Exception as e:
+                print(f"DEBUG ADMIN EMAIL SEND EXCEPTION: {e}")
+            
+            if not sent:
+                try:
+                    send_mail(
+                        subject,
+                        message,
+                        settings.EMAIL_HOST_USER,
+                        [obj.email],
+                        fail_silently=False,
+                    )
+                except Exception as e:
+                    print(f"DEBUG ADMIN EMAIL SEND DJANGO EXCEPTION: {e}")
         super().save_model(request, obj, form, change)
 
 
