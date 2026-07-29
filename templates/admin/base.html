@@ -140,22 +140,30 @@
 {% block extrabody %}{% endblock %}
 
 <!-- Toast Notifications -->
-<div id="toast-container"></div>
-{% if messages %}
+<div id="toast-container">
+  {% if messages %}
+    {% for message in messages %}
+      <div class="toast-data-item" data-text="{{ message }}" data-tag="{{ message.tags }}" style="display:none;"></div>
+    {% endfor %}
+  {% endif %}
+</div>
+
 <script>
   (function(){
     var toastColors = { 'success':'#22c55e', 'error':'#ef4444', 'warning':'#f59e0b', 'info':'#3b82f6' };
-    var toastMsgs = [];
-    {% for message in messages %}
-    toastMsgs.push({ "text": "{{ message|escapejs }}", "tag": "{{ message.tags|escapejs }}" });
-    {% endfor %}
-    toastMsgs.forEach(function(m, i){
+    var items = document.querySelectorAll('.toast-data-item');
+    items.forEach(function(item, i){
       setTimeout(function(){
-        var color = toastColors[m.tag] || '#6366f1';
+        var mText = item.getAttribute('data-text');
+        var mTag = item.getAttribute('data-tag');
+        var color = toastColors[mTag] || '#6366f1';
+        
         var el = document.createElement('div');
         el.style.cssText = 'display:flex;align-items:center;gap:10px;background:' + color + ';color:#fff;padding:12px 18px;border-radius:10px;box-shadow:0 4px 20px rgba(0,0,0,.15);font-size:14px;font-family:Inter,sans-serif;font-weight:500;min-width:260px;max-width:360px;animation:toastIn .3s ease;';
-        el.innerHTML = '<span style="flex:1">' + m.text + '</span><button onclick="this.parentElement.remove()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;line-height:1;opacity:.8;">&times;</button>';
+        el.innerHTML = '<span style="flex:1">' + mText + '</span><button onclick="this.parentElement.remove()" style="background:none;border:none;color:#fff;font-size:18px;cursor:pointer;line-height:1;opacity:.8;">&times;</button>';
+        
         document.getElementById('toast-container').appendChild(el);
+        
         setTimeout(function(){ 
             el.style.animation = 'toastOut .3s ease forwards'; 
             setTimeout(function(){ el.remove(); }, 300); 
@@ -164,7 +172,6 @@
     });
   })();
 </script>
-{% endif %}
 <style>
   #toast-container { position:fixed; bottom:24px; right:24px; z-index:9999; display:flex; flex-direction:column; gap:10px; }
   @keyframes toastIn  { from { opacity:0; transform:translateX(40px); } to { opacity:1; transform:translateX(0); } }
