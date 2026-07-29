@@ -460,7 +460,7 @@ def resend_otp(request):
                             send_email.send()
                             email_sent = True
                             break  # Success, exit loop
-                        except smtplib.SMTPRecipientsRefused as e:
+                        except Exception as e:
                             if attempt < max_retries - 1:
                                 print(
                                     f"Email send failed (attempt {attempt + 1}/{max_retries}): {e}. Retrying in {retry_delay} seconds..."
