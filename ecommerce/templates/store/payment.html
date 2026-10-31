@@ -55,9 +55,9 @@
                         <div class="card-body text-center">
                             <img id="method-image" src="" alt="" class="img-fluid mb-2" style="max-height: 40px;">
                             <div id="saved-account-section" class="mb-3 d-none">
-                                <p class="mb-2">Saved Account: <span id="saved-account-number"></span></p>
+                                <p class="mb-2">Saved Account: <span id="saved-account-number" class="font-weight-bold"></span></p>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="account_choice" id="use-saved" value="saved" checked>
+                                    <input class="form-check-input" type="radio" name="account_choice" id="use-saved" value="saved">
                                     <label class="form-check-label" for="use-saved">
                                         Use saved account
                                     </label>
@@ -67,6 +67,12 @@
                                     <label class="form-check-label" for="use-new">
                                         Use different account
                                     </label>
+                                </div>
+                            </div>
+                            <div id="no-saved-account-alert" class="alert alert-info py-2 small mb-2 d-none text-left">
+                                <i class="fa fa-info-circle mr-1"></i> No saved account found for this method. Enter your account number below to complete payment (it will be saved for next time).
+                                <div class="mt-1">
+                                    <a href="{% url 'accounts:payment_methods' %}" target="_blank" class="font-weight-bold">Or manage payment methods in Dashboard &rarr;</a>
                                 </div>
                             </div>
                             <div id="account-input-section">
@@ -98,6 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const methodImage = document.getElementById('method-image');
     const savedAccountSection = document.getElementById('saved-account-section');
     const savedAccountNumber = document.getElementById('saved-account-number');
+    const noSavedAlert = document.getElementById('no-saved-account-alert');
     const accountInputSection = document.getElementById('account-input-section');
     const accountInput = document.getElementById('account-number-input');
     const validationMessage = document.getElementById('validation-message');
@@ -127,14 +134,27 @@ document.addEventListener('DOMContentLoaded', function() {
             // Update payment details
             methodImage.src = image;
             methodImage.alt = name;
+            accountInput.value = '';
+            validationMessage.classList.add('d-none');
+
+            // Remove any leftover hidden input from previous selections
+            const existingHidden = document.getElementById('use-saved-hidden');
+            if (existingHidden) {
+                existingHidden.remove();
+            }
 
             if (hasSaved) {
                 savedAccountSection.classList.remove('d-none');
+                if (noSavedAlert) noSavedAlert.classList.add('d-none');
                 savedAccountNumber.textContent = savedAccount;
                 useSavedRadio.checked = true;
+                useNewRadio.checked = false;
                 accountInputSection.classList.add('d-none');
             } else {
                 savedAccountSection.classList.add('d-none');
+                if (noSavedAlert) noSavedAlert.classList.remove('d-none');
+                useSavedRadio.checked = false;
+                useNewRadio.checked = true;
                 accountInputSection.classList.remove('d-none');
             }
 
@@ -150,6 +170,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (this.checked) {
             accountInputSection.classList.add('d-none');
             validationMessage.classList.add('d-none');
+            accountInput.value = '';
         }
     });
 
@@ -171,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         const rule = validationRules[method];
-        if (!rule.pattern.test(value)) {
+        if (rule && !rule.pattern.test(value)) {
             validationMessage.textContent = rule.message;
             validationMessage.classList.remove('d-none');
         } else {
@@ -182,24 +203,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Form submission
     document.getElementById('payment-form').addEventListener('submit', function(e) {
         const method = paymentMethodSelect.value;
+        const selectedOption = paymentMethodSelect.options[paymentMethodSelect.selectedIndex];
+        const hasSaved = selectedOption?.getAttribute('data-has-saved') === 'true';
         const accountChoice = document.querySelector('input[name="account_choice"]:checked')?.value;
         const accountNumber = accountInput.value.trim();
 
-        if (accountChoice === 'saved') {
+        // Clear any previous hidden input
+        const existingHidden = document.getElementById('use-saved-hidden');
+        if (existingHidden) {
+            existingHidden.remove();
+        }
+
+        if (hasSaved && accountChoice === 'saved') {
             // Using saved account — add hidden use_saved field
-            let hiddenInput = document.getElementById('use-saved-hidden');
-            if (!hiddenInput) {
-                hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                hiddenInput.name = 'use_saved';
-                hiddenInput.id = 'use-saved-hidden';
-                hiddenInput.value = '1';
-                this.appendChild(hiddenInput);
-            }
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = 'use_saved';
+            hiddenInput.id = 'use-saved-hidden';
+            hiddenInput.value = '1';
+            this.appendChild(hiddenInput);
         } else {
             // Validate account number for new entry
             const rule = validationRules[method];
-            if (!rule.pattern.test(accountNumber)) {
+            if (rule && !rule.pattern.test(accountNumber)) {
                 e.preventDefault();
                 validationMessage.textContent = rule.message;
                 validationMessage.classList.remove('d-none');

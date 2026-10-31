@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -20,12 +21,14 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "toc(hoqz8q(_&9#8bpxf^%%n2kw@=60^z_h1lgavt95=po8-8&"
+SECRET_KEY = config("SECRET_KEY", default="toc(hoqz8q(_&9#8bpxf^%%n2kw@=60^z_h1lgavt95=po8-8&")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config("DEBUG", default=True, cast=bool)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [h.strip() for h in config("ALLOWED_HOSTS", default="localhost,127.0.0.1,*.onrender.com,*.railway.app").split(",") if h.strip()]
+
+CSRF_TRUSTED_ORIGINS = [o.strip() for o in config("CSRF_TRUSTED_ORIGINS", default="https://*.onrender.com,https://*.railway.app,http://localhost:8000,http://127.0.0.1:8000").split(",") if o.strip()]
 
 
 # Application definition
@@ -46,6 +49,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "greatkart.admin_session_middleware.AdminSessionMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -71,6 +75,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "ecommerce.context_processors.footer_settings",
                 "ecommerce.context_processors.cart_counter",
+                "ecommerce.context_processors.google_auth_settings",
             ],
         },
     },
@@ -92,6 +97,15 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
+
+DATABASE_URL = config("DATABASE_URL", default=None)
+if DATABASE_URL:
+    import dj_database_url
+    DATABASES["default"] = dj_database_url.config(
+        default=DATABASE_URL,
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 
 
 # Password validation
@@ -137,17 +151,19 @@ STATICFILES_DIRS = [
     BASE_DIR / "ecommerce/static",
 ]
 
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 # Media files (User uploaded files)
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 # Email configuration
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_HOST_USER = "istiakadil8@gmail.com"
-EMAIL_HOST_PASSWORD = "ovga ptaw ckhy eooc"
-EMAIL_USE_TLS = True
+EMAIL_HOST = config("EMAIL_HOST", default="smtp.gmail.com")
+EMAIL_PORT = config("EMAIL_PORT", default=587, cast=int)
+EMAIL_HOST_USER = config("EMAIL_USER", default="istiakadil8@gmail.com")
+EMAIL_HOST_PASSWORD = config("EMAIL_APP_PASSWORD", default="ssaeqmfszkonvgnd")
+EMAIL_USE_TLS = config("EMAIL_USE_TLS", default=True, cast=bool)
 
 # Email service URL for nodemailer fallback
 EMAIL_SERVICE_URL = "http://localhost:3001/send-email"
@@ -159,3 +175,8 @@ PAYMENT_MODE = "sandbox"  # 'sandbox' or 'live'
 SESSION_EXPIRE_SECONDS = 3600  # 1 hour
 SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 SESSION_TIMEOUT_REDIRECT = "/"
+
+# Google OAuth Configuration
+GOOGLE_CLIENT_ID = config("GOOGLE_CLIENT_ID", default="")
+GOOGLE_CLIENT_SECRET = config("GOOGLE_CLIENT_SECRET", default="")
+GOOGLE_REDIRECT_URI = config("GOOGLE_REDIRECT_URI", default="")

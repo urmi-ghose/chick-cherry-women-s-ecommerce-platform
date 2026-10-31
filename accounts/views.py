@@ -1,10 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import RegistrationForm, UserForm, UserProfileForm
 from .models import Account, UserProfile
-from carts.models import Order, OrderItem as OrderProduct, OTP
+from carts.models import Order, OrderItem as OrderProduct, OTP, PaymentAccount
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.conf import settings
+from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+import re
+import secrets
+import urllib.parse
 
 # Verification email
 from django.contrib.sites.shortcuts import get_current_site
@@ -14,7 +20,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import EmailMessage, EmailMultiAlternatives
 
-from carts.views import _cart_id
+from carts.views import _cart_id, validate_account_number
 from carts.models import Cart, CartItem
 import requests
 import time
@@ -121,6 +127,137 @@ def register(request):
     return render(request, "accounts/register.html", context)
 
 
+def _merge_cart(request, user):
+    """
+    Merge guest session cart items into authenticated user's cart.
+    Matches variations and products so existing user items get increased quantity,
+    and unmatched items are reassigned to user.
+    """
+    try:
+        cart = Cart.objects.get(cart_id=_cart_id(request))
+        session_cart_items = CartItem.objects.filter(cart=cart, is_active=True)
+        if not session_cart_items.exists():
+            return
+
+        for s_item in list(session_cart_items):
+            s_vars = list(s_item.variations.all())
+            user_cart_items = CartItem.objects.filter(user=user, is_active=True)
+            matched = False
+            for u_item in user_cart_items:
+                u_vars = list(u_item.variations.all())
+                if s_vars == u_vars and s_item.product == u_item.product:
+                    u_item.quantity += s_item.quantity
+                    u_item.save()
+                    s_item.delete()
+                    matched = True
+                    break
+            if not matched:
+                s_item.user = user
+                s_item.save()
+    except Exception:
+        pass
+
+
+def _generate_unique_username(email, first_name="", last_name=""):
+    """
+    Generate a clean, unique username under 50 characters for the Account model.
+    """
+    base = ""
+    if email and "@" in email:
+        base = email.split("@")[0]
+    elif first_name:
+        base = f"{first_name}_{last_name}".strip("_")
+    else:
+        base = "user"
+
+    base = re.sub(r"[^a-zA-Z0-9_]", "", base).lower()[:30] or "user"
+    username = base
+    counter = 1
+    while Account.objects.filter(username__iexact=username).exists():
+        suffix = str(counter)
+        max_base = 50 - len(suffix) - 1
+        username = f"{base[:max_base]}_{suffix}"
+        counter += 1
+    return username
+
+
+def _handle_google_user(request, email, first_name="", last_name="", picture_url="", allow_create=False):
+    """
+    Smartly handle Google authentication:
+    - Normalizes Gmail address.
+    - If user exists in Account table:
+        Activates account if inactive, updates names if empty,
+        ensures UserProfile exists, merges cart, and logs user in.
+        Returns (user, False, None) -> (user, created, error_message)
+    - If user does NOT exist in Account table:
+        If allow_create is False (default for login):
+            DOES NOT register automatically!
+            Returns (None, False, error_message)
+        If allow_create is True (registration flow):
+            Creates Account with unique username, is_active=True, unusable password.
+            Creates UserProfile, merges cart, and logs user in.
+            Returns (user, True, None)
+    """
+    email = email.strip().lower()
+    first_name = (first_name or "").strip()[:50]
+    last_name = (last_name or "").strip()[:50]
+
+    if not first_name:
+        first_name = email.split("@")[0].capitalize()[:50]
+
+    user = Account.objects.filter(email__iexact=email).first()
+
+    if user:
+        dirty = False
+        if not user.is_active:
+            user.is_active = True
+            dirty = True
+        if not user.first_name and first_name:
+            user.first_name = first_name
+            dirty = True
+        if not user.last_name and last_name:
+            user.last_name = last_name
+            dirty = True
+        if dirty:
+            user.save()
+
+        profile, _ = UserProfile.objects.get_or_create(user=user)
+        if not profile.profile_picture:
+            profile.profile_picture = "default/default-user.png"
+            profile.save()
+
+        _merge_cart(request, user)
+        auth.login(request, user, backend="django.contrib.auth.backends.ModelBackend")
+        return user, False, None
+
+    # User does NOT exist in Account table
+    if not allow_create:
+        error_msg = f"No account found with Google email ({email}). Please create an account first or sign up below."
+        return None, False, error_msg
+
+    # Registration flow: create new user
+    username = _generate_unique_username(email, first_name, last_name)
+    user = Account.objects.create(
+        first_name=first_name,
+        last_name=last_name,
+        username=username,
+        email=email,
+        phone_number="",
+        is_active=True,  # Google email is pre-verified
+    )
+    user.set_unusable_password()
+    user.save()
+
+    UserProfile.objects.create(
+        user=user,
+        profile_picture="default/default-user.png",
+    )
+
+    _merge_cart(request, user)
+    auth.login(request, user, backend="django.contrib.auth.backends.ModelBackend")
+    return user, True, None
+
+
 def login(request):
     if request.method == "POST":
         email = request.POST["email"]
@@ -129,51 +266,12 @@ def login(request):
         user = auth.authenticate(email=email, password=password)
 
         if user is not None:
-            try:
-                cart = Cart.objects.get(cart_id=_cart_id(request))
-                is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
-                if is_cart_item_exists:
-                    cart_item = CartItem.objects.filter(cart=cart)
-
-                    # Getting the product variations by cart id
-                    product_variation = []
-                    for item in cart_item:
-                        variation = item.variations.all()
-                        product_variation.append(list(variation))
-
-                    # Get the cart items from the user to access his product variations
-                    cart_item = CartItem.objects.filter(user=user)
-                    ex_var_list = []
-                    id = []
-                    for item in cart_item:
-                        existing_variation = item.variations.all()
-                        ex_var_list.append(list(existing_variation))
-                        id.append(item.id)
-
-                    # product_variation = [1, 2, 3, 4, 6]
-                    # ex_var_list = [4, 6, 3, 5]
-
-                    for pr in product_variation:
-                        if pr in ex_var_list:
-                            index = ex_var_list.index(pr)
-                            item_id = id[index]
-                            item = CartItem.objects.get(id=item_id)
-                            item.quantity += 1
-                            item.user = user
-                            item.save()
-                        else:
-                            cart_item = CartItem.objects.filter(cart=cart)
-                            for item in cart_item:
-                                item.user = user
-                                item.save()
-            except:
-                pass
+            _merge_cart(request, user)
             auth.login(request, user)
             messages.success(request, "You are now logged in.")
             url = request.META.get("HTTP_REFERER")
             try:
                 query = requests.utils.urlparse(url).query
-                # next=/cart/checkout/
                 params = dict(x.split("=") for x in query.split("&"))
                 if "next" in params:
                     nextPage = params["next"]
@@ -184,6 +282,272 @@ def login(request):
             messages.error(request, "Invalid login credentials")
             return redirect("accounts:login")
     return render(request, "accounts/login.html")
+
+
+def google_login(request):
+    """
+    Initiate Google OAuth2 flow.
+    Supports action='login' (default, requires existing account) or
+    action='register' (creates account if new).
+    """
+    client_id = getattr(settings, "GOOGLE_CLIENT_ID", "")
+    client_secret = getattr(settings, "GOOGLE_CLIENT_SECRET", "")
+
+    action = request.GET.get("action", "login")
+    request.session["google_oauth_action"] = action
+
+    next_url = request.GET.get("next") or request.META.get("HTTP_REFERER", "")
+    if next_url and next_url.startswith("/") and not next_url.startswith("//"):
+        request.session["google_oauth_next"] = next_url
+
+    if not client_id or not client_secret:
+        if settings.DEBUG:
+            return render(
+                request,
+                "accounts/google_setup_guide.html",
+                {
+                    "redirect_uri": request.build_absolute_uri(reverse("accounts:google_callback")),
+                    "next_url": next_url,
+                    "action": action,
+                },
+            )
+        else:
+            messages.error(request, "Google sign-in is not configured yet. Please use email and password.")
+            return redirect("accounts:login")
+
+    state = secrets.token_urlsafe(32)
+    request.session["google_oauth_state"] = state
+
+    redirect_uri = getattr(settings, "GOOGLE_REDIRECT_URI", "") or request.build_absolute_uri(reverse("accounts:google_callback"))
+
+    params = {
+        "client_id": client_id,
+        "redirect_uri": redirect_uri,
+        "response_type": "code",
+        "scope": "openid email profile",
+        "state": state,
+        "access_type": "online",
+        "prompt": "select_account",
+    }
+    google_auth_url = f"https://accounts.google.com/o/oauth2/v2/auth?{urllib.parse.urlencode(params)}"
+    return redirect(google_auth_url)
+
+
+def google_callback(request):
+    """
+    Handle Google OAuth2 callback.
+    Exchanges code for tokens, fetches userinfo.
+    If action='login' and user does not exist: aborts with smart error message.
+    If action='register' and user does not exist: creates account.
+    """
+    error = request.GET.get("error")
+    if error:
+        messages.info(request, "Google sign-in was cancelled.")
+        return redirect("accounts:login")
+
+    code = request.GET.get("code")
+    state = request.GET.get("state")
+    expected_state = request.session.pop("google_oauth_state", None)
+
+    if not state or state != expected_state:
+        messages.error(request, "Invalid authentication session. Please try again.")
+        return redirect("accounts:login")
+
+    if not code:
+        messages.error(request, "Authorization code not provided by Google.")
+        return redirect("accounts:login")
+
+    client_id = getattr(settings, "GOOGLE_CLIENT_ID", "")
+    client_secret = getattr(settings, "GOOGLE_CLIENT_SECRET", "")
+    redirect_uri = getattr(settings, "GOOGLE_REDIRECT_URI", "") or request.build_absolute_uri(reverse("accounts:google_callback"))
+
+    try:
+        token_resp = requests.post(
+            "https://oauth2.googleapis.com/token",
+            data={
+                "code": code,
+                "client_id": client_id,
+                "client_secret": client_secret,
+                "redirect_uri": redirect_uri,
+                "grant_type": "authorization_code",
+            },
+            timeout=10,
+        )
+        token_data = token_resp.json()
+        access_token = token_data.get("access_token")
+
+        if not access_token:
+            messages.error(request, "Failed to authenticate with Google. Please check your credentials.")
+            return redirect("accounts:login")
+
+        userinfo_resp = requests.get(
+            "https://www.googleapis.com/oauth2/v3/userinfo",
+            headers={"Authorization": f"Bearer {access_token}"},
+            timeout=10,
+        )
+        user_info = userinfo_resp.json()
+    except Exception as e:
+        messages.error(request, f"Network error during Google authentication: {e}")
+        return redirect("accounts:login")
+
+    email = user_info.get("email")
+    if not email:
+        messages.error(request, "Could not retrieve email from your Google account.")
+        return redirect("accounts:login")
+
+    first_name = user_info.get("given_name") or ""
+    last_name = user_info.get("family_name") or ""
+    full_name = user_info.get("name") or ""
+
+    if not first_name and full_name:
+        parts = full_name.split(" ", 1)
+        first_name = parts[0]
+        if len(parts) > 1:
+            last_name = parts[1]
+
+    picture_url = user_info.get("picture", "")
+
+    action = request.session.pop("google_oauth_action", "login")
+    allow_create = (action == "register")
+
+    user, created, error_msg = _handle_google_user(
+        request=request,
+        email=email,
+        first_name=first_name,
+        last_name=last_name,
+        picture_url=picture_url,
+        allow_create=allow_create,
+    )
+
+    if error_msg:
+        messages.error(request, error_msg)
+        return redirect("accounts:login")
+
+    if created:
+        messages.success(request, f"Welcome to ChicCherry, {user.first_name}! Your account has been created.")
+    else:
+        messages.success(request, f"Welcome back, {user.first_name}!")
+
+    next_url = request.session.pop("google_oauth_next", None)
+    if next_url and next_url.startswith("/") and not next_url.startswith("//"):
+        return redirect(next_url)
+    return redirect("accounts:dashboard")
+
+
+@csrf_exempt
+def google_one_tap(request):
+    """
+    Handle Google One Tap / Identity Services credential token (POST).
+    """
+    if request.method != "POST":
+        return JsonResponse({"status": "error", "message": "Method not allowed"}, status=405)
+
+    credential = request.POST.get("credential")
+    action = request.POST.get("action", "login")
+
+    if not credential:
+        try:
+            body = json.loads(request.body)
+            credential = body.get("credential")
+            action = body.get("action", action)
+        except Exception:
+            pass
+
+    if not credential:
+        return JsonResponse({"status": "error", "message": "Missing credential token"}, status=400)
+
+    try:
+        resp = requests.get(
+            f"https://oauth2.googleapis.com/tokeninfo?id_token={credential}",
+            timeout=10,
+        )
+        info = resp.json()
+
+        if "email" not in info:
+            return JsonResponse({"status": "error", "message": "Invalid Google token"}, status=400)
+
+        client_id = getattr(settings, "GOOGLE_CLIENT_ID", "")
+        if client_id and info.get("aud") != client_id:
+            return JsonResponse({"status": "error", "message": "Audience mismatch"}, status=400)
+
+        email = info.get("email")
+        first_name = info.get("given_name") or ""
+        last_name = info.get("family_name") or ""
+        full_name = info.get("name") or ""
+        if not first_name and full_name:
+            parts = full_name.split(" ", 1)
+            first_name = parts[0]
+            if len(parts) > 1:
+                last_name = parts[1]
+
+        allow_create = (action == "register")
+        user, created, error_msg = _handle_google_user(
+            request=request,
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
+            picture_url=info.get("picture", ""),
+            allow_create=allow_create,
+        )
+
+        if error_msg:
+            return JsonResponse({"status": "error", "message": error_msg}, status=404)
+
+        if created:
+            messages.success(request, f"Welcome to ChicCherry, {user.first_name}! Your account has been created.")
+        else:
+            messages.success(request, f"Welcome, {user.first_name}!")
+
+        next_url = request.session.pop("google_oauth_next", None) or reverse("accounts:dashboard")
+        return JsonResponse({"status": "success", "redirect_url": next_url})
+    except Exception as e:
+        return JsonResponse({"status": "error", "message": str(e)}, status=500)
+
+
+def google_dev_mock(request):
+    """
+    Development-only simulated Google login.
+    Enables testing user verification and cart merging
+    even before Google Cloud Console credentials are configured.
+    """
+    if not settings.DEBUG:
+        messages.error(request, "Mock login is only available in development mode.")
+        return redirect("accounts:login")
+
+    if request.method == "POST":
+        email = request.POST.get("email", "").strip().lower()
+        first_name = request.POST.get("first_name", "").strip() or "Google"
+        last_name = request.POST.get("last_name", "").strip() or "User"
+        action = request.POST.get("action", "login")
+
+        if not email or "@" not in email:
+            messages.error(request, "Please enter a valid Gmail / email address.")
+            return redirect("accounts:google_login")
+
+        allow_create = (action == "register")
+        user, created, error_msg = _handle_google_user(
+            request=request,
+            email=email,
+            first_name=first_name,
+            last_name=last_name,
+            allow_create=allow_create,
+        )
+
+        if error_msg:
+            messages.error(request, error_msg)
+            return redirect("accounts:login")
+
+        if created:
+            messages.success(request, f"[DEV DEMO] New account created for {user.email}!")
+        else:
+            messages.success(request, f"[DEV DEMO] Welcome back! Logged in with {user.email}.")
+
+        next_url = request.session.pop("google_oauth_next", None)
+        if next_url and next_url.startswith("/") and not next_url.startswith("//"):
+            return redirect(next_url)
+        return redirect("accounts:dashboard")
+
+    return redirect("accounts:login")
 
 
 @login_required(login_url="accounts:login")
@@ -220,11 +584,119 @@ def dashboard(request):
     except UserProfile.DoesNotExist:
         userprofile = None
 
+    saved_payment_methods = PaymentAccount.objects.filter(user=request.user).order_by("-updated_at")
+
     context = {
         "orders_count": orders_count,
         "userprofile": userprofile,
+        "saved_payment_methods": saved_payment_methods,
     }
     return render(request, "accounts/dashboard.html", context)
+
+
+@login_required(login_url="accounts:login")
+def payment_methods(request):
+    method_choices = [
+        {
+            "code": "bkash",
+            "name": "bKash",
+            "rule": "11 digits (e.g., 017XXXXXXXX)",
+            "image": "paymentImg/images.jpg",
+        },
+        {
+            "code": "rocket",
+            "name": "Rocket",
+            "rule": "10-16 digits",
+            "image": "paymentImg/images.png",
+        },
+        {
+            "code": "nogod",
+            "name": "Nogod",
+            "rule": "11 digits",
+            "image": "paymentImg/নগদের_লোগো.png",
+        },
+        {
+            "code": "upay",
+            "name": "Upay",
+            "rule": "11 digits",
+            "image": "paymentImg/png-transparent-paypal-logo-paypal-logo-paypal-blue-text-trademark.png",
+        },
+        {
+            "code": "visa",
+            "name": "Visa",
+            "rule": "13-16 digits",
+            "image": "paymentImg/visa-new-2021-logo-png_seeklogo-408695.png",
+        },
+        {
+            "code": "mastercard",
+            "name": "Mastercard",
+            "rule": "16 digits",
+            "image": "paymentImg/American-Express-Logo-Download-Free-PNG.png",
+        },
+    ]
+    method_names = {m["code"]: m["name"] for m in method_choices}
+
+    if request.method == "POST":
+        method = request.POST.get("payment_method", "").strip().lower()
+        account_number = request.POST.get("account_number", "").strip()
+
+        if method not in method_names:
+            messages.error(request, "Please choose a valid payment method.")
+            return redirect("accounts:payment_methods")
+
+        if not account_number or not validate_account_number(account_number, method):
+            messages.error(
+                request,
+                f"Invalid account number for {method_names.get(method)}. Please check the required digits format.",
+            )
+            return redirect("accounts:payment_methods")
+
+        account, created = PaymentAccount.objects.update_or_create(
+            user=request.user,
+            payment_method=method,
+            defaults={"account_number": account_number},
+        )
+        action_word = "added" if created else "updated"
+        messages.success(
+            request, f"{method_names.get(method)} account {action_word} successfully!"
+        )
+        return redirect("accounts:payment_methods")
+
+    saved_accounts = PaymentAccount.objects.filter(user=request.user).order_by("-updated_at")
+
+    method_info_map = {m["code"]: m for m in method_choices}
+    accounts_with_info = []
+    for sa in saved_accounts:
+        info = method_info_map.get(sa.payment_method, {})
+        accounts_with_info.append(
+            {
+                "id": sa.id,
+                "method_code": sa.payment_method,
+                "method_name": info.get("name", sa.get_payment_method_display()),
+                "masked_number": sa.masked_account_number(),
+                "image": info.get("image", ""),
+                "updated_at": sa.updated_at,
+            }
+        )
+
+    context = {
+        "saved_accounts": accounts_with_info,
+        "method_choices": method_choices,
+    }
+    return render(request, "accounts/payment_methods.html", context)
+
+
+@login_required(login_url="accounts:login")
+def delete_payment_method(request, account_id):
+    if request.method == "POST":
+        try:
+            account = PaymentAccount.objects.get(id=account_id, user=request.user)
+            name = account.get_payment_method_display()
+            account.delete()
+            messages.success(request, f"{name} payment account removed successfully.")
+        except PaymentAccount.DoesNotExist:
+            messages.error(request, "Payment account not found.")
+    return redirect("accounts:payment_methods")
 
 
 def forgotPassword(request):

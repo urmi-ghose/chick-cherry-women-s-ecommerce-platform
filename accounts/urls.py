@@ -21,6 +21,12 @@ urlpatterns = [
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('change_password/', views.change_password, name='change_password'),
     path('order_detail/<int:order_id>/', views.order_detail, name='order_detail'),
+    path('payment_methods/', views.payment_methods, name='payment_methods'),
+    path('payment_methods/delete/<int:account_id>/', views.delete_payment_method, name='delete_payment_method'),
 
-
+    # Google Authentication
+    path('google/login/', views.google_login, name='google_login'),
+    path('google/callback/', views.google_callback, name='google_callback'),
+    path('google/one-tap/', views.google_one_tap, name='google_one_tap'),
+    path('google/dev-mock/', views.google_dev_mock, name='google_dev_mock'),
 ]

@@ -17,6 +17,8 @@ staticfiles/
 
 # Env
 .env
+.env.*
+*.env
 
 # OS
 .DS_Store

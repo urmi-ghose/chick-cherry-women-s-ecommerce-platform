@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section-content padding-y bg">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb bg-transparent p-0 mb-0">
+                        <li class="breadcrumb-item"><a href="{% url 'accounts:dashboard' %}">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Payment Methods</li>
+                    </ol>
+                </nav>
+                <a href="{% url 'accounts:dashboard' %}" class="btn btn-outline-secondary btn-sm">
+                    <i class="fa fa-arrow-left mr-1"></i> Back to Dashboard
+                </a>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-white border-bottom py-3">
+                    <h4 class="card-title mb-0">
+                        <i class="fa fa-wallet text-primary mr-2"></i> Manage Payment Methods
+                    </h4>
+                    <p class="text-muted small mb-0 mt-1">
+                        Save your bKash, Rocket, Nogod, Upay, Visa, or Mastercard accounts for seamless, 1-click checkout.
+                    </p>
+                </div>
+
+                <div class="card-body">
+                    <div class="row">
+
+                        <!-- Saved Accounts List (Left Column) -->
+                        <div class="col-md-6 mb-4 mb-md-0 border-right">
+                            <h5 class="mb-3">
+                                <i class="fa fa-credit-card text-secondary mr-2"></i> Your Saved Accounts
+                            </h5>
+
+                            {% if saved_accounts %}
+                                <div class="list-group">
+                                    {% for item in saved_accounts %}
+                                    <div class="list-group-item list-group-item-action d-flex justify-content-between align-items-center p-3 mb-2 rounded border">
+                                        <div class="d-flex align-items-center">
+                                            {% if item.image %}
+                                                <img src="{% static item.image %}" alt="{{ item.method_name }}" class="mr-3" style="max-height: 34px; max-width: 50px; object-fit: contain;">
+                                            {% endif %}
+                                            <div>
+                                                <h6 class="mb-0 font-weight-bold text-dark">{{ item.method_name }}</h6>
+                                                <small class="text-muted font-monospace d-block">
+                                                    Account: <strong class="text-dark">{{ item.masked_number }}</strong>
+                                                </small>
+                                                <small class="text-muted">Updated: {{ item.updated_at|date:"M d, Y" }}</small>
+                                            </div>
+                                        </div>
+
+                                        <form method="post" action="{% url 'accounts:delete_payment_method' item.id %}" onsubmit="return confirm('Are you sure you want to remove your saved {{ item.method_name }} account?');">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete account">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                <div class="alert alert-light border text-center py-4">
+                                    <i class="fa fa-folder-open fa-2x text-muted mb-2 d-block"></i>
+                                    <p class="text-muted mb-0">You don't have any saved payment methods yet.</p>
+                                    <small class="text-muted">Use the form on the right to add your first payment method.</small>
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Add / Update Form (Right Column) -->
+                        <div class="col-md-6 pl-md-4">
+                            <h5 class="mb-3">
+                                <i class="fa fa-plus-circle text-success mr-2"></i> Add or Update Account
+                            </h5>
+
+                            <form method="post" id="save-payment-method-form" class="p-3 border rounded bg-light">
+                                {% csrf_token %}
+
+                                <div class="form-group mb-3">
+                                    <label for="payment-method-select" class="font-weight-bold small">Payment Method</label>
+                                    <select class="form-control" id="payment-method-select" name="payment_method" required>
+                                        <option value="">Select a payment method...</option>
+                                        {% for choice in method_choices %}
+                                            <option value="{{ choice.code }}" data-rule="{{ choice.rule }}" data-image="{% static choice.image %}">
+                                                {{ choice.name }} — {{ choice.rule }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label for="account-number-input" class="font-weight-bold small">Account Number</label>
+                                    <input type="text"
+                                           class="form-control"
+                                           id="account-number-input"
+                                           name="account_number"
+                                           placeholder="e.g. 017XXXXXXXX"
+                                           required
+                                           autocomplete="off">
+                                    <div id="method-hint" class="small text-muted mt-1">
+                                        Please choose a method to see the required format.
+                                    </div>
+                                    <div id="method-validation-error" class="small text-danger mt-1 d-none font-weight-bold"></div>
+                                </div>
+
+                                <button type="submit" class="btn btn-primary btn-block font-weight-bold py-2" id="save-btn">
+                                    <i class="fa fa-save mr-1"></i> Save Payment Method
+                                </button>
+                                <small class="form-text text-muted text-center mt-2">
+                                    If this method is already saved, saving will update it with the new account number.
+                                </small>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const methodSelect = document.getElementById('payment-method-select');
+    const accountInput = document.getElementById('account-number-input');
+    const methodHint = document.getElementById('method-hint');
+    const validationError = document.getElementById('method-validation-error');
+    const form = document.getElementById('save-payment-method-form');
+
+    const rules = {
+        'bkash': { pattern: /^\d{11}$/, hint: 'Must be an 11-digit mobile number (e.g., 01712345678).' },
+        'rocket': { pattern: /^\d{10,16}$/, hint: 'Must be 10 to 16 digits.' },
+        'nogod': { pattern: /^\d{11}$/, hint: 'Must be an 11-digit mobile number (e.g., 01812345678).' },
+        'upay': { pattern: /^\d{11}$/, hint: 'Must be an 11-digit mobile number (e.g., 01912345678).' },
+        'visa': { pattern: /^\d{13,16}$/, hint: 'Must be 13 to 16 digits.' },
+        'mastercard': { pattern: /^\d{16}$/, hint: 'Must be 16 digits.' }
+    };
+
+    methodSelect.addEventListener('change', function() {
+        const method = this.value;
+        if (method && rules[method]) {
+            methodHint.textContent = 'Format requirement: ' + rules[method].hint;
+            accountInput.placeholder = (method === 'bkash' || method === 'nogod' || method === 'upay') ? '01XXXXXXXXX (11 digits)' : 'Account / Card number';
+            accountInput.focus();
+        } else {
+            methodHint.textContent = 'Please choose a method to see the required format.';
+        }
+        validate();
+    });
+
+    accountInput.addEventListener('input', validate);
+
+    function validate() {
+        const method = methodSelect.value;
+        const val = accountInput.value.trim();
+
+        if (!method || !val) {
+            validationError.classList.add('d-none');
+            return true;
+        }
+
+        const rule = rules[method];
+        if (rule && !rule.pattern.test(val)) {
+            validationError.textContent = rule.hint;
+            validationError.classList.remove('d-none');
+            return false;
+        } else {
+            validationError.classList.add('d-none');
+            return true;
+        }
+    }
+
+    form.addEventListener('submit', function(e) {
+        if (!validate()) {
+            e.preventDefault();
+            accountInput.focus();
+        }
+    });
+});
+</script>
+{% endblock %}

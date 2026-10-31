@@ -700,9 +700,9 @@ def visa_payment(request, order_id):
 
     if request.method == "POST":
         use_saved = request.POST.get("use_saved")
-        account_number = request.POST.get("account_number")
+        account_number = (request.POST.get("account_number") or "").strip()
 
-        if use_saved:
+        if use_saved and not account_number:
             try:
                 payment_account = PaymentAccount.objects.get(
                     user=request.user, payment_method="visa"
@@ -710,7 +710,8 @@ def visa_payment(request, order_id):
                 account_number = payment_account.account_number
             except PaymentAccount.DoesNotExist:
                 messages.error(
-                    request, "No saved Visa account found. Please enter account number."
+                    request,
+                    "No saved Visa account found. Please enter your account number below or add one in your dashboard.",
                 )
                 return redirect("carts:payment", order_id=order_id)
         else:
@@ -804,9 +805,9 @@ def rocket_payment(request, order_id):
 
     if request.method == "POST":
         use_saved = request.POST.get("use_saved")
-        account_number = request.POST.get("account_number")
+        account_number = (request.POST.get("account_number") or "").strip()
 
-        if use_saved:
+        if use_saved and not account_number:
             try:
                 payment_account = PaymentAccount.objects.get(
                     user=request.user, payment_method="rocket"
@@ -815,7 +816,7 @@ def rocket_payment(request, order_id):
             except PaymentAccount.DoesNotExist:
                 messages.error(
                     request,
-                    "No saved Rocket account found. Please enter account number.",
+                    "No saved Rocket account found. Please enter your account number below or add one in your dashboard.",
                 )
                 return redirect("carts:payment", order_id=order_id)
         else:
@@ -909,9 +910,9 @@ def mastercard_payment(request, order_id):
 
     if request.method == "POST":
         use_saved = request.POST.get("use_saved")
-        account_number = request.POST.get("account_number")
+        account_number = (request.POST.get("account_number") or "").strip()
 
-        if use_saved:
+        if use_saved and not account_number:
             try:
                 payment_account = PaymentAccount.objects.get(
                     user=request.user, payment_method="mastercard"
@@ -920,7 +921,7 @@ def mastercard_payment(request, order_id):
             except PaymentAccount.DoesNotExist:
                 messages.error(
                     request,
-                    "No saved Mastercard account found. Please enter account number.",
+                    "No saved Mastercard account found. Please enter your account number below or add one in your dashboard.",
                 )
                 return redirect("carts:payment", order_id=order_id)
         else:
@@ -1014,9 +1015,9 @@ def bkash_payment(request, order_id):
 
     if request.method == "POST":
         use_saved = request.POST.get("use_saved")
-        account_number = request.POST.get("account_number")
+        account_number = (request.POST.get("account_number") or "").strip()
 
-        if use_saved:
+        if use_saved and not account_number:
             try:
                 payment_account = PaymentAccount.objects.get(
                     user=request.user, payment_method="bkash"
@@ -1025,7 +1026,7 @@ def bkash_payment(request, order_id):
             except PaymentAccount.DoesNotExist:
                 messages.error(
                     request,
-                    "No saved bKash account found. Please enter account number.",
+                    "No saved bKash account found. Please enter your account number below or add one in your dashboard.",
                 )
                 return redirect("carts:payment", order_id=order_id)
         else:
@@ -1116,9 +1117,9 @@ def upay_payment(request, order_id):
 
     if request.method == "POST":
         use_saved = request.POST.get("use_saved")
-        account_number = request.POST.get("account_number")
+        account_number = (request.POST.get("account_number") or "").strip()
 
-        if use_saved:
+        if use_saved and not account_number:
             try:
                 payment_account = PaymentAccount.objects.get(
                     user=request.user, payment_method="upay"
@@ -1126,7 +1127,8 @@ def upay_payment(request, order_id):
                 account_number = payment_account.account_number
             except PaymentAccount.DoesNotExist:
                 messages.error(
-                    request, "No saved Upay account found. Please enter account number."
+                    request,
+                    "No saved Upay account found. Please enter your account number below or add one in your dashboard.",
                 )
                 return redirect("carts:payment", order_id=order_id)
         else:
@@ -1217,9 +1219,9 @@ def nogod_payment(request, order_id):
 
     if request.method == "POST":
         use_saved = request.POST.get("use_saved")
-        account_number = request.POST.get("account_number")
+        account_number = (request.POST.get("account_number") or "").strip()
 
-        if use_saved:
+        if use_saved and not account_number:
             try:
                 payment_account = PaymentAccount.objects.get(
                     user=request.user, payment_method="nogod"
@@ -1228,7 +1230,7 @@ def nogod_payment(request, order_id):
             except PaymentAccount.DoesNotExist:
                 messages.error(
                     request,
-                    "No saved Nogod account found. Please enter account number.",
+                    "No saved Nogod account found. Please enter your account number below or add one in your dashboard.",
                 )
                 return redirect("carts:payment", order_id=order_id)
         else:

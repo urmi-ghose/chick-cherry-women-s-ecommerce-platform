@@ -1,4 +1,11 @@
+from django.conf import settings
 from carts.models import Cart, CartItem
+
+
+def google_auth_settings(request):
+    return {
+        'GOOGLE_CLIENT_ID': getattr(settings, 'GOOGLE_CLIENT_ID', ''),
+    }
 
 
 def footer_settings(request):
