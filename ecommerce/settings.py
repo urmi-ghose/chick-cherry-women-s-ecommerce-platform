@@ -26,7 +26,18 @@ SECRET_KEY = config("SECRET_KEY", default="toc(hoqz8q(_&9#8bpxf^%%n2kw@=60^z_h1l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config("DEBUG", default=True, cast=bool)
 
-ALLOWED_HOSTS = [h.strip() for h in config("ALLOWED_HOSTS", default="localhost,127.0.0.1,*.onrender.com,*.railway.app").split(",") if h.strip()]
+def _parse_hosts(val):
+    hosts = []
+    for h in val.split(","):
+        h = h.strip()
+        if not h:
+            continue
+        if h.startswith("*."):
+            hosts.append(h[1:])  # Django uses leading dot (.onrender.com) for wildcard subdomains
+        hosts.append(h)
+    return list(set(hosts)) if hosts else ["*"]
+
+ALLOWED_HOSTS = _parse_hosts(config("ALLOWED_HOSTS", default="*"))
 
 CSRF_TRUSTED_ORIGINS = [o.strip() for o in config("CSRF_TRUSTED_ORIGINS", default="https://*.onrender.com,https://*.railway.app,http://localhost:8000,http://127.0.0.1:8000").split(",") if o.strip()]
 
