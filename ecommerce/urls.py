@@ -20,15 +20,46 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.static import serve
 import os
+from django.shortcuts import redirect
 from . import views
 from greatkart.admin_site import ChicCherryAdminSite
+from .urls_admin import (
+    admin_manage_website,
+    admin_users_list,
+    admin_product_list,
+    admin_category_list,
+    admin_order_list,
+    admin_order_change,
+    admin_review_list,
+    admin_review_toggle,
+    admin_store_preview,
+    admin_discount_products,
+)
 
 # Patch default admin site — preserves all existing model registrations
 admin.site.__class__ = ChicCherryAdminSite
 admin.site.logout_template = "accounts/logged_out.html"
 
 urlpatterns = [
+    # Custom ChicCherry Admin Dashboard Routes
+    path("secureadmin/manage-website/", admin_manage_website, name="admin_manage_website"),
+    path("secureadmin/users/", admin_users_list, name="admin_users_list"),
+    path("secureadmin/store/product/list/", admin_product_list, name="admin_product_list"),
+    path("secureadmin/store/product/", lambda request: redirect("/secureadmin/store/product/list/")),
+    path("secureadmin/category/list/", admin_category_list, name="admin_category_list"),
+    path("secureadmin/orders/", admin_order_list, name="admin_order_list"),
+    path("secureadmin/carts/order/", admin_order_list),
+    path("secureadmin/carts/order/<int:pk>/change/", admin_order_change, name="admin_order_change_custom"),
+    path("secureadmin/reviews/", admin_review_list, name="admin_review_list"),
+    path("secureadmin/store/reviewrating/", admin_review_list),
+    path("secureadmin/reviews/<int:pk>/approve/", admin_review_toggle, {"action": "approve"}, name="admin_review_approve"),
+    path("secureadmin/reviews/<int:pk>/reject/",  admin_review_toggle, {"action": "reject"},  name="admin_review_reject"),
+    path("secureadmin/store-preview/", admin_store_preview, name="admin_store_preview"),
+    path("secureadmin/discounts/", admin_discount_products, name="admin_discount_products"),
+    path("secureadmin/accounts/", lambda request: redirect("/secureadmin/accounts/account/")),
     path("secureadmin/", admin.site.urls),
+
+    # Main Storefront Routes
     path("", views.home, name="home"),
     path("store/", include("store.urls")),
     path("accounts/", include("accounts.urls", namespace="accounts")),
