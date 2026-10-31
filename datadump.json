@@ -1,0 +1,8085 @@
+[
+{
+  "model": "sessions.session",
+  "pk": "04x1akfokp9g0q915pwk7arl7atv74bp",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlmLv0BJzxmitXcXB5AtxUmFuDuJlALaNzPvrQZc5jIsnadhJHVRUR1-t4T5yXUD9MB6bzq3Ok9j0puid9r1rRG_rrv7d1Cwl7U-C4IJjr3zFp0YliwBxQWfHRgQoMx8JJMSGBPtKiFkBIrxJCDWqs8X9qo4RQ:1vAUDZ:_XxqQt96eA3z6BsQtN42uahWtBRhipQfY5EqflxPylA",
+    "expire_date": "2025-11-02T14:17:05.483Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "09ettpjjdtkdjclhkasu87rvqrwy7p46",
+  "fields": {
+    "session_data": "e30:1vAv5U:c0v_2YzUpvhxHh4wEsHdHfdDIAopid7P-4ClFmXNaV0",
+    "expire_date": "2025-11-03T18:58:32.248Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "0cim3obaqupp88yw4i76xbjntw4psoz3",
+  "fields": {
+    "session_data": "e30:1ve5XI:9E0kZ24jCFzQjYGZjhW8desgKgeYY3hdjSEBwjkg6Pc",
+    "expire_date": "2026-01-23T05:59:48.487Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "15piwckmugrgfv1tiig6amscmy0gm4bu",
+  "fields": {
+    "session_data": "e30:1v5ms8:1b_u5G8ahSDxTIBk99CSSPjaxYDGIZRT2g3K5y7BjZQ",
+    "expire_date": "2025-10-20T15:11:32.448Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "1kqlx220swdoy4iobbsji01m4kvy85rk",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln-L05JzxmsddYhBuKg2KkQdyeR0qSdmfe-LNRUa55LyCW30PKUasPpE1gnAYQCI5Xg3gqw9nphAdc2hrWmJWRiHdPATjBi_0plN_TE8ph5P5e25Mj3hB-28vtM6X072tPBiHXc1micFE5pHAZphPFOkSXXg41EmBxABCWdMaCtGtA7HDYC2ivymiIh-_0BI9ZGOA:1vntAP:lHgYyF6zzZzamn1V0VHhxr3_FKGerUXck7p_rdUQ9zY",
+    "expire_date": "2026-02-19T06:48:41.035Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "1t2h911g5y5u8dodnslu44yh6zacyzg3",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3NzI0NTc4MTcuMTEzNjQ0Nn0:1vx3FJ:cbW3r7ItNvpKH1ECwU5x_jpFTTYHZacBdGV8tFUULhc",
+    "expire_date": "2026-03-16T13:23:37.119Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "1tlm1q3c5v62vwpqfpo08y5h3xt9ranu",
+  "fields": {
+    "session_data": "e30:1vmYAl:AxKeInFfeGCpUfYT0d-wgAUdYmzYVFFLkxKwkaX6TNQ",
+    "expire_date": "2026-02-15T14:11:31.597Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "2wy2sbwq1clx7pxkxog9w32qq12jb7o2",
+  "fields": {
+    "session_data": "e30:1vAXVt:mkttr2OBF03rav_ZtcCqLU44Fa1BnxiH1LELhqXaPPg",
+    "expire_date": "2025-11-02T17:48:13.746Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3eep22vnzpuv6fu0r82tr0zljoo8kwns",
+  "fields": {
+    "session_data": ".eJxVjDsOwyAQBe9CHSHzW4TL9DkDWrwQkw9EBldR7h5bcuN2Zt77Mt9ia7kWn0vuvud3bB3fH89GYUEDGOkEV0oYI82FeVz77NcWF5-JjUxZdoIBp2csu6EHlnvlUy19yYHvCT9s47dK8XU92tPBjG3e1qhBDCAVpiT0oB1IMgSTNYEII1gbrBSgtVVGJnSAaSNWOUlOUSBkvz8k_UY5:1vQM3P:fMi-_no7aARaycnc-TbIZOJK1PHWOLNB1k0JMDK4AlE",
+    "expire_date": "2025-12-16T08:48:11.352Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "3srs0c5hnudflbfbd2jv7izvdmkgza4m",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2hCgMBSX7j0DmYGpVA0kpV0Z765NutDtf-_9l4i4rSVunZc4Z3EWIE6_G2F6cN1BvmO9NZlaXZeZ5K7Ig3Z5bZmfl8P9OyjYy7cOow-jc-SJSTnWBBbygMqSZsMaJkg-q0BhyJ4Me2MtmmS1TgomjSTeH9x1N8s:1vAPk1:A4ABVfPjvRgHaqkb9lcba-Ls7hUuqTkH4JHONgsY2nU",
+    "expire_date": "2025-11-02T09:30:17.810Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "48rwrbugyn2992nbyp31162c5caqrjse",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3Nzc2NTU1NjMuNDIzNjAwN30:1wIrPv:0vksE3r-yzHjZsuE747cPkPOthMpyDLqocQ7qKC2mVw",
+    "expire_date": "2026-05-15T17:12:43.598Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4ewviijclc61p0s16fuw6b1hk3x6dbkl",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3NjI4MjM4NzIuMjY5NDE3NX0:1vId16:xlh9dzPSU2TLfBPal76-95SfRZYQ3xefeHOc7_4hvEU",
+    "expire_date": "2025-11-25T01:17:52.275Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4gvb3vqb5jz7wc2permh1vnpjc7f3nb6",
+  "fields": {
+    "session_data": "e30:1v5nCX:L8dO5tbksBSQX6jLXta6YQABmdeTSBZB8gDI3sBSmTw",
+    "expire_date": "2025-10-20T15:32:37.008Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "4ikzvseajgma77nq4k087pxm7x6hp2j6",
+  "fields": {
+    "session_data": "e30:1vNaCG:8oSocvUQlritiXIp0vA_1l6acviTzwnRkoaCqBk6gnU",
+    "expire_date": "2025-12-08T17:17:52.589Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5lqcjdrw5lb3jos42prtfmn322e3i79u",
+  "fields": {
+    "session_data": "e30:1vAv0V:XjrQWWiiiVH1UdvkHIbtT1Hyz-AUo_A-Gdv_VrGZVHk",
+    "expire_date": "2025-11-03T18:53:23.922Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "5nsbrni3ijpkabdxli82asrh2bu08tx2",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHlMSBduvcbCANTi1owha6M_64m3XR7zzn3zXyj1nItPpfcfc8LtR6Wl2ejsEaAE1YZPgjnjIMT82Hrs98arT4nNjLBDhuG-KDyB-keyq3yWEtfM_K_wnfa-LUmel5293Awhzb_aqeVRKU1milKYQll0mQUqCHhYGJ0E0icdCILaMI5gsVAYBTGSImA2OcLE5BHUg:1vDSTw:87707wYsg7IH5RaDB1W73F_wKG5lmp_lM766xaBZiHU",
+    "expire_date": "2025-11-10T19:02:16.227Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "61yq1pb08r632aosk6ruus115p2le4fh",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGln-L0lJzxmsddYhBmKj2KkQdyeRUkA7M--9mce1TX6tcfGJWM80sNMvDDg8Yt4N3THfCh9KbksKfE_4YSu_ForPy9H-HUxYp22NxknhlMZxlEaYzimy5AawgQijAwigpDMGtFUjdg7HjYDuFHWaAuF-WmOtqWSfcmq-pTnWhvPLs14CgDlrZxUXQiph1ecLdoxGLg:1wI8hA:O3Uk4QNOMFZ9XAoifgr5csf7oCX-HUhlCaKSte40vFA",
+    "expire_date": "2026-05-13T17:27:32.032Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "67bh29mglte51newkwzwo4smnsletez6",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3OTMzNzQ5NzguNTQwOTU2NywiZ29vZ2xlX29hdXRoX3N0YXRlIjoiZ2ZxdUZFejVxWVFKbzlZbTdHYUV1enVZekctYWZwNnJzNVFSTkpRWVpWTSJ9:1xMoks:8BTTRt_knAO55X0u_FkIGLNX9b4WlTfc8u33n0XfJbg",
+    "expire_date": "2026-11-13T15:42:58.541Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "69yrhrx8utf6zx9tar2zv6x6zmg7dccq",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3OTMzNzQxNTYuMzY0MjUzLCJnb29nbGVfb2F1dGhfc3RhdGUiOiJ2N0lXYlhmZk5iWlc1ZWVRZzZYdXVralI5WmhMNllLUVZ3QzlUUEtxVlh3In0:1xMoXc:glIkU2cHFPGRebQg3bdCFtf-zRTUeId5Dq6stY6fMO4",
+    "expire_date": "2026-11-13T15:29:16.364Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6cz7fvfjnte8f9uzdewrxrltib2k7pgk",
+  "fields": {
+    "session_data": "e30:1xMo87:UxSJ9kCQkx-l_diqpyTKcYfUGi60beZrYX0YQQdgLpA",
+    "expire_date": "2026-11-13T15:02:55.293Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6mp1mqgin8jh2bv00eezwq6rbqfyu1mq",
+  "fields": {
+    "session_data": "e30:1vAtv2:9pf_Wb1UST7tEzcPrL0WQPgEG3qzJXIYNHLKXqBsvOo",
+    "expire_date": "2025-11-03T17:43:40.133Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6pk91bnh1fojl75mbcb6f22y7rxvjuar",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlnxd3FKes5grbMOMRAbxU6FuDuJlALamXnvzTyubfJrjYtPxHqmgJ1-YcDhEfNu6I75VvhQcltS4HvCD1v5tVB8Xo7272DCOm1r1FZ0ViocR6E77awkQ3YAE4gwWoAAUlitQRk5orM4bgSUk-QUBcL9tMZaU8k-5dR8S3OsDeeXZ70Ap2RnztJxI5XRFj5fdqVGQA:1xM6kf:g7B67RcBV1yf_Ra0FPbKOSnRgCeA9AFxIgPDUMlEEZg",
+    "expire_date": "2026-11-11T16:43:49.550Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "6yroiq5yqx8v2vqi1i868ek1sl39h39x",
+  "fields": {
+    "session_data": ".eJxdkctuwyAQRf-FdWRh7Ngkqza7LrrqB6AxDI-GQGTIIory7x3SSH0s594zDy43puBSvboUXFUwbM-2bPNbW0AfMTXDfEJyudM51TUsXUO6p1u692wwHp7snwEeiqfu0dpJwM5wYUGOUg_bUUgBMMhh7vWyIOIsZrNMup9m8rnm0uIy7XAcerSShhYfzueQnDJQge1vzIa1VJXghLTgrdQAR8Ii_IivJkSSzj6nVvJ-5iOXfJA7UvEE5O5ZeHQCoYMUL66p9MoTEWDMiqWoGBKqnlDrirP_DUFGccU4MnSoVyo_rtFjbTdXqPhb0PlC-TXmQHFGMEjxbFheDWWV8gP2iLF8bwk15ARRhWRz-4NiHbvfvwA-AJDG:1v8NKM:jxi-7EvBeGOyTUuD00wRnYatD1UV1Tuos3SS-_JsUq0",
+    "expire_date": "2025-10-27T18:31:22.798Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "73r7sy7gl5o5qfb9key3hynv9yjjh0ep",
+  "fields": {
+    "session_data": ".eJxtkMtuwyAQRf_F20YWCfiRrNKsqkpd9QPQYAZDiiEyeBFF-fcObdQmVcWKe8-87qWSsGQrl4SzdLraVVxUq3tRwfCBoTj6CGGM9RBDnp2qC1Lf3FS_RY3-cGMfGlhIlqqZaJAb07W65S22emsE65G1vBGdGLRRXCnUim9UY1ro2HZj1qbpOT0x8C1Q02Td6eTCKDVkqHaXyrg5ZRlgQhrwCiFAJszDr_g8KxdIO9kYyv-p79m6Y4KxnvGeDJzAeTJGGxMu2mW3H4tEZ05kg9YzpiS9CyjXxL1gdtMYw3H1fvYW8-pAoXjQSEf-wTeE_wcNLp9_rHJWhoz3whAXirgwD3Vx1hRniF_w9zBaNwbw0gUTi3i9fgILD5op:1vAvHI:C4oQxuZPxjvdrrDXmzfr9QaznPLropHS_aBpEK5gLzs",
+    "expire_date": "2025-11-03T19:10:44.328Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7e7ehh26r43aw38vw0ehsu91x8jwprsc",
+  "fields": {
+    "session_data": "e30:1v8Kuy:7vmGI8v0v0PbuUG4VREY-ptwOxolPQ484u2RQSMtGn0",
+    "expire_date": "2025-10-27T15:57:00.507Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7jdfvfvp7p5uu1nvd7527dn3nipnr57b",
+  "fields": {
+    "session_data": "e30:1vnngc:B8W4-kB3zFdY9qnL0hpOhV02__id3YJ1BBsw1gccXsI",
+    "expire_date": "2026-02-19T00:57:34.981Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7q1u8snzi3sym5xtt1sjjoaujrwn3t2p",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3NzcxODQwMDQuMDU4MzM1NX0:1wGsk8:xJl5gjmNdT54fp7KrM8A_VYvYR3lEuLi_rLW4dCFkrM",
+    "expire_date": "2026-05-10T06:13:24.059Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9q80suiezr7pdicmzamyzd098ks1w925",
+  "fields": {
+    "session_data": "e30:1xMo8E:YWgOSgo4XPSqGCgwRK5BcKE5PpLHVnCCgtb7_pEvBLc",
+    "expire_date": "2026-11-13T15:03:02.464Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "9xezxycznsuju1b0g2n622lmzuxruyav",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3OTMzNzUzMTcuMjEzMDY1NH0:1xMoqL:_9SN69oOBndqJtYTsNEL8K_hylOVnVx8ICH84N4ncfA",
+    "expire_date": "2026-11-13T15:48:37.358Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "a3qbh4mpf3p7tjjhlb88tap2byjzx8vw",
+  "fields": {
+    "session_data": "eyJnb29nbGVfb2F1dGhfc3RhdGUiOiJZS3JrSGN2Vkg4dEZxeS0zbmFXT3VMalBMZmRFV1pBU1p1WkF0b1d5VUtzIn0:1xMoVq:Swg9id1w_lJNbbgbDOli72Ml__by-6OONVT4fII_XOI",
+    "expire_date": "2026-11-13T15:27:26.847Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "af3z7h9vtd6k95md1fm2zvbvujprcprs",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3NjQ2NjQ5ODkuMTcyMzIyM30:1vQLyX:xV6T9FZ_z1bZJ5kd6TVLa1rXgjkf0J4apf2IEkEqNe8",
+    "expire_date": "2025-12-16T08:43:09.457Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "akqoent6es1sy0z8lki1cfjc8scsnkqs",
+  "fields": {
+    "session_data": "e30:1vAv2P:rvvuAhASqGF9Jr1ZluOuU9oBjBoBUczP23O0rEM7Ixg",
+    "expire_date": "2025-11-03T18:55:21.948Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "at7o2vq9nrhpk4alab2jun9bdh30ehqi",
+  "fields": {
+    "session_data": ".eJxVjEEOgjAQRe_StWnotJSOS_ecoZlpB0ENTSisjHcXEha6fe_9_1aRtnWMW5UlTlldFarLL2NKT5kPkR8034tOZV6XifWR6NNW3Zcsr9vZ_h2MVMd9PZAPPgBxCxBQjOQMfmdNEkDbWoPGdYzAgoYhdHvMthtEPLrGGVGfL9YgNzU:1vAUWP:jcVsNK-Mp9r3hAVt3tr6cIh3T8YkezqjgJeRot5fU0U",
+    "expire_date": "2025-11-02T14:36:33.496Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "bcw9kaljskeokgsngk5bxlv3bg6y436f",
+  "fields": {
+    "session_data": "e30:1v5n8Z:rJZ8uIX4nmxrM8HBjusp6Mmb6wSfI7JD8fX7lgG1nms",
+    "expire_date": "2025-10-20T15:28:31.728Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "boaue7mbkrsdiinnd6gi2lbyer5gc0kc",
+  "fields": {
+    "session_data": "e30:1v5n9F:o2gNNoaZdnRVqdlSfYE5fgqJOFnr6_fJvifLWYoq5YE",
+    "expire_date": "2025-10-20T15:29:13.448Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "cb772gkr4k52jh2naoud38pw4drafmqq",
+  "fields": {
+    "session_data": "e30:1vAv25:w8YveRq_BhkLpW5ms7XR-SapJlyI51jZy1f0pgME5yk",
+    "expire_date": "2025-11-03T18:55:01.109Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "cev8hxuag0kwg0w2uupjr54fncx2u15e",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3NzcxOTExMDEuMTE4MDE2N30:1wGuab:c0G3F1RUpQgu0Bdui1nvQYRZ_7EntSBI-rNWk1v3lHw",
+    "expire_date": "2026-05-10T08:11:41.289Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "d4o93fpih2gyvpxnh2zu8ls0ggwvf9j9",
+  "fields": {
+    "session_data": "e30:1vAXbQ:VHyv9878LlaTBshEPQL9mO_jN-g1Yie-uscTI0mGgRQ",
+    "expire_date": "2025-11-02T17:53:56.284Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "da1gdv98gu42lhgtozso21vg91aiaty7",
+  "fields": {
+    "session_data": "e30:1vAt4O:9O-FHFvEGqFmb7u0XCOFLpejJ03PxDge3vEkx_SeuQg",
+    "expire_date": "2025-11-03T16:49:16.870Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "e80glw345awcle1bw8bnj7ms1vn4wwiw",
+  "fields": {
+    "session_data": "e30:1vAXkN:YEU28K1ApYqHg_GpjdIQwRX2pp288GYIh9SBlcDuiTA",
+    "expire_date": "2025-11-02T18:03:11.429Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fgxzyni0vg9faj3uo95gmaz7swnmfm44",
+  "fields": {
+    "session_data": ".eJxVjcsOgyAURP-FdUNQQMRl934DgXuvlT4gQWwXTf-9mrhot3NmzryZ82ud3bpQcRHZwCQ7_WbBw43SDvDq0yVzyKmWGPhe4Qdd-JiR7uej-yeY_TJvazEJFGiV161R1AcyDbWdabRQqMAKKwI0VmkB3SS1MlL3EIwEK8FjT7BJt-cploevMSf3jPQidK1lQy0rfb7y00KU:1v8bnc:_4Us1_V65XE-cIQWNApLBIp2DOg9m-n2iSAvd0eCNyI",
+    "expire_date": "2025-10-28T09:58:32.152Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "fv7hmeqou89o8b2n3i0qo84e4in4es62",
+  "fields": {
+    "session_data": "e30:1vAPdR:y8qVE0rRO8ffNLw6G9g187tXTc-bpkuowIff5SZhYQk",
+    "expire_date": "2025-11-02T09:23:29.205Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "g8ev34e5emz31fwucbv22bqz9qhoewgj",
+  "fields": {
+    "session_data": "e30:1xMoxi:41b6IPJaHbHfwtdzCJEiyoYUcgttFt8C18H2Sh5bRDw",
+    "expire_date": "2026-11-13T15:56:14.503Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "h90mekdwwaer6jzfphjdmgb7ptjl63hd",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlmLv0BJzxmitXcXB5AtxUmFuDuJlALaNzPvrQZc5jIsnadhJHVRUR1-t4T5yXUD9MB6bzq3Ok9j0puid9r1rRG_rrv7d1Cwl7U-C4IJjr3zFp0YliwBxQWfHRgQoMx8JJMSGBPtKiFkBIrxJCDWqs8X9qo4RQ:1vAV4B:K574UhJaIN3GeqzUSQ7vz7u3r-17yQVSMLGv5gzszCs",
+    "expire_date": "2025-11-02T15:11:27.834Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "h9fazyyqfhlsy35kudtmufcf5eqkewm1",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3NjE1OTEzOTQuNjA3MjM5N30:1vDSOQ:fHSAwj0TsIBi9-86uJJnkNperWW3cdslsffdHB5dVbU",
+    "expire_date": "2025-11-10T18:56:34.615Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hfe2pv3lcnbr1q66dilkmobhjy8i1osx",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3OTMzNzM3OTAuMTQ1NDI3N30:1xMoRi:bgQEuF2qDW5vq49rZBgsLIGbqhar10LeA1ORtmJzKq0",
+    "expire_date": "2026-11-13T15:23:10.150Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hfi99s70krmvxiig2by7n1bprm4pv5qc",
+  "fields": {
+    "session_data": "e30:1vAuho:UdX9CStUcOBp6qcN9SgMq-KKtuEGDzKxxIpLmG8oSyA",
+    "expire_date": "2025-11-03T18:34:04.163Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "hiqlq9qzgbdkl18q5tmam4g713xzap71",
+  "fields": {
+    "session_data": "e30:1v5mrw:NMqi7jOmqbqDYucKR4crX2zZVJ7ZhGkGUTVOI2YCqsA",
+    "expire_date": "2025-10-20T15:11:20.059Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "i31xyvba6tv2o2ctkn8dhhoaet6v0222",
+  "fields": {
+    "session_data": "e30:1vAPas:6vSKBwl6_btYULI8j5A7kFcyw9Fy1qj58df8Wo4GIPc",
+    "expire_date": "2025-11-02T09:20:50.275Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "i7za0h1ruhb6u9dy9i6076600ueslj61",
+  "fields": {
+    "session_data": "e30:1vAuxo:gXRv0C4bMFxJZHV7h9Bm2JJSx-XdYzr9htqNWhJEWlo",
+    "expire_date": "2025-11-03T18:50:36.444Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "igkhyspfikk511w529b3e4s4c2cw2fp1",
+  "fields": {
+    "session_data": ".eJxVjr0OwyAQg9-FuUJwd0CSsXufAREgDf2BKpCp6rs3kbJktP3Z8pfZGmtNJduUU7MtvWNt7v2xbJDGGOpQk-Gguh6NvDDr1jbbtcbFpsAGRsRO5uj8M-Y9CQ-X74X7ktuSRr4j_Egrv5UQX9eDPQ3Mrs5bG7wQ04Sq79ErLcQoiAA3gaEDCgSa3PaIEMETGEAXZNAgEWVUyiH7_QEISUSi:1wI8h5:PaF4JYia53dMx8pbi7mRsoZ-vuNiTdvMZQ_WdpdniK4",
+    "expire_date": "2026-05-13T17:27:27.262Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ihjtg6pw2i1zs7k13ziqmh62zu3zafiq",
+  "fields": {
+    "session_data": "e30:1v5n2M:N6riFYkvWqUNDZdgp6LSsuevSKsuVTFYbPrm0jJs4bg",
+    "expire_date": "2025-10-20T15:22:06.413Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "imij44ms1361vwtn27kdkkd5atrjpaa7",
+  "fields": {
+    "session_data": "e30:1viYEm:yzqaIzxF-1qLjPRHezJ0OCw2VU9eB4vRQSk3jKp54bI",
+    "expire_date": "2026-02-04T13:27:08.996Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "in4f2wubxq64tps2p9a0i9u1cbstuzoo",
+  "fields": {
+    "session_data": "e30:1v5nC4:1FiVP83FVoT3mH_pYZ8w6qjnPck-FB8Bhu6IJXOefZk",
+    "expire_date": "2025-10-20T15:32:08.827Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "jyyktjobgj1w791un4dns759ldubo365",
+  "fields": {
+    "session_data": "e30:1vAuxz:kLjDb81BbFrJ1ZYJ04q1gm1YbzAj2_W6W8wSwxmiJNQ",
+    "expire_date": "2025-11-03T18:50:47.975Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "k3540o9hzrdoj9nvsrjqdk15wgaidlmi",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3Nzc0NzM5MTMuMTM4NjkxNH0:1wI6A5:_JP1CrDmcX42gLfBOq_dp4A3JW4LVLaQDUZsSSNpaMY",
+    "expire_date": "2026-05-13T14:45:13.186Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "kdugqhi1g59pym72u4arru2rfz2rpce1",
+  "fields": {
+    "session_data": "e30:1xMo8L:_xG-X61pxLIcJRF9I0Uxxj2kMBUXspOiCA4decw1sHY",
+    "expire_date": "2026-11-13T15:03:09.211Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "krmamwrbs8tys65u50e33syd4z7nldmm",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3ODEwNzA1OTQuMTI1MDc2OH0:1wXBp4:xcqG97cQLGK4t9W23kA1r2JnHepbjzh9O9_rg9hv7lo",
+    "expire_date": "2026-06-24T05:49:54.149Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "lw820371zpv9li53c2xvsdozgz4oixko",
+  "fields": {
+    "session_data": "e30:1vAuyY:sirt5r7qvZBhVDxd2ObrlZE048hF_zj5DDPENGyICLI",
+    "expire_date": "2025-11-03T18:51:22.115Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "m7bgtpzdoaljnw7xlbpw3tojh2k11oid",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAQRf-FtSHl0UG6dO83kKEDFrVgCl0Z_9026UK355x738zh2ia31rC4RGxgyrDTL_Q4PkLeDd0x3wofS25L8nxP-GErvxYKz8vR_h1MWKdtjRpEB1JhjEJ32oKknmA0vSfCAMZ4IwVobVQvI1rAuBGjrCSryBPupzXUmkp2KafmWppDbTi_HBuE2dKz1RK4ldoKoT5fdz9GRQ:1wHkBO:cNT0PvS8n4Yn2PMbG1FnvHCxPoan81mLpYAR6uj9EtM",
+    "expire_date": "2026-05-12T15:17:06.993Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "maz39sp6p8og6bzcl4o32eeopm836gmx",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlmLv0BJzxmitXcXB5AtxUmFuDuJlALaNzPvrQZc5jIsnadhJHVRUR1-t4T5yXUD9MB6bzq3Ok9j0puid9r1rRG_rrv7d1Cwl7U-C4IJjr3zFp0YliwBxQWfHRgQoMx8JJMSGBPtKiFkBIrxJCDWqs8X9qo4RQ:1vAUy3:4sEagtIF1-MQQcXLt3XViNrlktX9dnzy9p5P-pMAZGw",
+    "expire_date": "2025-11-02T15:05:07.522Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "msnnx7wmkggh800psc0n0lv8m8tvrp9x",
+  "fields": {
+    "session_data": "e30:1v5lre:tl8pPcjH_jkHfmSfr6rGSH21W0cZF5iS6rrmpdu3u00",
+    "expire_date": "2025-10-20T14:06:58.643Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "n53j9d7vgxq8o06jz94ojuaoj9coxaqu",
+  "fields": {
+    "session_data": "e30:1v5qJ4:gE_Ukpf8G0Reoz2D6aAok5kbwB_NQ-pkf7ID9zWRqsI",
+    "expire_date": "2025-10-20T18:51:34.090Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "n8ok3u8s844ozyo5plhvprfn2ca5g7h6",
+  "fields": {
+    "session_data": ".eJxVjDkOwjAUBe_iGlmJV0JJnzNYfzMOIEeKkwpxd4iUAto3M--lEmxrSVuTJU2sLqpXp98NgR5Sd8B3qLdZ01zXZUK9K_qgTY8zy_N6uH8HBVr51oOzBq1zGDKZPgoadhKstx1jF4iG7A1mxxI9BjiTjwjig0UiYfGi3h_pFzjt:1v8ZgE:76DpGZGcR7PWuGGOyynNh2MyISlmMC7Ch1QH-b9EmLU",
+    "expire_date": "2025-10-28T07:42:46.541Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "nka4xycav1gmti7lcag1mzj8dhq9x7tg",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQRO_iGlnxb1dOSc8ZrHXWIebjoNipEHcnkVJAN3pvZt4i0NqmsNa0hMyiFwbF6RdGGu6p7IZvVK6zHObSlhzlXpGHrfIyc3qcj-7fwUR12tZkQXWgDY2jsp31oNkxDOgiMyVAjKgVWIvG6ZE80LgRNF6zNxyZ9tOaas1zCbnkFlp-ptro-QqiV4gIzjkw0li3Rfv5AnckRkg:1wIrPv:MXR18YavL-fVyce-k4SOWh7cGSvnwj1h9USdcKYqTxs",
+    "expire_date": "2026-05-15T17:12:43.362Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "nmkz6iwmrch2tlc5zbnv7v1npjz7q34g",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3NzczOTQxNTEuOTIwOTU2MX0:1wHlPb:ifOpJPuqoGJOsuJuAAh8dMManwaVzoLNIa-KiGWRaXs",
+    "expire_date": "2026-05-12T16:35:51.964Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "o54puq7ofegcbn4pwu64r1j38epfyhag",
+  "fields": {
+    "session_data": "e30:1vns4g:FrAG7jpzUNTY7bwwIq_nVT0Y-PQBfqRM5vo1TCS73UU",
+    "expire_date": "2026-02-19T05:38:42.386Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "ogl0ndkgqbqjnwbwfyt4zyavu19u1535",
+  "fields": {
+    "session_data": "e30:1ve5X8:UnhS44cOCs-txaoQ_mJICcCpRJU_IeKCG6nlbALeAZI",
+    "expire_date": "2026-01-23T05:59:38.941Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "p1pxihtiq1bjg3l0gzirdhii6eljli3l",
+  "fields": {
+    "session_data": "e30:1xNAEh:Ybf4VoudO_RJ_Zx3drGvkyZZA-8f8KlwGEcTv6sVDQs",
+    "expire_date": "2026-11-14T14:39:11.515Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "pqao74z47z6a7f48nw4ose9om5rm97bm",
+  "fields": {
+    "session_data": "e30:1vAPW6:8cF3iGyBl2PND7Lf6lg9iGjnFcMMltOwt1mpX2xjdC4",
+    "expire_date": "2025-11-02T09:15:54.082Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "qvb6dapwtf11bmj22l04bwqm5mw591r8",
+  "fields": {
+    "session_data": "e30:1xMoXG:TQoU6fAG0PeLb5mLkiC4zRQC2g_NuGDSmOXUjqRz5xo",
+    "expire_date": "2026-11-13T15:28:54.630Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "rewl3v3zkdyg23iaix68jd6tqcoyeswd",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlmLv0BJzxmitXcXB5AtxUmFuDuJlALaNzPvrQZc5jIsnadhJHVRUR1-t4T5yXUD9MB6bzq3Ok9j0puid9r1rRG_rrv7d1Cwl7U-C4IJjr3zFp0YliwBxQWfHRgQoMx8JJMSGBPtKiFkBIrxJCDWqs8X9qo4RQ:1vAUqh:mhH9NMCzVln_c2RNPNS39qdkecBOhRgiA-ORgaMTmiw",
+    "expire_date": "2025-11-02T14:57:31.743Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "riff8pt5ji4grxz2h8bgtc0m572z97wo",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlmLv0BJzxmitXcXB5AtxUmFuDuJlALaNzPvrQZc5jIsnadhJHVRUR1-t4T5yXUD9MB6bzq3Ok9j0puid9r1rRG_rrv7d1Cwl7U-C4IJjr3zFp0YliwBxQWfHRgQoMx8JJMSGBPtKiFkBIrxJCDWqs8X9qo4RQ:1vAUOS:fgB6qxXyH134pcNn3LXBWpBYz6woibNJSnw8ed14VEo",
+    "expire_date": "2025-11-02T14:28:20.650Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "rqx0rpvo0puhputgg9qookw7dm0hlzws",
+  "fields": {
+    "session_data": "e30:1vAt6G:aUyp9IxiRVQg3JqjJ7kxnx6kNLNfHPm4u-dkQyMchgU",
+    "expire_date": "2025-11-03T16:51:12.636Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "rsewaoe9mfi1dnecp09otu55zcxt36zr",
+  "fields": {
+    "session_data": ".eJxVjMsOwiAUBf-FtSEQHgWX7v0Gwn1UqgaS0q4a_9026UK3Z2bOJlJel5LWznOaSFyFFpffDTK-uB6Anrk-msRWl3kCeSjypF3eG_H7drp_ByX3steII6sIJmY_RG3AePAcjNXkyQWCGHG0QYF1RMo6RQNiBh-d21FAFp8v8Y04TQ:1uvT96:HPFlFSrVdAlQ2vn3rDRXUVVXI-PXGIrrn7ZQRp7-hMI",
+    "expire_date": "2025-09-22T04:06:24.650Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "s54tdpdcdl9hpducizte64qukinnwj1v",
+  "fields": {
+    "session_data": "e30:1vAPdO:Ffx0sqVfZgbUMS9GRsW4DhfPkLzikEex5b1fhN_ycAg",
+    "expire_date": "2025-11-02T09:23:26.352Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "shtwvy81dwlj9kspx9by9cp36euepu7q",
+  "fields": {
+    "session_data": "e30:1v5nC0:crOnCPG2_3TToK8MnbEnlwBQjlE-YIt-oXBL3bU7WTk",
+    "expire_date": "2025-10-20T15:32:04.830Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "t4esv33iiw5ikfj84n1gnzkojtb8urkl",
+  "fields": {
+    "session_data": ".eJxVjDsOgzAQBe_iOrLwh11MmT5nsNasCc7HRNhUUe4ekGhoZ-a9r_AllpLm7FNO1df0jqXS--NFrxDRNGBcJ1VjsLNwEZ7WOvm1xMUnFr0wKE4w0PCMeTf8oHyf5TDnuqQg90QetsjbzPF1PdrTwURl2tZkQTWgDY2jso11oLllGLANzBQBMaBWYC2aVo_kgMaNoHGaneHAJH5_KyRGQg:1wHOaE:Ay4wbsbTSQyKYRdU0q0nkv6yNv4Fa4zY1hAVYqPyqAM",
+    "expire_date": "2026-05-11T16:13:18.591Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "t5u86civ8iucfshjg2pglswpqgyg1nft",
+  "fields": {
+    "session_data": "e30:1v8JB0:38ABGdJCTMzX_dOCb-lTmHBNUnSr654jseI502ZPuDA",
+    "expire_date": "2025-10-27T14:05:26.638Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "tblish6a5cfno0lidw8x47wk58j31x7u",
+  "fields": {
+    "session_data": "e30:1vAWAR:U-RZZY1tMpmMffiRMySm_aLRHfgn1cGcbf8rQp7shqQ",
+    "expire_date": "2025-11-02T16:21:59.472Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "u7s09hlepvxraygne42cxmwx228ycfoh",
+  "fields": {
+    "session_data": "e30:1xMoyS:Lf7bE-LdA5kflYoefAbat47HSj07MIxDUpDwkd4zhyQ",
+    "expire_date": "2026-11-13T15:57:00.781Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "un75gl9z6k8pljv00g66qmoxdesr2ttr",
+  "fields": {
+    "session_data": ".eJxtkU1uwyAQhe_CtpGF_yGrKpt201UOgMaA7UltsIAsoih379BGbVN1yXvfDDNvrkxFGyN6p9BhUglXGxOsm2L7su_qphZSNkUl2lbIdscUnNOsztEGhYbtWcPZgziAfrcuO-YEbvKF9i4FHIqMFHc3Fm_e2OVwZx8azBBnqu7aoQfRjFY246C1NDSI7hoBle5KCZ2ph7ED0Zct8LbVhpcV5wak7XhdDdxS0zjjtqGblIEEbH9lI4aYlIPV0gfHgCcgaoEf7WX2MVdus3f5_SQEpxB6WfWyr8iwK-BCxjmsOBEcnqes0JIruWBMoCzVgs6qkrBXS3FO3p12x8sy27Q7UCQLGEsr_sGrPNI_kMZ0-bbyUgmS_S1of6aAM_NQ54OhMJ3_hL8-w0RXhoXuPPos3m4fr9KoEw:1vLD2Q:w4oMxN-82IvNZOCYSRoHbTE7H2iZIPSaedZFrHRZlI0",
+    "expire_date": "2025-12-02T04:09:54.298Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "v0ucxtusxl3r13uyq475y59qnzhs32ec",
+  "fields": {
+    "session_data": ".eJxVjDsOwjAQBe_iGlmLv0BJzxmitXcXB5AtxUmFuDuJlALaNzPvrQZc5jIsnadhJHVRUR1-t4T5yXUD9MB6bzq3Ok9j0puid9r1rRG_rrv7d1Cwl7U-C4IJjr3zFp0YliwBxQWfHRgQoMx8JJMSGBPtKiFkBIrxJCDWqs8X9qo4RQ:1vAULU:uMEvlAQVYeCHpntFGz1WZeydfcN29_GVvmzw1-L22wA",
+    "expire_date": "2025-11-02T14:25:16.696Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vjcui0eh20dmk1rq8vaovuwyb98xb5cq",
+  "fields": {
+    "session_data": "e30:1vfqeB:XGNpVX17IK1pzqhV5XsVLj-p33Kt6H0h6PJ4wGlk2wI",
+    "expire_date": "2026-01-28T02:30:11.663Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "vl3dxzjavnx3dkhipe4az2clkr4bzo5l",
+  "fields": {
+    "session_data": "eyJfc2Vzc2lvbl9pbml0X3RpbWVzdGFtcF8iOjE3OTMzNzQxMTcuMzYyMDAzLCJnb29nbGVfb2F1dGhfc3RhdGUiOiJCc19PZVdFYWZ5SXEwMG5ydmNDbzhXamlBR29JMUJ0V1loMFpjelJmVnFRIn0:1xMoWz:m653AylY8djmsHkb7JFP4RBiM0Vxl4tfwJIcpgdZmkk",
+    "expire_date": "2026-11-13T15:28:37.366Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wm7vjxu1f307vce5t6u6u16fn3sd16da",
+  "fields": {
+    "session_data": ".eJxVjjkOwyAURO9CHaGP2V2mzxnQZ3FMFogMrqLcPbbkxu28N6P5EtdSa7kWl0vurud3ah3fH0dGppUANmg-UA3CAvALcbj22a0tLS5HMhIB5BR6DM9UdhIfWO6Vhlr6kj3dFXrQRm81ptf1cE8DM7Z5ayvpNRoxJSsmH4KNgpughMEhKGZRRe4nhUYziSBliNtPgIg2KeCDh0R-fzu0RnI:1vNcIG:ERaBBz-loDnXcznbFcic9Mp2flMtLE4P6tENulNO3tg",
+    "expire_date": "2025-12-08T19:32:12.746Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wqojibqgahu6h4x0llxzg2sbmhntnos8",
+  "fields": {
+    "session_data": "e30:1vns4g:FrAG7jpzUNTY7bwwIq_nVT0Y-PQBfqRM5vo1TCS73UU",
+    "expire_date": "2026-02-19T05:38:42.190Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "wrvo7n6eogppq4foo9fevmyhqzma5aq3",
+  "fields": {
+    "session_data": "e30:1vDbPv:K_p5PA8Q_qpDm_EhDU3_he2sQG93X8txAQ0epiGQSPA",
+    "expire_date": "2025-11-11T04:34:43.628Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xssmpvrzo7d2wepjdnki24ec7vedwv75",
+  "fields": {
+    "session_data": "e30:1xMoye:sX_qkInxp_COcCz_TJ87F7Mto_4ns_Gl0CeDlfVHKy0",
+    "expire_date": "2026-11-13T15:57:12.090Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "xt5u4ode5fyojyb42mvpgrs29ghrnds7",
+  "fields": {
+    "session_data": "e30:1vAXZl:Awm2L9s5XJE5emxbEWIU5y-90vdEzo3leqbvCFVe984",
+    "expire_date": "2025-11-02T17:52:13.416Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "yf4zhom5fikd5ryyqa1vekzqmc6nt9qd",
+  "fields": {
+    "session_data": "e30:1v5n93:zEmNGSevtToelABpSx3vRdL5Bzu2bjIcdR2rLgclgeI",
+    "expire_date": "2025-10-20T15:29:01.890Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "z8075rjet17jgu9f7f06qfc2kq5eh998",
+  "fields": {
+    "session_data": "e30:1vnerV:oHlSlaMQkEGS5KVvICyXrEsBL-BnA7MCLVAGVm6n5Hg",
+    "expire_date": "2026-02-18T15:32:13.416Z"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 2,
+  "fields": {
+    "category_name": "shirt",
+    "slug": "shirts",
+    "description": "From the classic button-up shirt to the trendy tunic, women's shirts serve different purposes and can be worn for various occasions. Here's a brief description of some popular types of women's shirts:",
+    "cat_image": "photos/categories/E106D503_SANDCASTLE_E802P203_INDIGO_2front_954_grande.webp"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 4,
+  "fields": {
+    "category_name": "Shoes",
+    "slug": "shoes",
+    "description": "test description",
+    "cat_image": "photos/categories/shoes.png"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 5,
+  "fields": {
+    "category_name": "bags",
+    "slug": "bags",
+    "description": "bags image",
+    "cat_image": "photos/categories/bags.png"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 7,
+  "fields": {
+    "category_name": "Heels",
+    "slug": "heels",
+    "description": "heels image",
+    "cat_image": "photos/categories/heels.png"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 8,
+  "fields": {
+    "category_name": "scarf",
+    "slug": "scarf",
+    "description": "image",
+    "cat_image": "photos/categories/scarf.png"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 9,
+  "fields": {
+    "category_name": "earrings",
+    "slug": "earrings",
+    "description": "use sensory details like \"dazzling,\" \"delicate,\" or \"cascading,\" and match adjectives to the style—\"luxurious\" for high-end pieces or \"charming\" for delicate ones.",
+    "cat_image": "photos/categories/earrings.png"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 10,
+  "fields": {
+    "category_name": "necklpice",
+    "slug": "necklpice",
+    "description": "image",
+    "cat_image": "photos/categories/neackpice.png"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 11,
+  "fields": {
+    "category_name": "juti",
+    "slug": "juti",
+    "description": "image",
+    "cat_image": "photos/categories/Screenshot_2025-10-28_104604.png"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 12,
+  "fields": {
+    "category_name": "panjabi",
+    "slug": "panjabi",
+    "description": "",
+    "cat_image": "photos/categories/Screenshot_2025-09-09_102414.png"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 14,
+  "fields": {
+    "category_name": "Nino Rossi Women’s Pump",
+    "slug": "pumpies",
+    "description": "Description Step into all-day comfort with the Dr. Mauch Women’s Pump. Crafted with a sleek PU upper and durable PU sole, this black pump features a subtle textured pattern that adds a touch of sophistication to any outfit. Designed to provide gentle supp",
+    "cat_image": "photos/categories/1d08d5aa-7abe-4da1-8e1b-dec685276432.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 15,
+  "fields": {
+    "category_name": "Dr. Mauch Women's Pump",
+    "slug": "dr-mauch-womens-pump",
+    "description": "Step into all-day comfort with the Dr. Mauch Women’s Pump. Crafted with a sleek PU upper and durable PU sole, this black pump features a subtle textured pattern that adds a touch of sophistication to any outfit. Designed to provide gentle support while ke",
+    "cat_image": "photos/categories/3f43f303-1024-403e-90eb-f680cbcfbacc.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 16,
+  "fields": {
+    "category_name": "Slipper",
+    "slug": "slipper",
+    "description": "These DR. MAUCH slippers are engineered for women who spend long hours on their feet. Featuring an anatomically contoured footbed, these slides provide essential arch support and heel cushioning to reduce fatigue. The adjustable hook-and-loop top strap en",
+    "cat_image": "photos/categories/a2d90efd-bdea-4a08-bdd9-578dc3ff8916.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 17,
+  "fields": {
+    "category_name": "Sandal",
+    "slug": "sandal",
+    "description": "Subtle and versatile, these Beige Open Flat Sandals by Nino Rossi are perfect for everyday wear. PU construction across upper, lining, and sole ensures durability and comfort, while the flat silhouette offers easy all-day wear. Domestic manufacturing prom",
+    "cat_image": "photos/categories/3c55f527-7b1d-4a2e-869c-0aac3d145007.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 18,
+  "fields": {
+    "category_name": "Canvas",
+    "slug": "canvas",
+    "description": "Designed for women who blend performance with style, the Sprint Women’s Canvas is crafted to support an active lifestyle with everyday versatility. Built with lightweight Flyknit material, it offers breathability and flexibility, while the sturdy design e",
+    "cat_image": "photos/categories/dd7af4ee-399e-4405-8666-0757692a93af.jpg"
+  }
+},
+{
+  "model": "category.category",
+  "pk": 19,
+  "fields": {
+    "category_name": "Sports Shoe",
+    "slug": "sports-shoe",
+    "description": "Upgrade your athletic gear with these sports shoes for women. Experience the perfect combination of comfort, durability, and style with these thoughtfully designed shoes. From a walk in the park to a weekend run with friends, these sprint women's sports s",
+    "cat_image": "photos/categories/1d0fa2de-ff2a-4afc-b2af-dfefd6c393da.jpg"
+  }
+},
+{
+  "model": "accounts.account",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$R77btKW3hckmTYwy0c9PJZ$twNuUs2NJ70qJtN2kt+snn6dvhkeN+HEPEEVr+BgjJM=",
+    "first_name": "Jannat",
+    "last_name": "Arbin",
+    "username": "ghoseuditi",
+    "email": "ghoseuditi@gmail.com",
+    "phone_number": "+8801704008038",
+    "date_joined": "2025-10-20T19:00:38.986Z",
+    "last_login": "2025-10-20T19:26:47.003Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$NtBfNw8ztXqXLZOKWsDxgX$58gWtSP5GWbVVeiVJcqKMMHIdHpyVBoa3RMMx8apA1I=",
+    "first_name": "Admin",
+    "last_name": "User",
+    "username": "admin",
+    "email": "admin@example.com",
+    "phone_number": "",
+    "date_joined": "2025-10-27T16:25:50.236Z",
+    "last_login": "2025-10-27T16:25:50.236Z",
+    "is_admin": true,
+    "is_staff": true,
+    "is_active": true,
+    "is_superadmin": true
+  }
+},
+{
+  "model": "accounts.account",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$0iUXpj1128frnRl5FpsjOy$59ghxm07UsIU+MSYnJ+2VPB9efG6FPjHPjwVviA7VOY=",
+    "first_name": "Omi",
+    "last_name": "Arbin",
+    "username": "jannat.arbin08",
+    "email": "jannat.arbin08@gamil.com",
+    "phone_number": "+8801761985343",
+    "date_joined": "2025-10-28T05:15:50.064Z",
+    "last_login": "2025-10-28T05:15:50.064Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": false,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$DsDubAfvP4SwkPQu8Ahfwk$ZzcFtJmQaedgi8wjusggjKeEeLJSMSdiXN2X+yqRsjI=",
+    "first_name": "srija",
+    "last_name": "ghose",
+    "username": "urmi",
+    "email": "urmighose81@gmail.com",
+    "phone_number": "",
+    "date_joined": "2025-11-11T01:28:37.303Z",
+    "last_login": "2026-10-28T16:43:49.511Z",
+    "is_admin": true,
+    "is_staff": true,
+    "is_active": true,
+    "is_superadmin": true
+  }
+},
+{
+  "model": "accounts.account",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$x9KBijLNteF7Npu4MoGnjz$38LoHVJJQ0Oh+JO496cIxqEJsfMJF/0xGlas0yAjhus=",
+    "first_name": "Admin",
+    "last_name": "User",
+    "username": "adminuser",
+    "email": "newadmin@example.com",
+    "phone_number": "",
+    "date_joined": "2025-11-17T16:01:59.986Z",
+    "last_login": "2026-04-29T07:15:13.147Z",
+    "is_admin": true,
+    "is_staff": true,
+    "is_active": true,
+    "is_superadmin": true
+  }
+},
+{
+  "model": "accounts.account",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$YpG980ZwXxVaK4ymqgKtln$JnKfHpjQW6Lzg0Zrv10Ji0Mum7pmgNxuE7lw6I0oRBw=",
+    "first_name": "Srija",
+    "last_name": "Ghose",
+    "username": "urmighosr",
+    "email": "urmighosr@gmail.com",
+    "phone_number": "+8801767927972",
+    "date_joined": "2025-11-17T17:45:32.073Z",
+    "last_login": "2025-11-24T18:40:48.529Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$h5eqrHj7n2YnbdbgVAchG6$+qo3rte0akob+HyVkpQd8Zk3/qt3YT1MnLGFBhioiQA=",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "username": "vaccinationbd428",
+    "email": "vaccinationbd428@gmail.com",
+    "phone_number": "+8801704080389",
+    "date_joined": "2026-04-28T14:21:37.739Z",
+    "last_login": "2026-04-28T15:09:14.657Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$2nz6E6QFqZ1hQfDSeOisfk$+24rVgEX9sd1PJgRtvC9SPvtRHdTAulpTNSt5nb8UeI=",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "username": "istiakadil382",
+    "email": "istiakadil382@gmail.com",
+    "phone_number": "+8801704080389",
+    "date_joined": "2026-04-28T15:32:56.887Z",
+    "last_login": "2026-04-28T15:34:46.947Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$WcsfMAVhivgX82XWi1UUWc$RfxJ4LWbTHs79+dTY1H0XLs5BU7M+QY/uNFiGvMTcVg=",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "username": "istiakadil54",
+    "email": "istiakadil54@gmail.com",
+    "phone_number": "+8801704080389",
+    "date_joined": "2026-04-28T15:35:29.483Z",
+    "last_login": "2026-04-28T15:35:29.483Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": false,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$p7yYb45lxPC0HvT4lYQfJs$sK6Wge9WSzrqgDQ6E901iT+BQlLsPhxuZai5XUx9shA=",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "username": "istiakadil43",
+    "email": "istiakadil43@gmail.com",
+    "phone_number": "+8801704080389",
+    "date_joined": "2026-04-28T15:45:11.849Z",
+    "last_login": "2026-04-29T17:23:08.115Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.account",
+  "fields": {
+    "password": "!ODP7cVVRPDmdDMCnvrrGnVoWiaNkroLs9aJfPhiu",
+    "first_name": "Urmi",
+    "last_name": "Ghose official",
+    "username": "urmighoseofficial",
+    "email": "urmighoseofficial@gmail.com",
+    "phone_number": "01704080389",
+    "date_joined": "2026-10-30T15:49:08.192Z",
+    "last_login": "2026-10-30T15:57:57.745Z",
+    "is_admin": false,
+    "is_staff": false,
+    "is_active": true,
+    "is_superadmin": false
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 36,
+  "fields": {
+    "user": [
+      "urmighosr@gmail.com"
+    ],
+    "address_line_1": "Hetimgonj,Sylhet,Bangladesh",
+    "address_line_2": "Sylhet,Bangladesh",
+    "profile_picture": "userprofile/38636.jpg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh"
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 37,
+  "fields": {
+    "user": [
+      "vaccinationbd428@gmail.com"
+    ],
+    "address_line_1": "",
+    "address_line_2": "",
+    "profile_picture": "default/default-user.png",
+    "city": "",
+    "state": "",
+    "country": ""
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 38,
+  "fields": {
+    "user": [
+      "istiakadil382@gmail.com"
+    ],
+    "address_line_1": "",
+    "address_line_2": "",
+    "profile_picture": "default/default-user.png",
+    "city": "",
+    "state": "",
+    "country": ""
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 39,
+  "fields": {
+    "user": [
+      "istiakadil54@gmail.com"
+    ],
+    "address_line_1": "",
+    "address_line_2": "",
+    "profile_picture": "default/default-user.png",
+    "city": "",
+    "state": "",
+    "country": ""
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 40,
+  "fields": {
+    "user": [
+      "istiakadil43@gmail.com"
+    ],
+    "address_line_1": "Hetimgonj,Golapgonj,Sylhet",
+    "address_line_2": "Hetimgonj,Golapgonj,Sylhet",
+    "profile_picture": "userprofile/20251125_160205.jpg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh"
+  }
+},
+{
+  "model": "accounts.userprofile",
+  "pk": 43,
+  "fields": {
+    "user": [
+      "urmighoseofficial@gmail.com"
+    ],
+    "address_line_1": "hsdfh",
+    "address_line_2": "sdfhds",
+    "profile_picture": "userprofile/pngtree-backtoback-asian-twins-in-purple-dresses-on-white-chair-photo-image_36357398.jpg",
+    "city": "sylhet",
+    "state": "sylhet",
+    "country": "BANgLADESH"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 1,
+  "fields": {
+    "product_name": "Shirt",
+    "slug": "shirt",
+    "description": "From the classic button-up shirt to the trendy tunic, women's shirts serve different purposes and can be worn for various occasions. Here's a brief description of some popular types of women's shirts:",
+    "price": 1500,
+    "discount_percent": 0,
+    "images": "photos/products/E106D503_SANDCASTLE_E802P203_INDIGO_2front_954_grande_ZpKu1XS.webp",
+    "stock": 16,
+    "is_available": true,
+    "category": 2,
+    "created_date": "2025-09-08T14:44:06.864Z",
+    "modified_date": "2026-02-05T01:05:46.904Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 2,
+  "fields": {
+    "product_name": "Scarf",
+    "slug": "scarf",
+    "description": "image",
+    "price": 550,
+    "discount_percent": 0,
+    "images": "photos/products/scarf.png",
+    "stock": 28,
+    "is_available": true,
+    "category": 8,
+    "created_date": "2025-09-08T15:12:21.563Z",
+    "modified_date": "2025-10-19T19:05:29.131Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 3,
+  "fields": {
+    "product_name": "Stiletto Heels",
+    "slug": "heels",
+    "description": "image",
+    "price": 1500,
+    "discount_percent": 20,
+    "images": "photos/products/heels.png",
+    "stock": 16,
+    "is_available": true,
+    "category": 7,
+    "created_date": "2025-09-08T15:15:20.755Z",
+    "modified_date": "2026-05-01T16:46:36.128Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 4,
+  "fields": {
+    "product_name": "Bags",
+    "slug": "bags",
+    "description": "image",
+    "price": 2500,
+    "discount_percent": 20,
+    "images": "photos/products/bags.png",
+    "stock": 12,
+    "is_available": true,
+    "category": 5,
+    "created_date": "2025-09-08T15:53:04.046Z",
+    "modified_date": "2026-05-01T17:07:02.352Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 5,
+  "fields": {
+    "product_name": "Metal Chains",
+    "slug": "neckpice",
+    "description": "These are the most common, made from materials like gold, silver, or stainless steel. They’re durable, versatile, and perfect for both casual and formal looks.\r\nCords: Usually made of leather, silk, or polyester, cords give a more relaxed or bohemian feel.",
+    "price": 1800,
+    "discount_percent": 50,
+    "images": "photos/products/neackpice.png",
+    "stock": 12,
+    "is_available": true,
+    "category": 10,
+    "created_date": "2025-09-08T15:55:25.283Z",
+    "modified_date": "2026-05-01T17:07:23.126Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 6,
+  "fields": {
+    "product_name": "earring",
+    "slug": "earring",
+    "description": "image",
+    "price": 1200,
+    "discount_percent": 48,
+    "images": "photos/products/earrings.png",
+    "stock": 5,
+    "is_available": true,
+    "category": 9,
+    "created_date": "2025-09-08T15:56:08.203Z",
+    "modified_date": "2026-04-29T08:01:34.384Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 7,
+  "fields": {
+    "product_name": "juti",
+    "slug": "juti",
+    "description": "juthaaaa",
+    "price": 999,
+    "discount_percent": 0,
+    "images": "photos/products/il_fullxfull.5083877987_70rk.webp",
+    "stock": 20,
+    "is_available": true,
+    "category": 11,
+    "created_date": "2025-09-08T15:58:06.894Z",
+    "modified_date": "2026-02-05T01:17:12.144Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 8,
+  "fields": {
+    "product_name": "shoes",
+    "slug": "shoes",
+    "description": "image",
+    "price": 2200,
+    "discount_percent": 0,
+    "images": "photos/products/shoes.png",
+    "stock": 10,
+    "is_available": true,
+    "category": 4,
+    "created_date": "2025-09-08T15:59:34.883Z",
+    "modified_date": "2025-10-06T18:47:10.115Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 9,
+  "fields": {
+    "product_name": "shirt",
+    "slug": "shirts",
+    "description": "From the classic button-up shirt to the trendy tunic, women's shirts serve different purposes and can be worn for various occasions. Here's a brief description of some popular types of women's shirts:",
+    "price": 1999,
+    "discount_percent": 45,
+    "images": "photos/products/shirts-mob-1.jpg",
+    "stock": 100,
+    "is_available": true,
+    "category": 2,
+    "created_date": "2025-10-06T13:38:23.689Z",
+    "modified_date": "2026-04-29T08:07:18.577Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 10,
+  "fields": {
+    "product_name": "shirt1",
+    "slug": "shirt1",
+    "description": "this is Urmis shirt",
+    "price": 1000,
+    "discount_percent": 0,
+    "images": "photos/products/Screenshot_2025-05-17_181004.png",
+    "stock": 100,
+    "is_available": true,
+    "category": 2,
+    "created_date": "2025-10-06T15:58:57.355Z",
+    "modified_date": "2025-10-27T19:02:16.207Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 11,
+  "fields": {
+    "product_name": "Juta",
+    "slug": "juta",
+    "description": "comfortable",
+    "price": 150,
+    "discount_percent": 0,
+    "images": "photos/products/Screenshot_2025-09-08_205310.png",
+    "stock": 5,
+    "is_available": true,
+    "category": 11,
+    "created_date": "2025-10-28T04:56:54.083Z",
+    "modified_date": "2025-10-28T04:56:54.083Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 12,
+  "fields": {
+    "product_name": "Heels",
+    "slug": "Heels",
+    "description": "",
+    "price": 500,
+    "discount_percent": 40,
+    "images": "photos/products/41DXpF7xWUL._SL500_.jpg",
+    "stock": 4,
+    "is_available": true,
+    "category": 7,
+    "created_date": "2025-10-28T05:11:01.789Z",
+    "modified_date": "2026-05-01T17:12:35.827Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 14,
+  "fields": {
+    "product_name": "Nino Rossi Women’s Pump",
+    "slug": "pumpies",
+    "description": "Brighten your everyday style with the Nino Rossi Women’s Pump in cheerful pink. Featuring a soft PU upper and a durable rubber sole, this closed flat ensures comfort and ease for all-day wear. Lightweight and versatile, it effortlessly complements casual or semi-casual outfits, reflecting your vibrant, free-spirited personality. Perfect for running errands, meet-ups, or casual outings, this pump combines functional design with playful charm.",
+    "price": 1299,
+    "discount_percent": 0,
+    "images": "photos/products/1d08d5aa-7abe-4da1-8e1b-dec685276432.jpg",
+    "stock": 5,
+    "is_available": true,
+    "category": 14,
+    "created_date": "2026-02-01T15:57:02.555Z",
+    "modified_date": "2026-02-01T16:29:16.859Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 15,
+  "fields": {
+    "product_name": "Dr. Mauch Women’s Pump",
+    "slug": "pump",
+    "description": "Step into all-day comfort with the Dr. Mauch Women’s Pump. Crafted with a sleek PU upper and durable PU sole, this black pump features a subtle textured pattern that adds a touch of sophistication to any outfit. Designed to provide gentle support while keeping your feet comfortable, it’s perfect for workdays, events, or casual outings. Experience the perfect balance of style, wellness, and practicality in every step with Dr. Mauch.",
+    "price": 1999,
+    "discount_percent": 0,
+    "images": "photos/products/3f43f303-1024-403e-90eb-f680cbcfbacc.jpg",
+    "stock": 3,
+    "is_available": true,
+    "category": 15,
+    "created_date": "2026-02-01T16:06:56.356Z",
+    "modified_date": "2026-02-01T16:29:45.512Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 16,
+  "fields": {
+    "product_name": "Dr. Mauch Women's Slipper",
+    "slug": "slipper",
+    "description": "These DR. MAUCH slippers are engineered for women who spend long hours on their feet. Featuring an anatomically contoured footbed, these slides provide essential arch support and heel cushioning to reduce fatigue. The adjustable hook-and-loop top strap ensures a customized fit for all foot widths, while the premium PU sole offers excellent shock absorption. Ideal for those seeking 'specialist recommended' comfort for domestic or casual outdoor use.",
+    "price": 2290,
+    "discount_percent": 50,
+    "images": "photos/products/a2d90efd-bdea-4a08-bdd9-578dc3ff8916_AMO3x83.jpg",
+    "stock": 3,
+    "is_available": true,
+    "category": 16,
+    "created_date": "2026-02-01T16:17:19.665Z",
+    "modified_date": "2026-05-01T17:10:05.019Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 17,
+  "fields": {
+    "product_name": "Nino Rossi Women's Flat Sandal",
+    "slug": "nino-rossi-womens-flat-sandal",
+    "description": "Subtle and versatile, these Beige Open Flat Sandals by Nino Rossi are perfect for everyday wear. PU construction across upper, lining, and sole ensures durability and comfort, while the flat silhouette offers easy all-day wear. Domestic manufacturing promises consistent quality.",
+    "price": 2100,
+    "discount_percent": 0,
+    "images": "photos/products/3c55f527-7b1d-4a2e-869c-0aac3d145007_5tmBb6o.jpg",
+    "stock": 7,
+    "is_available": true,
+    "category": 17,
+    "created_date": "2026-02-01T16:22:13.316Z",
+    "modified_date": "2026-02-03T07:21:07.132Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 18,
+  "fields": {
+    "product_name": "Sprint Women's Canvas",
+    "slug": "sprint-womens-canvas",
+    "description": "Designed for women who blend performance with style, the Sprint Women’s Canvas is crafted to support an active lifestyle with everyday versatility. Built with lightweight Flyknit material, it offers breathability and flexibility, while the sturdy design ensures long-lasting durability.",
+    "price": 1290,
+    "discount_percent": 43,
+    "images": "photos/products/dd7af4ee-399e-4405-8666-0757692a93af.jpg",
+    "stock": 5,
+    "is_available": true,
+    "category": 18,
+    "created_date": "2026-02-01T16:36:04.877Z",
+    "modified_date": "2026-04-29T07:59:36.144Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 19,
+  "fields": {
+    "product_name": "Sprint Women's Sports Shoe",
+    "slug": "sprint-womens-sports-shoe",
+    "description": "Upgrade your athletic gear with these sports shoes for women. Experience the perfect combination of comfort, durability, and style with these thoughtfully designed shoes. From a walk in the park to a weekend run with friends, these sprint women's sports shoes are designed to keep you comfortable.",
+    "price": 2990,
+    "discount_percent": 0,
+    "images": "photos/products/1d0fa2de-ff2a-4afc-b2af-dfefd6c393da.jpg",
+    "stock": 3,
+    "is_available": true,
+    "category": 19,
+    "created_date": "2026-02-01T16:42:27.245Z",
+    "modified_date": "2026-02-01T16:42:27.245Z"
+  }
+},
+{
+  "model": "store.product",
+  "pk": 20,
+  "fields": {
+    "product_name": "shirt123",
+    "slug": "shirt123",
+    "description": "this is full shirt",
+    "price": 500,
+    "discount_percent": 10,
+    "images": "photos/products/Screenshot_2026-01-13_184123.png",
+    "stock": 100,
+    "is_available": true,
+    "category": 2,
+    "created_date": "2026-04-27T16:22:21.494Z",
+    "modified_date": "2026-04-29T08:17:22.142Z"
+  }
+},
+{
+  "model": "store.variationcategory",
+  "pk": 1,
+  "fields": {
+    "name": "color"
+  }
+},
+{
+  "model": "store.variationcategory",
+  "pk": 2,
+  "fields": {
+    "name": "size"
+  }
+},
+{
+  "model": "store.variationcategory",
+  "pk": 3,
+  "fields": {
+    "name": "brand"
+  }
+},
+{
+  "model": "store.variationcategory",
+  "pk": 4,
+  "fields": {
+    "name": "material"
+  }
+},
+{
+  "model": "store.variationcategory",
+  "pk": 5,
+  "fields": {
+    "name": "beauty"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 1,
+  "fields": {
+    "product": 1,
+    "variation_category": 1,
+    "variation_value": "O",
+    "is_active": true,
+    "created_date": "2026-02-05T01:05:46.906Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 2,
+  "fields": {
+    "product": 1,
+    "variation_category": 1,
+    "variation_value": "Blue",
+    "is_active": true,
+    "created_date": "2025-10-06T15:50:17.597Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 3,
+  "fields": {
+    "product": 1,
+    "variation_category": 2,
+    "variation_value": "Small",
+    "is_active": true,
+    "created_date": "2025-10-06T15:50:17.602Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 4,
+  "fields": {
+    "product": 1,
+    "variation_category": 2,
+    "variation_value": "Medium",
+    "is_active": true,
+    "created_date": "2025-10-06T15:50:17.605Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 5,
+  "fields": {
+    "product": 10,
+    "variation_category": 1,
+    "variation_value": "red",
+    "is_active": true,
+    "created_date": "2025-10-06T16:00:25.991Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 6,
+  "fields": {
+    "product": 10,
+    "variation_category": 2,
+    "variation_value": "S",
+    "is_active": true,
+    "created_date": "2025-10-06T16:00:25.991Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 7,
+  "fields": {
+    "product": 10,
+    "variation_category": 1,
+    "variation_value": "black",
+    "is_active": true,
+    "created_date": "2025-10-06T16:00:25.991Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 8,
+  "fields": {
+    "product": 10,
+    "variation_category": 1,
+    "variation_value": "white",
+    "is_active": true,
+    "created_date": "2025-10-06T16:00:25.992Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 9,
+  "fields": {
+    "product": 10,
+    "variation_category": 2,
+    "variation_value": "M",
+    "is_active": true,
+    "created_date": "2025-10-06T16:00:25.992Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 10,
+  "fields": {
+    "product": 10,
+    "variation_category": 2,
+    "variation_value": "L",
+    "is_active": true,
+    "created_date": "2025-10-06T16:00:25.992Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 11,
+  "fields": {
+    "product": 8,
+    "variation_category": 2,
+    "variation_value": "5",
+    "is_active": true,
+    "created_date": "2025-10-06T18:47:10.117Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 12,
+  "fields": {
+    "product": 8,
+    "variation_category": 2,
+    "variation_value": "6",
+    "is_active": true,
+    "created_date": "2025-10-06T18:47:10.117Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 13,
+  "fields": {
+    "product": 8,
+    "variation_category": 2,
+    "variation_value": "7",
+    "is_active": true,
+    "created_date": "2025-10-06T18:47:10.118Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 14,
+  "fields": {
+    "product": 8,
+    "variation_category": 1,
+    "variation_value": "white",
+    "is_active": true,
+    "created_date": "2025-10-06T18:47:10.118Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 15,
+  "fields": {
+    "product": 8,
+    "variation_category": 1,
+    "variation_value": "red",
+    "is_active": true,
+    "created_date": "2025-10-06T18:47:10.119Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 16,
+  "fields": {
+    "product": 8,
+    "variation_category": 1,
+    "variation_value": "black",
+    "is_active": true,
+    "created_date": "2025-10-06T18:47:10.119Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 17,
+  "fields": {
+    "product": 7,
+    "variation_category": 2,
+    "variation_value": "5",
+    "is_active": true,
+    "created_date": "2025-10-06T18:49:26.803Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 18,
+  "fields": {
+    "product": 7,
+    "variation_category": 2,
+    "variation_value": "6",
+    "is_active": true,
+    "created_date": "2025-10-06T18:49:26.803Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 19,
+  "fields": {
+    "product": 7,
+    "variation_category": 2,
+    "variation_value": "7",
+    "is_active": true,
+    "created_date": "2025-10-06T18:49:26.805Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 20,
+  "fields": {
+    "product": 7,
+    "variation_category": 1,
+    "variation_value": "white",
+    "is_active": true,
+    "created_date": "2025-10-06T18:49:26.805Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 21,
+  "fields": {
+    "product": 7,
+    "variation_category": 1,
+    "variation_value": "black",
+    "is_active": true,
+    "created_date": "2025-10-06T18:49:26.805Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 22,
+  "fields": {
+    "product": 9,
+    "variation_category": 1,
+    "variation_value": "white",
+    "is_active": true,
+    "created_date": "2025-10-27T19:56:58.819Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 23,
+  "fields": {
+    "product": 9,
+    "variation_category": 1,
+    "variation_value": "Black",
+    "is_active": true,
+    "created_date": "2026-02-05T01:02:29.516Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 24,
+  "fields": {
+    "product": 9,
+    "variation_category": 2,
+    "variation_value": "Big",
+    "is_active": true,
+    "created_date": "2025-10-27T19:56:58.819Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 25,
+  "fields": {
+    "product": 9,
+    "variation_category": 2,
+    "variation_value": "m",
+    "is_active": true,
+    "created_date": "2025-10-13T14:02:00.588Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 26,
+  "fields": {
+    "product": 9,
+    "variation_category": 2,
+    "variation_value": "L",
+    "is_active": true,
+    "created_date": "2026-02-05T01:02:29.517Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 27,
+  "fields": {
+    "product": 9,
+    "variation_category": 1,
+    "variation_value": "Blue",
+    "is_active": true,
+    "created_date": "2026-02-05T01:15:00.747Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 28,
+  "fields": {
+    "product": 2,
+    "variation_category": 1,
+    "variation_value": "red",
+    "is_active": true,
+    "created_date": "2025-10-19T19:05:29.132Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 29,
+  "fields": {
+    "product": 2,
+    "variation_category": 1,
+    "variation_value": "black",
+    "is_active": true,
+    "created_date": "2025-10-19T19:05:29.133Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 30,
+  "fields": {
+    "product": 2,
+    "variation_category": 1,
+    "variation_value": "blue",
+    "is_active": true,
+    "created_date": "2025-10-19T19:05:29.133Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 31,
+  "fields": {
+    "product": 2,
+    "variation_category": 2,
+    "variation_value": "Small",
+    "is_active": true,
+    "created_date": "2025-10-19T19:05:29.133Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 32,
+  "fields": {
+    "product": 2,
+    "variation_category": 2,
+    "variation_value": "Medium",
+    "is_active": true,
+    "created_date": "2025-10-19T19:05:29.133Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 33,
+  "fields": {
+    "product": 2,
+    "variation_category": 2,
+    "variation_value": "Large",
+    "is_active": true,
+    "created_date": "2025-10-19T19:05:29.134Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 36,
+  "fields": {
+    "product": 14,
+    "variation_category": 1,
+    "variation_value": "Light Pink",
+    "is_active": true,
+    "created_date": "2026-02-01T15:57:02.556Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 37,
+  "fields": {
+    "product": 14,
+    "variation_category": 2,
+    "variation_value": "32",
+    "is_active": true,
+    "created_date": "2026-02-01T15:57:02.557Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 38,
+  "fields": {
+    "product": 14,
+    "variation_category": 2,
+    "variation_value": "36",
+    "is_active": true,
+    "created_date": "2026-02-01T15:57:02.557Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 39,
+  "fields": {
+    "product": 14,
+    "variation_category": 2,
+    "variation_value": "40",
+    "is_active": true,
+    "created_date": "2026-02-01T16:02:01.099Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 40,
+  "fields": {
+    "product": 15,
+    "variation_category": 1,
+    "variation_value": "Black",
+    "is_active": true,
+    "created_date": "2026-02-01T16:06:56.358Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 41,
+  "fields": {
+    "product": 15,
+    "variation_category": 2,
+    "variation_value": "36",
+    "is_active": true,
+    "created_date": "2026-02-01T16:06:56.359Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 42,
+  "fields": {
+    "product": 15,
+    "variation_category": 2,
+    "variation_value": "38",
+    "is_active": true,
+    "created_date": "2026-02-01T16:06:56.360Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 43,
+  "fields": {
+    "product": 15,
+    "variation_category": 2,
+    "variation_value": "42",
+    "is_active": true,
+    "created_date": "2026-02-01T16:06:56.360Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 44,
+  "fields": {
+    "product": 16,
+    "variation_category": 1,
+    "variation_value": "Grey",
+    "is_active": true,
+    "created_date": "2026-02-01T16:17:19.668Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 45,
+  "fields": {
+    "product": 16,
+    "variation_category": 2,
+    "variation_value": "36",
+    "is_active": true,
+    "created_date": "2026-02-01T16:17:19.669Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 46,
+  "fields": {
+    "product": 16,
+    "variation_category": 2,
+    "variation_value": "38",
+    "is_active": true,
+    "created_date": "2026-02-01T16:17:19.669Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 47,
+  "fields": {
+    "product": 17,
+    "variation_category": 1,
+    "variation_value": "Light",
+    "is_active": true,
+    "created_date": "2026-02-01T16:22:13.318Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 48,
+  "fields": {
+    "product": 18,
+    "variation_category": 1,
+    "variation_value": "Black",
+    "is_active": true,
+    "created_date": "2026-02-01T16:36:04.878Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 49,
+  "fields": {
+    "product": 18,
+    "variation_category": 2,
+    "variation_value": "36",
+    "is_active": true,
+    "created_date": "2026-02-01T16:36:04.878Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 50,
+  "fields": {
+    "product": 18,
+    "variation_category": 2,
+    "variation_value": "38",
+    "is_active": true,
+    "created_date": "2026-02-01T16:36:04.879Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 51,
+  "fields": {
+    "product": 18,
+    "variation_category": 2,
+    "variation_value": "40",
+    "is_active": true,
+    "created_date": "2026-02-01T16:36:04.879Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 52,
+  "fields": {
+    "product": 18,
+    "variation_category": 2,
+    "variation_value": "42",
+    "is_active": true,
+    "created_date": "2026-02-01T16:36:04.879Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 53,
+  "fields": {
+    "product": 19,
+    "variation_category": 1,
+    "variation_value": "Pink",
+    "is_active": true,
+    "created_date": "2026-02-01T16:42:27.247Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 54,
+  "fields": {
+    "product": 19,
+    "variation_category": 2,
+    "variation_value": "38",
+    "is_active": true,
+    "created_date": "2026-02-01T16:42:27.248Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 55,
+  "fields": {
+    "product": 19,
+    "variation_category": 2,
+    "variation_value": "40",
+    "is_active": true,
+    "created_date": "2026-02-01T16:42:27.248Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 56,
+  "fields": {
+    "product": 19,
+    "variation_category": 2,
+    "variation_value": "42",
+    "is_active": true,
+    "created_date": "2026-02-01T16:42:27.248Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 57,
+  "fields": {
+    "product": 17,
+    "variation_category": 1,
+    "variation_value": "Black",
+    "is_active": true,
+    "created_date": "2026-02-03T07:21:07.134Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 58,
+  "fields": {
+    "product": 12,
+    "variation_category": 1,
+    "variation_value": "Black",
+    "is_active": true,
+    "created_date": "2026-02-05T01:19:40.510Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 59,
+  "fields": {
+    "product": 12,
+    "variation_category": 2,
+    "variation_value": "36",
+    "is_active": true,
+    "created_date": "2026-02-05T01:19:40.511Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 60,
+  "fields": {
+    "product": 12,
+    "variation_category": 2,
+    "variation_value": "38",
+    "is_active": true,
+    "created_date": "2026-02-05T01:19:40.512Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 61,
+  "fields": {
+    "product": 3,
+    "variation_category": 1,
+    "variation_value": "Black",
+    "is_active": true,
+    "created_date": "2026-02-05T01:21:03.471Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 62,
+  "fields": {
+    "product": 3,
+    "variation_category": 2,
+    "variation_value": "36",
+    "is_active": true,
+    "created_date": "2026-02-05T01:21:03.472Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 63,
+  "fields": {
+    "product": 3,
+    "variation_category": 2,
+    "variation_value": "38",
+    "is_active": true,
+    "created_date": "2026-02-05T01:21:03.473Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 64,
+  "fields": {
+    "product": 4,
+    "variation_category": 1,
+    "variation_value": "Black",
+    "is_active": true,
+    "created_date": "2026-02-05T01:22:44.680Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 65,
+  "fields": {
+    "product": 4,
+    "variation_category": 1,
+    "variation_value": "Pink",
+    "is_active": true,
+    "created_date": "2026-02-05T01:22:44.680Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 66,
+  "fields": {
+    "product": 4,
+    "variation_category": 1,
+    "variation_value": "Brown",
+    "is_active": true,
+    "created_date": "2026-02-05T01:22:44.681Z"
+  }
+},
+{
+  "model": "store.variation",
+  "pk": 67,
+  "fields": {
+    "product": 20,
+    "variation_category": 2,
+    "variation_value": "M, L, X, XL, XXL",
+    "is_active": true,
+    "created_date": "2026-04-27T16:22:21.496Z"
+  }
+},
+{
+  "model": "store.reviewrating",
+  "pk": 5,
+  "fields": {
+    "product": 2,
+    "user": [
+      "istiakadil43@gmail.com"
+    ],
+    "subject": "nice product",
+    "review": "hjfghjrg",
+    "rating": 3.0,
+    "ip": "127.0.0.1",
+    "is_visible": true,
+    "purchase_verified": true,
+    "image": "",
+    "created_at": "2026-04-29T17:12:42.489Z",
+    "updated_at": "2026-04-29T17:22:57.764Z"
+  }
+},
+{
+  "model": "store.reviewrating",
+  "pk": 6,
+  "fields": {
+    "product": 2,
+    "user": [
+      "istiakadil43@gmail.com"
+    ],
+    "subject": "",
+    "review": "",
+    "rating": 0.0,
+    "ip": "127.0.0.1",
+    "is_visible": false,
+    "purchase_verified": true,
+    "image": "",
+    "created_at": "2026-04-29T17:25:03.794Z",
+    "updated_at": "2026-04-29T17:25:03.794Z"
+  }
+},
+{
+  "model": "store.reviewrating",
+  "pk": 7,
+  "fields": {
+    "product": 2,
+    "user": [
+      "istiakadil43@gmail.com"
+    ],
+    "subject": "nice producthjf",
+    "review": "fghjkgfk",
+    "rating": 4.0,
+    "ip": "127.0.0.1",
+    "is_visible": true,
+    "purchase_verified": true,
+    "image": "",
+    "created_at": "2026-04-29T17:25:14.967Z",
+    "updated_at": "2026-04-29T17:25:40.113Z"
+  }
+},
+{
+  "model": "store.footersettings",
+  "pk": 1,
+  "fields": {
+    "logo_text": "ChicCherry",
+    "header_email": "ChicCherry@gmail.com",
+    "header_phone": "+8801767927972",
+    "email": "ChicCherry@gmail.com",
+    "phone": "+8801767927972",
+    "address": "Sylhet, Bangladesh",
+    "copy": "© 2026 ChicCherry",
+    "show_visa": true,
+    "show_paypal": true,
+    "show_master": true,
+    "show_amex": false,
+    "show_stripe": false
+  }
+},
+{
+  "model": "store.slideritem",
+  "pk": 1,
+  "fields": {
+    "media_type": "image",
+    "image": "slider/1600w-JRiBl2QIX-w.webp",
+    "video": "",
+    "caption": "",
+    "duration": 1000,
+    "order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "store.slideritem",
+  "pk": 2,
+  "fields": {
+    "media_type": "image",
+    "image": "slider/Brow_Sunglasses_on_Concrete_Floor_Shop_New_Arrivals_Banner_.png",
+    "video": "",
+    "caption": "",
+    "duration": 1000,
+    "order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "store.slideritem",
+  "pk": 4,
+  "fields": {
+    "media_type": "video",
+    "image": "",
+    "video": "slider/received_376856253708934.mp4",
+    "caption": "",
+    "duration": 4000,
+    "order": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "store.productgallery",
+  "pk": 1,
+  "fields": {
+    "product": 20,
+    "image": "store/products/Screenshot_2024-09-16_205257.png"
+  }
+},
+{
+  "model": "store.productgallery",
+  "pk": 2,
+  "fields": {
+    "product": 20,
+    "image": "store/products/Screenshot_2025-09-07_003059.png"
+  }
+},
+{
+  "model": "store.productgallery",
+  "pk": 3,
+  "fields": {
+    "product": 20,
+    "image": "store/products/Screenshot_2025-08-16_121704.png"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 1,
+  "fields": {
+    "cart_id": "boapgx06tw6n132cc95wl4sbkt2fdc4g",
+    "date_added": "2025-10-06"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 2,
+  "fields": {
+    "cart_id": "w6nu5akjsv6lkjkzrjia2eackud5bmbj",
+    "date_added": "2025-10-07"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 3,
+  "fields": {
+    "cart_id": "egfjtguyuzp2ownb6gad3enosebo5y9b",
+    "date_added": "2025-10-07"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 4,
+  "fields": {
+    "cart_id": "c1lqhk563mq4ggvb0sj6kae26f7gw6rw",
+    "date_added": "2025-10-13"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 5,
+  "fields": {
+    "cart_id": "zldrso5xaz5tam9215q5721hgrgople9",
+    "date_added": "2025-10-13"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 6,
+  "fields": {
+    "cart_id": "s92xv6xeteecpk7jb09uvzwazxr4k8m2",
+    "date_added": "2025-10-13"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 7,
+  "fields": {
+    "cart_id": "t5u86civ8iucfshjg2pglswpqgyg1nft",
+    "date_added": "2025-10-13"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 8,
+  "fields": {
+    "cart_id": "gyst1j9t2thgj05gemcsa37cfugp7p1r",
+    "date_added": "2025-10-13"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 9,
+  "fields": {
+    "cart_id": "6yroiq5yqx8v2vqi1i868ek1sl39h39x",
+    "date_added": "2025-10-13"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 10,
+  "fields": {
+    "cart_id": "8nsvext8iru7bejgptzijol13vgqm2xl",
+    "date_added": "2025-10-14"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 11,
+  "fields": {
+    "cart_id": "t9854chlqzvs0w2b03745ximlckdx9op",
+    "date_added": "2025-10-14"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 12,
+  "fields": {
+    "cart_id": "fy6kxyckc07fr4j0i51r5x271fc5ymvx",
+    "date_added": "2025-10-14"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 13,
+  "fields": {
+    "cart_id": "w86j258iqko020sdkhtwn43pl898ava4",
+    "date_added": "2025-10-14"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 14,
+  "fields": {
+    "cart_id": "srpg2xfj07hbsawjyrxwrlf7pm76lrwk",
+    "date_added": "2025-10-14"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 15,
+  "fields": {
+    "cart_id": "5pp2pulke5m2lnksrgsfrwhrb4th2vfh",
+    "date_added": "2025-10-14"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 16,
+  "fields": {
+    "cart_id": "gflxqeg53rs5wvuoa6heo9dcrk7niqeq",
+    "date_added": "2025-10-14"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 17,
+  "fields": {
+    "cart_id": "fgxzyni0vg9faj3uo95gmaz7swnmfm44",
+    "date_added": "2025-10-14"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 18,
+  "fields": {
+    "cart_id": "d0rw8h34087vjr89f5v7om0p5byd4yl6",
+    "date_added": "2025-10-18"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 19,
+  "fields": {
+    "cart_id": "ndovfgmpz3eao5sqv4vzl3rqrjlu068y",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 20,
+  "fields": {
+    "cart_id": "3srs0c5hnudflbfbd2jv7izvdmkgza4m",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 21,
+  "fields": {
+    "cart_id": "yge1wf6mrlc28kx5gtiuxx7lnsgkczbk",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 22,
+  "fields": {
+    "cart_id": "ksg7jtga6m8ng9yatp0w8rkzzfo7j08n",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 23,
+  "fields": {
+    "cart_id": "xo6nswu35k1a2s742jae8ug7p4gaalj5",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 24,
+  "fields": {
+    "cart_id": "9vnayf2gsheibsto73ct0i0sh93312t6",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 25,
+  "fields": {
+    "cart_id": "04x1akfokp9g0q915pwk7arl7atv74bp",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 26,
+  "fields": {
+    "cart_id": "3u38gxgeyqlavqww8otxwpq7h7a1qeqw",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 27,
+  "fields": {
+    "cart_id": "m6g6djlbrd56p9ogwiv5ybd579tgy82n",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 28,
+  "fields": {
+    "cart_id": "v0ucxtusxl3r13uyq475y59qnzhs32ec",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 29,
+  "fields": {
+    "cart_id": "0fjrkwz4asr53u0wc9s2z2jzbj4bfq5d",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 30,
+  "fields": {
+    "cart_id": "riff8pt5ji4grxz2h8bgtc0m572z97wo",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 31,
+  "fields": {
+    "cart_id": "at7o2vq9nrhpk4alab2jun9bdh30ehqi",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 32,
+  "fields": {
+    "cart_id": "mt8yasfsv3bv82bzkeqyuz1xuojkv6mo",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 33,
+  "fields": {
+    "cart_id": "2cuclhh2ribsoui4bpe8ll902zocnbvj",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 34,
+  "fields": {
+    "cart_id": "rewl3v3zkdyg23iaix68jd6tqcoyeswd",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 35,
+  "fields": {
+    "cart_id": "22x9aus0pj0vln6496128spwktrhanvy",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 36,
+  "fields": {
+    "cart_id": "3so6c69abhf0xz4xgs21dwiy2ypup5y2",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 37,
+  "fields": {
+    "cart_id": "maz39sp6p8og6bzcl4o32eeopm836gmx",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 38,
+  "fields": {
+    "cart_id": "mtar8fzf71du6cbefqx2iflyth1y6022",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 39,
+  "fields": {
+    "cart_id": "h90mekdwwaer6jzfphjdmgb7ptjl63hd",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 40,
+  "fields": {
+    "cart_id": "kg8yf64ug5vhxtf46tpv39ogzjb2jmog",
+    "date_added": "2025-10-19"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 41,
+  "fields": {
+    "cart_id": "b69ch34dcn7fcslxtnphcli3bpmo3tk4",
+    "date_added": "2025-10-20"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 42,
+  "fields": {
+    "cart_id": "9ghnch1v5b1rbydxa87wz0nyw5hd2ors",
+    "date_added": "2025-10-20"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 43,
+  "fields": {
+    "cart_id": "y4oktsqlkbpnzsnxb9s0yy4rilphqpv4",
+    "date_added": "2025-10-20"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 44,
+  "fields": {
+    "cart_id": "udn4f94v2j7v95vosbxa7oyk2nnx6x2b",
+    "date_added": "2025-10-20"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 45,
+  "fields": {
+    "cart_id": "uoxcbqitau4oke0l5w770qzeg8vw3wrd",
+    "date_added": "2025-10-21"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 46,
+  "fields": {
+    "cart_id": "5n7n7ggo7jhhocfqjnvetll3sr9xrmnr",
+    "date_added": "2025-10-21"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 47,
+  "fields": {
+    "cart_id": "73r7sy7gl5o5qfb9key3hynv9yjjh0ep",
+    "date_added": "2025-10-21"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 48,
+  "fields": {
+    "cart_id": "ufukyps5cfhec0pale7pzww4ong53nuu",
+    "date_added": "2025-11-11"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 49,
+  "fields": {
+    "cart_id": "brxd9dqr10tfkyagfi1uqip5l5wjpu43",
+    "date_added": "2025-11-17"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 50,
+  "fields": {
+    "cart_id": "62q6ezv3ec684bcs3nao1u1gc9d87qmy",
+    "date_added": "2025-11-17"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 51,
+  "fields": {
+    "cart_id": "vnaorecevb13no9tzn31e2ig9de1w6hl",
+    "date_added": "2025-11-18"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 52,
+  "fields": {
+    "cart_id": "qjuqt66emp51k3pb8tuycfmjw7mfc9ns",
+    "date_added": "2025-11-18"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 53,
+  "fields": {
+    "cart_id": "un75gl9z6k8pljv00g66qmoxdesr2ttr",
+    "date_added": "2025-11-18"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 54,
+  "fields": {
+    "cart_id": "8ns0qg7rvib0a1xf7qso2pec1vsqw1nj",
+    "date_added": "2025-11-18"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 55,
+  "fields": {
+    "cart_id": "1wyjx2djn4h1uu52onx00uwh22qtp3gk",
+    "date_added": "2025-11-18"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 56,
+  "fields": {
+    "cart_id": "sn7tsnhywfpacy2tz3cohnpwd9hfs4hh",
+    "date_added": "2025-11-24"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 57,
+  "fields": {
+    "cart_id": "25gabbwrqxe4e7v2mjpgd4gbijaj9cst",
+    "date_added": "2025-11-25"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 58,
+  "fields": {
+    "cart_id": "hy5fkv5q4ushouedra5xqqgzy5dzt14j",
+    "date_added": "2025-11-25"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 59,
+  "fields": {
+    "cart_id": "8veqydrftw9njkuir2w20dur2dug3jcz",
+    "date_added": "2025-11-25"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 60,
+  "fields": {
+    "cart_id": "wm7vjxu1f307vce5t6u6u16fn3sd16da",
+    "date_added": "2025-11-25"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 61,
+  "fields": {
+    "cart_id": "7zxjvi8jh5fo4mdufnrr0blcbu53ps1j",
+    "date_added": "2026-02-03"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 62,
+  "fields": {
+    "cart_id": "a4o3xh1mxjmemvletx96kcc2v1pa9tm2",
+    "date_added": "2026-02-05"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 63,
+  "fields": {
+    "cart_id": "8sde052kpgktcn1svas6t8spllvfsw7w",
+    "date_added": "2026-04-29"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 64,
+  "fields": {
+    "cart_id": "ft3h891uud41ox92x7tlgy0bre29pyxl",
+    "date_added": "2026-04-29"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 65,
+  "fields": {
+    "cart_id": "2tu87fkknwd5qipjntxkn7jigza9jgtu",
+    "date_added": "2026-04-29"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 66,
+  "fields": {
+    "cart_id": "6si7gz8sq7apnumvad3j31q7ug5kx0v8",
+    "date_added": "2026-04-29"
+  }
+},
+{
+  "model": "carts.cart",
+  "pk": 67,
+  "fields": {
+    "cart_id": "eb9e2ri7v40jd95m78r2j8j3pdbbgofo",
+    "date_added": "2026-10-30"
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 6,
+  "fields": {
+    "product": 1,
+    "cart": 1,
+    "quantity": 1,
+    "is_active": true,
+    "user": null,
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 7,
+  "fields": {
+    "product": 2,
+    "cart": 1,
+    "quantity": 1,
+    "is_active": true,
+    "user": null,
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 26,
+  "fields": {
+    "product": 1,
+    "cart": 5,
+    "quantity": 1,
+    "is_active": true,
+    "user": null,
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 27,
+  "fields": {
+    "product": 3,
+    "cart": 5,
+    "quantity": 1,
+    "is_active": true,
+    "user": null,
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 28,
+  "fields": {
+    "product": 1,
+    "cart": 6,
+    "quantity": 1,
+    "is_active": true,
+    "user": null,
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 29,
+  "fields": {
+    "product": 7,
+    "cart": 7,
+    "quantity": 1,
+    "is_active": true,
+    "user": null,
+    "variations": [
+      17,
+      20
+    ]
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 30,
+  "fields": {
+    "product": 7,
+    "cart": 7,
+    "quantity": 1,
+    "is_active": true,
+    "user": null,
+    "variations": [
+      18,
+      20
+    ]
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 31,
+  "fields": {
+    "product": 1,
+    "cart": 7,
+    "quantity": 1,
+    "is_active": true,
+    "user": null,
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 32,
+  "fields": {
+    "product": 2,
+    "cart": 8,
+    "quantity": 7,
+    "is_active": true,
+    "user": null,
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 33,
+  "fields": {
+    "product": 1,
+    "cart": 8,
+    "quantity": 7,
+    "is_active": true,
+    "user": null,
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 76,
+  "fields": {
+    "product": 2,
+    "cart": 27,
+    "quantity": 1,
+    "is_active": true,
+    "user": null,
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 128,
+  "fields": {
+    "product": 3,
+    "cart": 60,
+    "quantity": 1,
+    "is_active": true,
+    "user": [
+      "urmighosr@gmail.com"
+    ],
+    "variations": []
+  }
+},
+{
+  "model": "carts.cartitem",
+  "pk": 131,
+  "fields": {
+    "product": 20,
+    "cart": 63,
+    "quantity": 1,
+    "is_active": true,
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "variations": [
+      67
+    ]
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 1,
+  "fields": {
+    "user": null,
+    "email": "sunf08124@gmail.com",
+    "first_name": "Md.Istiak",
+    "last_name": "adil",
+    "phone": "01704080389",
+    "address_line_1": "Sylhet,Bangladesh",
+    "address_line_2": "",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "dfaddf",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 7650.0,
+    "tax": 150.0,
+    "status": "Completed",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "202510061",
+    "created_at": "2025-10-06T18:12:41.308Z",
+    "updated_at": "2025-10-06T18:12:45.153Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 2,
+  "fields": {
+    "user": null,
+    "email": "sunf08124@gmail.com",
+    "first_name": "Md.Istiak",
+    "last_name": "adil",
+    "phone": "01704080389",
+    "address_line_1": "Sylhet,Bangladesh",
+    "address_line_2": "Sylhet,Bangladesh",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "dfaddf",
+    "additional_info": "afaf",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Completed",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "202510062",
+    "created_at": "2025-10-06T18:30:36.125Z",
+    "updated_at": "2025-10-06T18:30:39.466Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 3,
+  "fields": {
+    "user": null,
+    "email": "sunf08124@gmail.com",
+    "first_name": "Md.Istiak",
+    "last_name": "adil",
+    "phone": "01704080389",
+    "address_line_1": "Sylhet,Bangladesh",
+    "address_line_2": "Sylhet,Bangladesh",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "dfaddf",
+    "additional_info": "afaf",
+    "email_verified": true,
+    "order_total": 2652.0,
+    "tax": 52.0,
+    "status": "Completed",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "202510063",
+    "created_at": "2025-10-06T18:36:37.409Z",
+    "updated_at": "2025-10-06T18:36:39.581Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 4,
+  "fields": {
+    "user": null,
+    "email": "sunf08124@gmail.com",
+    "first_name": "Md.Istiak",
+    "last_name": "adil",
+    "phone": "01704080389",
+    "address_line_1": "Sylhet,Bangladesh",
+    "address_line_2": "Sylhet,Bangladesh",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "dfaddf",
+    "additional_info": "afaf",
+    "email_verified": true,
+    "order_total": 2091.0,
+    "tax": 41.0,
+    "status": "Completed",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "202510064",
+    "created_at": "2025-10-06T18:44:43.857Z",
+    "updated_at": "2025-10-06T18:44:48.524Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 5,
+  "fields": {
+    "user": null,
+    "email": "sunf08124@gmail.com",
+    "first_name": "Md.Istiak",
+    "last_name": "adil",
+    "phone": "01704080389",
+    "address_line_1": "Sylhet,Bangladesh",
+    "address_line_2": "Sylhet,Bangladesh",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "dfaddf",
+    "additional_info": "afaf",
+    "email_verified": true,
+    "order_total": 2548.98,
+    "tax": 49.98,
+    "status": "Completed",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "202510065",
+    "created_at": "2025-10-06T18:50:45.505Z",
+    "updated_at": "2025-10-06T18:50:47.059Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 6,
+  "fields": {
+    "user": null,
+    "email": "istiakadil43@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "heels",
+    "additional_info": "dsfg",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Completed",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "202510136",
+    "created_at": "2025-10-13T13:45:48.040Z",
+    "updated_at": "2025-10-13T13:45:57.187Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 7,
+  "fields": {
+    "user": null,
+    "email": "istiakadil43@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "heels",
+    "additional_info": "dsfg",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Completed",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "202510137",
+    "created_at": "2025-10-13T13:52:15.979Z",
+    "updated_at": "2025-10-13T13:52:18.081Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 8,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "heels",
+    "additional_info": "dsfg",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "202510138",
+    "created_at": "2025-10-13T17:06:18.963Z",
+    "updated_at": "2025-10-14T08:32:48.703Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 9,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "heels",
+    "additional_info": "dsfg",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Completed",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "202510139",
+    "created_at": "2025-10-13T18:47:54.514Z",
+    "updated_at": "2025-10-13T18:50:31.952Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 10,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Completed",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101310",
+    "created_at": "2025-10-13T18:55:19.328Z",
+    "updated_at": "2025-10-13T19:02:02.273Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 11,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "New",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "2025101311",
+    "created_at": "2025-10-13T19:02:50.800Z",
+    "updated_at": "2025-10-13T19:02:50.807Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 12,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "New",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "2025101312",
+    "created_at": "2025-10-13T19:14:42.121Z",
+    "updated_at": "2025-10-13T19:14:42.128Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 13,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "New",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "2025101313",
+    "created_at": "2025-10-13T19:16:49.713Z",
+    "updated_at": "2025-10-13T19:16:49.722Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 14,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Completed",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101314",
+    "created_at": "2025-10-13T19:18:03.117Z",
+    "updated_at": "2025-10-13T19:21:30.948Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 15,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Completed",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101315",
+    "created_at": "2025-10-13T19:23:12.599Z",
+    "updated_at": "2025-10-13T19:23:26.725Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 16,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Completed",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101316",
+    "created_at": "2025-10-13T19:25:46.680Z",
+    "updated_at": "2025-10-13T19:26:15.977Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 17,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Completed",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101317",
+    "created_at": "2025-10-13T19:29:58.732Z",
+    "updated_at": "2025-10-13T19:30:18.966Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 18,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Completed",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101318",
+    "created_at": "2025-10-13T19:31:47.596Z",
+    "updated_at": "2025-10-13T19:31:53.568Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 19,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Completed",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101319",
+    "created_at": "2025-10-13T19:34:07.109Z",
+    "updated_at": "2025-10-13T19:37:23.766Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 20,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Completed",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101320",
+    "created_at": "2025-10-13T19:38:07.387Z",
+    "updated_at": "2025-10-13T19:38:36.344Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 21,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Completed",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101321",
+    "created_at": "2025-10-13T19:40:50.492Z",
+    "updated_at": "2025-10-13T19:41:19.299Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 22,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Completed",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101322",
+    "created_at": "2025-10-13T19:53:23.426Z",
+    "updated_at": "2025-10-13T19:53:45.176Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 23,
+  "fields": {
+    "user": null,
+    "email": "istiakadil382@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "fgsgf",
+    "address_line_2": "sgsdg",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101323",
+    "created_at": "2025-10-13T19:55:51.501Z",
+    "updated_at": "2025-10-14T07:54:04.800Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 24,
+  "fields": {
+    "user": null,
+    "email": "istiakadil8@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "DGSG",
+    "address_line_2": "GSG",
+    "city": "SGSG",
+    "state": "GSG",
+    "country": "GSG",
+    "order_note": "GSG",
+    "additional_info": "SGS",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Processing",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101424",
+    "created_at": "2025-10-14T07:36:43.092Z",
+    "updated_at": "2025-10-14T07:36:56.906Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 25,
+  "fields": {
+    "user": null,
+    "email": "istiakadil8@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "DGSG",
+    "address_line_2": "GSG",
+    "city": "SGSG",
+    "state": "GSG",
+    "country": "GSG",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101425",
+    "created_at": "2025-10-14T07:39:21.753Z",
+    "updated_at": "2025-10-14T08:01:21.140Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 26,
+  "fields": {
+    "user": null,
+    "email": "istiakadil8@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "DGSG",
+    "address_line_2": "GSG",
+    "city": "SGSG",
+    "state": "GSG",
+    "country": "GSG",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101426",
+    "created_at": "2025-10-14T07:45:23.407Z",
+    "updated_at": "2025-10-14T07:51:34.092Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 27,
+  "fields": {
+    "user": null,
+    "email": "istiakadil8@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "DGSG",
+    "address_line_2": "GSG",
+    "city": "SGSG",
+    "state": "GSG",
+    "country": "GSG",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101427",
+    "created_at": "2025-10-14T07:56:30.729Z",
+    "updated_at": "2025-10-14T07:58:06.728Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 28,
+  "fields": {
+    "user": null,
+    "email": "istiakadil8@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "DGSG",
+    "address_line_2": "GSG",
+    "city": "SGSG",
+    "state": "GSG",
+    "country": "GSG",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101428",
+    "created_at": "2025-10-14T09:42:17.964Z",
+    "updated_at": "2025-10-14T09:50:37.848Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 29,
+  "fields": {
+    "user": null,
+    "email": "istiakadil8@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "DGSG",
+    "address_line_2": "GSG",
+    "city": "SGSG",
+    "state": "GSG",
+    "country": "GSG",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Processing",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101429",
+    "created_at": "2025-10-14T09:58:21.171Z",
+    "updated_at": "2025-10-14T09:58:28.370Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 30,
+  "fields": {
+    "user": null,
+    "email": "istiakadil8@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "DGSG",
+    "address_line_2": "GSG",
+    "city": "SGSG",
+    "state": "GSG",
+    "country": "GSG",
+    "order_note": "GSG",
+    "additional_info": "SGS",
+    "email_verified": true,
+    "order_total": 2805.0,
+    "tax": 55.0,
+    "status": "Processing",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101830",
+    "created_at": "2025-10-18T17:57:07.670Z",
+    "updated_at": "2025-10-18T17:57:15.535Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 31,
+  "fields": {
+    "user": null,
+    "email": "istiakadil8@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "DGSG",
+    "address_line_2": "GSG",
+    "city": "SGSG",
+    "state": "GSG",
+    "country": "GSG",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Processing",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101831",
+    "created_at": "2025-10-18T18:05:25.851Z",
+    "updated_at": "2025-10-18T18:05:31.655Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 32,
+  "fields": {
+    "user": null,
+    "email": "istiakadil43@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "DGSG",
+    "address_line_2": "GSG",
+    "city": "SGSG",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Processing",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101932",
+    "created_at": "2025-10-19T08:55:11.179Z",
+    "updated_at": "2025-10-19T08:55:16.285Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 33,
+  "fields": {
+    "user": null,
+    "email": "istiakadil8@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "DGSG",
+    "address_line_2": "GSG",
+    "city": "SGSG",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1122.0,
+    "tax": 22.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101933",
+    "created_at": "2025-10-19T12:25:58.674Z",
+    "updated_at": "2025-10-19T12:28:26.739Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 34,
+  "fields": {
+    "user": null,
+    "email": "istiakadil8@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "01704080389",
+    "address_line_1": "DGSG",
+    "address_line_2": "GSG",
+    "city": "SGSG",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Processing",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025101934",
+    "created_at": "2025-10-19T16:43:49.316Z",
+    "updated_at": "2025-10-19T16:44:07.610Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 35,
+  "fields": {
+    "user": [
+      "ghoseuditi@gmail.com"
+    ],
+    "email": "ghoseuditi@gmail.com",
+    "first_name": "Jannat",
+    "last_name": "Arbin",
+    "phone": "+8801704008038",
+    "address_line_1": "Hetimgonj,Sylhet,Bangladesh",
+    "address_line_2": "Sylhet,Bangladesh",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 4590.0,
+    "tax": 90.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025102035",
+    "created_at": "2025-10-20T19:27:19.604Z",
+    "updated_at": "2025-10-20T19:32:04.129Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 36,
+  "fields": {
+    "user": [
+      "urmighosr@gmail.com"
+    ],
+    "email": "urmighosr@gmail.com",
+    "first_name": "Srija",
+    "last_name": "Ghose",
+    "phone": "+8801767927972",
+    "address_line_1": "Hetimgonj,Sylhet,Bangladesh",
+    "address_line_2": "Sylhet,Bangladesh",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Processing",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025111736",
+    "created_at": "2025-11-17T20:03:05.982Z",
+    "updated_at": "2025-11-17T20:03:19.474Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 37,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 100.0,
+    "tax": 10.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "",
+    "order_number": "TEST123",
+    "created_at": "2025-11-17T20:33:54.370Z",
+    "updated_at": "2025-11-17T20:33:54.370Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 38,
+  "fields": {
+    "user": [
+      "urmighosr@gmail.com"
+    ],
+    "email": "urmighosr@gmail.com",
+    "first_name": "Srija",
+    "last_name": "Ghose",
+    "phone": "+8801767927972",
+    "address_line_1": "Hetimgonj,Sylhet,Bangladesh",
+    "address_line_2": "Sylhet,Bangladesh",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Processing",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2025111738",
+    "created_at": "2025-11-17T20:43:09.212Z",
+    "updated_at": "2025-11-17T20:43:17.263Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 39,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 550.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.242Z",
+    "updated_at": "2025-11-17T20:45:59.242Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 40,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 1500.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.273Z",
+    "updated_at": "2025-11-17T20:45:59.275Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 41,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 2500.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.292Z",
+    "updated_at": "2025-11-17T20:45:59.292Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 42,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 1800.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.303Z",
+    "updated_at": "2025-11-17T20:45:59.303Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 43,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 1200.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.317Z",
+    "updated_at": "2025-11-17T20:45:59.317Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 44,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 999.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.333Z",
+    "updated_at": "2025-11-17T20:45:59.333Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 45,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 2200.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.348Z",
+    "updated_at": "2025-11-17T20:45:59.348Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 46,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 200.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.358Z",
+    "updated_at": "2025-11-17T20:45:59.358Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 47,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 1000.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.376Z",
+    "updated_at": "2025-11-17T20:45:59.376Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 48,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 150.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.390Z",
+    "updated_at": "2025-11-17T20:45:59.390Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 49,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 500.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.402Z",
+    "updated_at": "2025-11-17T20:45:59.402Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 50,
+  "fields": {
+    "user": null,
+    "email": "test@example.com",
+    "first_name": "Test",
+    "last_name": "User",
+    "phone": "1234567890",
+    "address_line_1": "Test Address",
+    "address_line_2": "",
+    "city": "Test City",
+    "state": "Test State",
+    "country": "Test Country",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": false,
+    "order_total": 300.0,
+    "tax": 0.0,
+    "status": "Delivered",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "",
+    "created_at": "2025-11-17T20:45:59.417Z",
+    "updated_at": "2025-11-17T20:45:59.418Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 51,
+  "fields": {
+    "user": [
+      "urmighosr@gmail.com"
+    ],
+    "email": "urmighosr@gmail.com",
+    "first_name": "Srija",
+    "last_name": "Ghose",
+    "phone": "+8801767927972",
+    "address_line_1": "Hetimgonj,Sylhet,Bangladesh",
+    "address_line_2": "Sylhet,Bangladesh",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 2091.0,
+    "tax": 41.0,
+    "status": "Shipped",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "2025112451",
+    "created_at": "2025-11-24T17:21:09.807Z",
+    "updated_at": "2025-11-24T17:26:02.338Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 52,
+  "fields": {
+    "user": [
+      "urmighosr@gmail.com"
+    ],
+    "email": "urmighosr@gmail.com",
+    "first_name": "Srija",
+    "last_name": "Ghose",
+    "phone": "+8801767927972",
+    "address_line_1": "Hetimgonj,Sylhet,Bangladesh",
+    "address_line_2": "Sylhet,Bangladesh",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 2550.0,
+    "tax": 50.0,
+    "status": "Processing",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "2025112452",
+    "created_at": "2025-11-24T18:05:37.268Z",
+    "updated_at": "2025-11-24T18:07:33.126Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 53,
+  "fields": {
+    "user": [
+      "urmighosr@gmail.com"
+    ],
+    "email": "urmighosr@gmail.com",
+    "first_name": "Srija",
+    "last_name": "Ghose",
+    "phone": "+8801767927972",
+    "address_line_1": "Hetimgonj,Sylhet,Bangladesh",
+    "address_line_2": "Sylhet,Bangladesh",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1018.98,
+    "tax": 19.98,
+    "status": "Placed",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "2025112453",
+    "created_at": "2025-11-24T18:36:08.668Z",
+    "updated_at": "2025-11-24T18:40:24.961Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 54,
+  "fields": {
+    "user": [
+      "istiakadil43@gmail.com"
+    ],
+    "email": "istiakadil43@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "+8801704080389",
+    "address_line_1": "Hetimgonj,Golapgonj,Sylhet",
+    "address_line_2": "Hetimgonj,Golapgonj,Sylhet",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 7650.0,
+    "tax": 150.0,
+    "status": "Processing",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2026042954",
+    "created_at": "2026-04-29T16:34:01.784Z",
+    "updated_at": "2026-04-29T16:34:19.639Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 55,
+  "fields": {
+    "user": [
+      "istiakadil43@gmail.com"
+    ],
+    "email": "istiakadil43@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "+8801704080389",
+    "address_line_1": "Hetimgonj,Golapgonj,Sylhet",
+    "address_line_2": "Hetimgonj,Golapgonj,Sylhet",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2026042955",
+    "created_at": "2026-04-29T16:35:34.711Z",
+    "updated_at": "2026-04-29T17:06:10.947Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 56,
+  "fields": {
+    "user": [
+      "istiakadil43@gmail.com"
+    ],
+    "email": "istiakadil43@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "+8801704080389",
+    "address_line_1": "Hetimgonj,Golapgonj,Sylhet",
+    "address_line_2": "Hetimgonj,Golapgonj,Sylhet",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1836.0,
+    "tax": 36.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2026042956",
+    "created_at": "2026-04-29T16:43:15.249Z",
+    "updated_at": "2026-04-29T16:46:37.342Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 57,
+  "fields": {
+    "user": [
+      "istiakadil43@gmail.com"
+    ],
+    "email": "istiakadil43@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "+8801704080389",
+    "address_line_1": "Hetimgonj,Golapgonj,Sylhet",
+    "address_line_2": "Hetimgonj,Golapgonj,Sylhet",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 1530.0,
+    "tax": 30.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2026042957",
+    "created_at": "2026-04-29T16:52:43.878Z",
+    "updated_at": "2026-04-29T16:55:51.472Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 58,
+  "fields": {
+    "user": [
+      "istiakadil43@gmail.com"
+    ],
+    "email": "istiakadil43@gmail.com",
+    "first_name": "Istiak",
+    "last_name": "Adil",
+    "phone": "+8801704080389",
+    "address_line_1": "Hetimgonj,Golapgonj,Sylhet",
+    "address_line_2": "Hetimgonj,Golapgonj,Sylhet",
+    "city": "Sylhet",
+    "state": "Sylhet",
+    "country": "Bangladesh",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Delivered",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2026042958",
+    "created_at": "2026-04-29T17:07:05.151Z",
+    "updated_at": "2026-04-29T17:07:44.408Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 59,
+  "fields": {
+    "user": [
+      "urmighoseofficial@gmail.com"
+    ],
+    "email": "urmighoseofficial@gmail.com",
+    "first_name": "Urmi",
+    "last_name": "Ghose official",
+    "phone": "01702256666",
+    "address_line_1": "hsdfh",
+    "address_line_2": "sdfhds",
+    "city": "sylhet",
+    "state": "sylhet",
+    "country": "BANgLADESH",
+    "order_note": "SGS",
+    "additional_info": "sgs",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Placed",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "2026103059",
+    "created_at": "2026-10-30T16:00:39.387Z",
+    "updated_at": "2026-10-30T16:00:39.406Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 60,
+  "fields": {
+    "user": [
+      "urmighoseofficial@gmail.com"
+    ],
+    "email": "urmighoseofficial@gmail.com",
+    "first_name": "Urmi",
+    "last_name": "Ghose official",
+    "phone": "01704080389",
+    "address_line_1": "hsdfh",
+    "address_line_2": "sdfhds",
+    "city": "sylhet",
+    "state": "sylhet",
+    "country": "BANgLADESH",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Placed",
+    "payment_status": "Pending",
+    "ip": "127.0.0.1",
+    "order_number": "2026103060",
+    "created_at": "2026-10-30T16:02:26.859Z",
+    "updated_at": "2026-10-30T16:02:26.883Z"
+  }
+},
+{
+  "model": "carts.order",
+  "pk": 61,
+  "fields": {
+    "user": [
+      "urmighoseofficial@gmail.com"
+    ],
+    "email": "urmighoseofficial@gmail.com",
+    "first_name": "Urmi",
+    "last_name": "Ghose official",
+    "phone": "01704080389",
+    "address_line_1": "hsdfh",
+    "address_line_2": "sdfhds",
+    "city": "sylhet",
+    "state": "sylhet",
+    "country": "BANgLADESH",
+    "order_note": "",
+    "additional_info": "",
+    "email_verified": true,
+    "order_total": 561.0,
+    "tax": 11.0,
+    "status": "Processing",
+    "payment_status": "Paid",
+    "ip": "127.0.0.1",
+    "order_number": "2026103061",
+    "created_at": "2026-10-30T16:16:16.769Z",
+    "updated_at": "2026-10-30T16:16:21.570Z"
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 1,
+  "fields": {
+    "order": 1,
+    "product": 3,
+    "quantity": 2,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 2,
+  "fields": {
+    "order": 1,
+    "product": 1,
+    "quantity": 3,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 3,
+  "fields": {
+    "order": 2,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 4,
+  "fields": {
+    "order": 3,
+    "product": 2,
+    "quantity": 2,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 5,
+  "fields": {
+    "order": 3,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 6,
+  "fields": {
+    "order": 4,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 7,
+  "fields": {
+    "order": 4,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 8,
+  "fields": {
+    "order": 5,
+    "product": 7,
+    "quantity": 1,
+    "product_price": 999.0,
+    "ordered": true,
+    "variations": [
+      19,
+      21
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 9,
+  "fields": {
+    "order": 5,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 10,
+  "fields": {
+    "order": 6,
+    "product": 3,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 11,
+  "fields": {
+    "order": 7,
+    "product": 3,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 12,
+  "fields": {
+    "order": 8,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 13,
+  "fields": {
+    "order": 9,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 14,
+  "fields": {
+    "order": 10,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 15,
+  "fields": {
+    "order": 11,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 16,
+  "fields": {
+    "order": 12,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 17,
+  "fields": {
+    "order": 13,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 18,
+  "fields": {
+    "order": 14,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 19,
+  "fields": {
+    "order": 15,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 20,
+  "fields": {
+    "order": 16,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 21,
+  "fields": {
+    "order": 17,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 22,
+  "fields": {
+    "order": 18,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 23,
+  "fields": {
+    "order": 19,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 24,
+  "fields": {
+    "order": 20,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 25,
+  "fields": {
+    "order": 21,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 26,
+  "fields": {
+    "order": 22,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 27,
+  "fields": {
+    "order": 23,
+    "product": 3,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 28,
+  "fields": {
+    "order": 24,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 29,
+  "fields": {
+    "order": 25,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 30,
+  "fields": {
+    "order": 26,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 31,
+  "fields": {
+    "order": 27,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 32,
+  "fields": {
+    "order": 28,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 33,
+  "fields": {
+    "order": 29,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 34,
+  "fields": {
+    "order": 30,
+    "product": 8,
+    "quantity": 1,
+    "product_price": 2200.0,
+    "ordered": true,
+    "variations": [
+      11,
+      14
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 35,
+  "fields": {
+    "order": 30,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 36,
+  "fields": {
+    "order": 31,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 37,
+  "fields": {
+    "order": 32,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 38,
+  "fields": {
+    "order": 33,
+    "product": 2,
+    "quantity": 2,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 39,
+  "fields": {
+    "order": 34,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 40,
+  "fields": {
+    "order": 35,
+    "product": 3,
+    "quantity": 3,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 41,
+  "fields": {
+    "order": 36,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 42,
+  "fields": {
+    "order": 37,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 43,
+  "fields": {
+    "order": 38,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": [
+      28,
+      31
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 44,
+  "fields": {
+    "order": 39,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 45,
+  "fields": {
+    "order": 40,
+    "product": 3,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 46,
+  "fields": {
+    "order": 41,
+    "product": 4,
+    "quantity": 1,
+    "product_price": 2500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 47,
+  "fields": {
+    "order": 42,
+    "product": 5,
+    "quantity": 1,
+    "product_price": 1800.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 48,
+  "fields": {
+    "order": 43,
+    "product": 6,
+    "quantity": 1,
+    "product_price": 1200.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 49,
+  "fields": {
+    "order": 44,
+    "product": 7,
+    "quantity": 1,
+    "product_price": 999.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 50,
+  "fields": {
+    "order": 45,
+    "product": 8,
+    "quantity": 1,
+    "product_price": 2200.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 51,
+  "fields": {
+    "order": 46,
+    "product": 9,
+    "quantity": 1,
+    "product_price": 200.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 52,
+  "fields": {
+    "order": 47,
+    "product": 10,
+    "quantity": 1,
+    "product_price": 1000.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 53,
+  "fields": {
+    "order": 48,
+    "product": 11,
+    "quantity": 1,
+    "product_price": 150.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 54,
+  "fields": {
+    "order": 49,
+    "product": 12,
+    "quantity": 1,
+    "product_price": 500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 56,
+  "fields": {
+    "order": 51,
+    "product": 3,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 57,
+  "fields": {
+    "order": 51,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": [
+      28,
+      31
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 58,
+  "fields": {
+    "order": 52,
+    "product": 4,
+    "quantity": 1,
+    "product_price": 2500.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 59,
+  "fields": {
+    "order": 53,
+    "product": 7,
+    "quantity": 1,
+    "product_price": 999.0,
+    "ordered": true,
+    "variations": [
+      17,
+      20
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 60,
+  "fields": {
+    "order": 54,
+    "product": 1,
+    "quantity": 5,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 61,
+  "fields": {
+    "order": 55,
+    "product": 3,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": [
+      61,
+      62
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 62,
+  "fields": {
+    "order": 56,
+    "product": 5,
+    "quantity": 1,
+    "product_price": 1800.0,
+    "ordered": true,
+    "variations": []
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 63,
+  "fields": {
+    "order": 57,
+    "product": 1,
+    "quantity": 1,
+    "product_price": 1500.0,
+    "ordered": true,
+    "variations": [
+      1,
+      3
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 64,
+  "fields": {
+    "order": 58,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": [
+      28,
+      32
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 65,
+  "fields": {
+    "order": 59,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": [
+      28,
+      31
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 66,
+  "fields": {
+    "order": 60,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": [
+      29,
+      31
+    ]
+  }
+},
+{
+  "model": "carts.orderitem",
+  "pk": 67,
+  "fields": {
+    "order": 61,
+    "product": 2,
+    "quantity": 1,
+    "product_price": 550.0,
+    "ordered": true,
+    "variations": [
+      28,
+      31
+    ]
+  }
+},
+{
+  "model": "carts.paymentaccount",
+  "pk": 7,
+  "fields": {
+    "user": [
+      "ghoseuditi@gmail.com"
+    ],
+    "payment_method": "bkash",
+    "account_number": "01704080389",
+    "created_at": "2025-10-20T19:27:25.215Z",
+    "updated_at": "2025-10-20T19:27:25.215Z"
+  }
+},
+{
+  "model": "carts.paymentaccount",
+  "pk": 8,
+  "fields": {
+    "user": [
+      "urmighosr@gmail.com"
+    ],
+    "payment_method": "bkash",
+    "account_number": "01723456681",
+    "created_at": "2025-11-17T20:03:19.466Z",
+    "updated_at": "2025-11-17T20:03:19.466Z"
+  }
+},
+{
+  "model": "carts.paymentaccount",
+  "pk": 9,
+  "fields": {
+    "user": [
+      "urmighosr@gmail.com"
+    ],
+    "payment_method": "rocket",
+    "account_number": "01767917972",
+    "created_at": "2025-11-17T20:43:17.253Z",
+    "updated_at": "2025-11-17T20:43:17.253Z"
+  }
+},
+{
+  "model": "carts.paymentaccount",
+  "pk": 10,
+  "fields": {
+    "user": [
+      "istiakadil43@gmail.com"
+    ],
+    "payment_method": "bkash",
+    "account_number": "01704080389",
+    "created_at": "2026-04-29T16:34:19.633Z",
+    "updated_at": "2026-04-29T16:34:19.633Z"
+  }
+},
+{
+  "model": "carts.paymentaccount",
+  "pk": 11,
+  "fields": {
+    "user": [
+      "urmighoseofficial@gmail.com"
+    ],
+    "payment_method": "bkash",
+    "account_number": "01704080389",
+    "created_at": "2026-10-30T16:15:44.500Z",
+    "updated_at": "2026-10-30T16:15:44.500Z"
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 1,
+  "fields": {
+    "order": 25,
+    "status": "Delivered",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-10-14T07:39:31.966Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 2,
+  "fields": {
+    "order": 26,
+    "status": "Delivered",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-10-14T07:45:29.039Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 3,
+  "fields": {
+    "order": 26,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2025-10-14T07:51:34.091Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 4,
+  "fields": {
+    "order": 23,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2025-10-14T07:54:04.798Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 5,
+  "fields": {
+    "order": 27,
+    "status": "Delivered",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-10-14T07:56:40.374Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 6,
+  "fields": {
+    "order": 27,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2025-10-14T07:58:03.171Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 7,
+  "fields": {
+    "order": 25,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2025-10-14T08:01:17.286Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 8,
+  "fields": {
+    "order": 8,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2025-10-14T08:32:44.681Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 9,
+  "fields": {
+    "order": 28,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-10-14T09:42:17.995Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 10,
+  "fields": {
+    "order": 28,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-10-14T09:44:28.715Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 11,
+  "fields": {
+    "order": 28,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2025-10-14T09:50:33.575Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 12,
+  "fields": {
+    "order": 29,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-10-14T09:58:21.198Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 13,
+  "fields": {
+    "order": 29,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-10-14T09:58:28.379Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 14,
+  "fields": {
+    "order": 30,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-10-18T17:57:07.680Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 15,
+  "fields": {
+    "order": 30,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-10-18T17:57:15.540Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 16,
+  "fields": {
+    "order": 31,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-10-18T18:05:25.864Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 17,
+  "fields": {
+    "order": 31,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-10-18T18:05:31.660Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 18,
+  "fields": {
+    "order": 32,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-10-19T08:55:11.198Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 19,
+  "fields": {
+    "order": 32,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-10-19T08:55:16.293Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 20,
+  "fields": {
+    "order": 33,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-10-19T12:25:58.694Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 21,
+  "fields": {
+    "order": 33,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-10-19T12:26:14.912Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 22,
+  "fields": {
+    "order": 33,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2025-10-19T12:28:23.434Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 23,
+  "fields": {
+    "order": 34,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-10-19T16:43:49.330Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 24,
+  "fields": {
+    "order": 34,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-10-19T16:44:07.616Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 25,
+  "fields": {
+    "order": 35,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-10-20T19:27:19.624Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 26,
+  "fields": {
+    "order": 35,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-10-20T19:27:25.234Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 27,
+  "fields": {
+    "order": 35,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2025-10-20T19:32:00.886Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 28,
+  "fields": {
+    "order": 36,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-11-17T20:03:06.002Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 29,
+  "fields": {
+    "order": 36,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2025-11-17T20:03:19.483Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 30,
+  "fields": {
+    "order": 38,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-11-17T20:43:09.232Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 31,
+  "fields": {
+    "order": 38,
+    "status": "Processing",
+    "notes": "Payment received via Rocket",
+    "timestamp": "2025-11-17T20:43:17.270Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 32,
+  "fields": {
+    "order": 51,
+    "status": "Processing",
+    "notes": "fsdgfdsy",
+    "timestamp": "2025-11-24T17:21:09.821Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 33,
+  "fields": {
+    "order": 51,
+    "status": "Shipped",
+    "notes": null,
+    "timestamp": "2025-11-24T17:25:58.030Z",
+    "updated_by": [
+      "urmighose81@gmail.com"
+    ]
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 34,
+  "fields": {
+    "order": 52,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-11-24T18:05:37.286Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 35,
+  "fields": {
+    "order": 52,
+    "status": "Processing",
+    "notes": null,
+    "timestamp": "2025-11-24T18:07:29.109Z",
+    "updated_by": [
+      "urmighose81@gmail.com"
+    ]
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 36,
+  "fields": {
+    "order": 53,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-11-24T18:36:08.683Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 37,
+  "fields": {
+    "order": 53,
+    "status": "Processing",
+    "notes": null,
+    "timestamp": "2025-11-24T18:36:55.710Z",
+    "updated_by": [
+      "urmighose81@gmail.com"
+    ]
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 38,
+  "fields": {
+    "order": 53,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2025-11-24T18:40:20.035Z",
+    "updated_by": [
+      "urmighose81@gmail.com"
+    ]
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 39,
+  "fields": {
+    "order": 54,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2026-04-29T16:34:01.795Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 40,
+  "fields": {
+    "order": 54,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2026-04-29T16:34:19.644Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 41,
+  "fields": {
+    "order": 55,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2026-04-29T16:35:34.723Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 42,
+  "fields": {
+    "order": 55,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2026-04-29T16:39:16.970Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 43,
+  "fields": {
+    "order": 56,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2026-04-29T16:43:15.260Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 44,
+  "fields": {
+    "order": 56,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2026-04-29T16:43:18.568Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 45,
+  "fields": {
+    "order": 56,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2026-04-29T16:46:33.571Z",
+    "updated_by": [
+      "urmighose81@gmail.com"
+    ]
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 46,
+  "fields": {
+    "order": 57,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2026-04-29T16:52:43.887Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 47,
+  "fields": {
+    "order": 57,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2026-04-29T16:52:46.976Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 48,
+  "fields": {
+    "order": 57,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2026-04-29T16:53:37.651Z",
+    "updated_by": [
+      "urmighose81@gmail.com"
+    ]
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 49,
+  "fields": {
+    "order": 55,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2026-04-29T17:06:06.603Z",
+    "updated_by": [
+      "urmighose81@gmail.com"
+    ]
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 50,
+  "fields": {
+    "order": 58,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2026-04-29T17:07:05.160Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 51,
+  "fields": {
+    "order": 58,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2026-04-29T17:07:08.341Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 52,
+  "fields": {
+    "order": 58,
+    "status": "Delivered",
+    "notes": null,
+    "timestamp": "2026-04-29T17:07:40.381Z",
+    "updated_by": [
+      "urmighose81@gmail.com"
+    ]
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 53,
+  "fields": {
+    "order": 59,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2026-10-30T16:00:39.400Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 54,
+  "fields": {
+    "order": 60,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2026-10-30T16:02:26.878Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 55,
+  "fields": {
+    "order": 61,
+    "status": "Placed",
+    "notes": null,
+    "timestamp": "2026-10-30T16:16:16.785Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.orderstatusupdate",
+  "pk": 56,
+  "fields": {
+    "order": 61,
+    "status": "Processing",
+    "notes": "Payment received via bKash",
+    "timestamp": "2026-10-30T16:16:21.583Z",
+    "updated_by": null
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 1,
+  "fields": {
+    "email": "sunf08124@gmail.com",
+    "otp_code": "182409",
+    "created_at": "2025-10-06T18:16:37.338Z",
+    "expires_at": "2025-10-06T19:00:22.957Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 5,
+  "fields": {
+    "email": "istiakadil382@gmail.com",
+    "otp_code": "775972",
+    "created_at": "2025-10-13T17:05:56.052Z",
+    "expires_at": "2025-10-13T20:09:49.278Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 6,
+  "fields": {
+    "email": "istiakadil8@gmail.com",
+    "otp_code": "483593",
+    "created_at": "2025-10-14T07:36:20.545Z",
+    "expires_at": "2025-10-19T16:52:56.648Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 13,
+  "fields": {
+    "email": "istiakadil382@gmail.com",
+    "otp_code": "447155",
+    "created_at": "2025-10-19T17:55:28.592Z",
+    "expires_at": "2025-10-20T00:05:28.591Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 14,
+  "fields": {
+    "email": "istiakadil346@gmail.com",
+    "otp_code": "471289",
+    "created_at": "2025-10-19T17:58:30.824Z",
+    "expires_at": "2025-10-20T00:08:30.823Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 16,
+  "fields": {
+    "email": "istiakadil38@gmail.com",
+    "otp_code": "780054",
+    "created_at": "2025-10-19T18:02:13.012Z",
+    "expires_at": "2025-10-20T00:12:13.012Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 17,
+  "fields": {
+    "email": "urmighose@gmail.com",
+    "otp_code": "213813",
+    "created_at": "2025-10-19T18:07:18.414Z",
+    "expires_at": "2025-10-20T00:17:18.414Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 18,
+  "fields": {
+    "email": "istiakadil38@gmail.com",
+    "otp_code": "926580",
+    "created_at": "2025-10-19T18:08:49.969Z",
+    "expires_at": "2025-10-20T00:18:49.968Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 19,
+  "fields": {
+    "email": "istiakadil382@gmail.com",
+    "otp_code": "975685",
+    "created_at": "2025-10-19T18:10:05.417Z",
+    "expires_at": "2025-10-20T00:20:05.417Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 21,
+  "fields": {
+    "email": "istiakadil3@gmail.com",
+    "otp_code": "409529",
+    "created_at": "2025-10-19T18:37:21.988Z",
+    "expires_at": "2025-10-20T00:47:21.988Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 22,
+  "fields": {
+    "email": "istiakadil382@gmail.com",
+    "otp_code": "648835",
+    "created_at": "2025-10-19T18:39:00.640Z",
+    "expires_at": "2025-10-20T00:49:00.640Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 26,
+  "fields": {
+    "email": "sunf08124@gmail.com",
+    "otp_code": "653851",
+    "created_at": "2025-10-20T17:04:05.026Z",
+    "expires_at": "2025-10-20T23:14:05.026Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 27,
+  "fields": {
+    "email": "istiakadil54@gmail.com",
+    "otp_code": "975437",
+    "created_at": "2025-10-20T17:41:39.538Z",
+    "expires_at": "2025-10-20T23:51:39.538Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 28,
+  "fields": {
+    "email": "istiakadil54@gmail.com",
+    "otp_code": "409017",
+    "created_at": "2025-10-20T18:00:03.108Z",
+    "expires_at": "2025-10-21T00:10:03.108Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 29,
+  "fields": {
+    "email": "istiakadil54@gmail.com",
+    "otp_code": "977689",
+    "created_at": "2025-10-20T18:04:00.622Z",
+    "expires_at": "2025-10-21T00:14:00.622Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 30,
+  "fields": {
+    "email": "istiakadil54@gmail.com",
+    "otp_code": "611447",
+    "created_at": "2025-10-20T18:18:57.093Z",
+    "expires_at": "2025-10-21T00:28:57.093Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 33,
+  "fields": {
+    "email": "test@example.com",
+    "otp_code": "919266",
+    "created_at": "2025-10-20T18:32:28.858Z",
+    "expires_at": "2025-10-20T18:42:28.854Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 34,
+  "fields": {
+    "email": "test@example.com",
+    "otp_code": "326592",
+    "created_at": "2025-10-20T18:33:26.777Z",
+    "expires_at": "2025-10-20T18:43:26.775Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 35,
+  "fields": {
+    "email": "test@example.com",
+    "otp_code": "193857",
+    "created_at": "2025-10-20T18:35:39.793Z",
+    "expires_at": "2025-10-20T18:45:39.791Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 37,
+  "fields": {
+    "email": "test@example.com",
+    "otp_code": "258871",
+    "created_at": "2025-10-20T18:55:01.956Z",
+    "expires_at": "2025-10-20T19:05:01.955Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 38,
+  "fields": {
+    "email": "test@example.com",
+    "otp_code": "906329",
+    "created_at": "2025-10-20T18:55:21.958Z",
+    "expires_at": "2025-10-20T19:05:21.958Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 41,
+  "fields": {
+    "email": "ghoseuditi@gmail.com",
+    "otp_code": "494030",
+    "created_at": "2025-10-20T19:26:55.905Z",
+    "expires_at": "2025-10-20T19:36:55.889Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 42,
+  "fields": {
+    "email": "jannat.arbin08@gamil.com",
+    "otp_code": "397590",
+    "created_at": "2025-10-28T05:15:50.118Z",
+    "expires_at": "2025-10-28T05:25:50.117Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 44,
+  "fields": {
+    "email": "urmighoser81@gmail.com",
+    "otp_code": "223231",
+    "created_at": "2025-11-17T17:32:31.233Z",
+    "expires_at": "2025-11-17T17:42:31.232Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 53,
+  "fields": {
+    "email": "urmighose81@gmail.com",
+    "otp_code": "115204",
+    "created_at": "2025-11-24T18:02:59.517Z",
+    "expires_at": "2025-11-24T18:12:59.507Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 56,
+  "fields": {
+    "email": "urmighosr@gmail.com",
+    "otp_code": "282696",
+    "created_at": "2025-11-24T18:34:53.219Z",
+    "expires_at": "2025-11-24T18:44:53.195Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 59,
+  "fields": {
+    "email": "istiakadil54@gmail.com",
+    "otp_code": "941614",
+    "created_at": "2026-04-28T15:35:29.503Z",
+    "expires_at": "2026-04-28T15:45:29.503Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 67,
+  "fields": {
+    "email": "istiakadil43@gmail.com",
+    "otp_code": "838284",
+    "created_at": "2026-04-29T17:06:45.810Z",
+    "expires_at": "2026-04-29T17:16:45.805Z"
+  }
+},
+{
+  "model": "carts.otp",
+  "pk": 70,
+  "fields": {
+    "email": "urmighoseofficial@gmail.com",
+    "otp_code": "107651",
+    "created_at": "2026-10-30T16:15:58.479Z",
+    "expires_at": "2026-10-30T16:25:58.473Z"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 109,
+  "fields": {
+    "action_time": "2025-11-11T01:33:55.454Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "userprofile"
+    ],
+    "object_id": "32",
+    "object_repr": "Test",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 110,
+  "fields": {
+    "action_time": "2025-11-11T01:45:17.373Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "13",
+    "object_repr": "T-Shirt",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 111,
+  "fields": {
+    "action_time": "2025-11-11T01:51:32.734Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "13",
+    "object_repr": "BOSS",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"variation\", \"object\": \"Off White\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"L\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 112,
+  "fields": {
+    "action_time": "2025-11-11T01:51:59.525Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "13",
+    "object_repr": "T-Shirt",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Cat image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 113,
+  "fields": {
+    "action_time": "2025-11-11T04:44:51.016Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "userprofile"
+    ],
+    "object_id": "34",
+    "object_repr": "Omi",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 114,
+  "fields": {
+    "action_time": "2025-11-11T04:45:03.785Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "userprofile"
+    ],
+    "object_id": "33",
+    "object_repr": "Jannat",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 115,
+  "fields": {
+    "action_time": "2025-11-11T04:52:02.461Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "1",
+    "object_repr": "Shirt",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 116,
+  "fields": {
+    "action_time": "2025-11-11T04:53:55.963Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "1",
+    "object_repr": "Shirt",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Stock\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 117,
+  "fields": {
+    "action_time": "2025-11-17T15:46:50.068Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "account"
+    ],
+    "object_id": "37",
+    "object_repr": "urmighose81@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is staff\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 118,
+  "fields": {
+    "action_time": "2025-11-17T16:08:56.761Z",
+    "user": [
+      "newadmin@example.com"
+    ],
+    "content_type": [
+      "accounts",
+      "account"
+    ],
+    "object_id": "37",
+    "object_repr": "urmighose81@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is staff\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 119,
+  "fields": {
+    "action_time": "2025-11-17T16:10:21.622Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "account"
+    ],
+    "object_id": "7",
+    "object_repr": "istiakadil8@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 120,
+  "fields": {
+    "action_time": "2025-11-17T17:13:39.209Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "account"
+    ],
+    "object_id": "23",
+    "object_repr": "istiakadil43@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 121,
+  "fields": {
+    "action_time": "2025-11-17T17:13:51.198Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "account"
+    ],
+    "object_id": "29",
+    "object_repr": "istiakadil54@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 122,
+  "fields": {
+    "action_time": "2025-11-17T17:36:24.358Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "account"
+    ],
+    "object_id": "39",
+    "object_repr": "urmighoser81@gmail.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 123,
+  "fields": {
+    "action_time": "2025-11-24T17:22:26.299Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "carts",
+      "orderstatusupdate"
+    ],
+    "object_id": "32",
+    "object_repr": "Order 2025112451 - Placed at 2025-11-24 17:21:09.821278+00:00",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Notes\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 124,
+  "fields": {
+    "action_time": "2025-11-24T17:23:15.619Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "carts",
+      "orderstatusupdate"
+    ],
+    "object_id": "32",
+    "object_repr": "Order 2025112451 - Placed at 2025-11-24 17:21:09.821278+00:00",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 125,
+  "fields": {
+    "action_time": "2025-11-24T17:25:14.566Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "carts",
+      "orderstatusupdate"
+    ],
+    "object_id": "32",
+    "object_repr": "Order 2025112451 - Processing at 2025-11-24 17:21:09.821278+00:00",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 126,
+  "fields": {
+    "action_time": "2025-11-24T17:26:02.339Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "carts",
+      "order"
+    ],
+    "object_id": "51",
+    "object_repr": "Srija",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 127,
+  "fields": {
+    "action_time": "2025-11-24T17:27:36.287Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "reviewaudit"
+    ],
+    "object_id": "1",
+    "object_repr": "approved on Updated Test Review by urmighose81@gmail.com",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Performed by\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 128,
+  "fields": {
+    "action_time": "2025-11-24T18:07:33.128Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "carts",
+      "order"
+    ],
+    "object_id": "52",
+    "object_repr": "Srija",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 129,
+  "fields": {
+    "action_time": "2025-11-24T18:37:02.223Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "carts",
+      "order"
+    ],
+    "object_id": "53",
+    "object_repr": "Srija",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 130,
+  "fields": {
+    "action_time": "2025-11-24T18:40:24.962Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "carts",
+      "order"
+    ],
+    "object_id": "53",
+    "object_repr": "Srija",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 131,
+  "fields": {
+    "action_time": "2026-02-01T15:51:47.746Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "14",
+    "object_repr": "Pumpies",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 132,
+  "fields": {
+    "action_time": "2026-02-01T15:57:02.558Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "14",
+    "object_repr": "Pumpies",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"variation\", \"object\": \"Light Pink\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"32\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"36\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 133,
+  "fields": {
+    "action_time": "2026-02-01T15:58:59.565Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "14",
+    "object_repr": "Nino Rossi Women’s Pump",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Category name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 134,
+  "fields": {
+    "action_time": "2026-02-01T16:02:01.101Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "14",
+    "object_repr": "Pumpies",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\"]}}, {\"added\": {\"name\": \"variation\", \"object\": \"40\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 135,
+  "fields": {
+    "action_time": "2026-02-01T16:04:21.719Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "15",
+    "object_repr": "Dr. Mauch Women's Pump",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 136,
+  "fields": {
+    "action_time": "2026-02-01T16:06:56.360Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "15",
+    "object_repr": "Pump",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"variation\", \"object\": \"Black\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"36\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"38\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"42\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 137,
+  "fields": {
+    "action_time": "2026-02-01T16:12:15.136Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "16",
+    "object_repr": "Slipper",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 138,
+  "fields": {
+    "action_time": "2026-02-01T16:15:48.653Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "16",
+    "object_repr": "Slipper",
+    "action_flag": 2,
+    "change_message": "[]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 139,
+  "fields": {
+    "action_time": "2026-02-01T16:17:19.669Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "16",
+    "object_repr": "Slipper",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"variation\", \"object\": \"Grey\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"36\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"38\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 140,
+  "fields": {
+    "action_time": "2026-02-01T16:19:34.488Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "17",
+    "object_repr": "Sandal",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 141,
+  "fields": {
+    "action_time": "2026-02-01T16:22:13.319Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "17",
+    "object_repr": "Nino Rossi Women's Flat Sandal",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"variation\", \"object\": \"Light\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 142,
+  "fields": {
+    "action_time": "2026-02-01T16:27:06.756Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "16",
+    "object_repr": "Dr. Mauch Women's Slipper",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Product name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 143,
+  "fields": {
+    "action_time": "2026-02-01T16:29:16.863Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "14",
+    "object_repr": "Nino Rossi Women’s Pump",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Product name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 144,
+  "fields": {
+    "action_time": "2026-02-01T16:29:45.515Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "15",
+    "object_repr": "Dr. Mauch Women’s Pump",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Product name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 145,
+  "fields": {
+    "action_time": "2026-02-01T16:32:16.479Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "18",
+    "object_repr": "Sprint",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 146,
+  "fields": {
+    "action_time": "2026-02-01T16:33:40.254Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "18",
+    "object_repr": "Canvas",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Category name\", \"Slug\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 147,
+  "fields": {
+    "action_time": "2026-02-01T16:36:04.879Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "18",
+    "object_repr": "Sprint Women's Canvas",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"variation\", \"object\": \"Black\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"36\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"38\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"40\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"42\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 148,
+  "fields": {
+    "action_time": "2026-02-01T16:40:11.001Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "19",
+    "object_repr": "Sports Shoe",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 149,
+  "fields": {
+    "action_time": "2026-02-01T16:42:27.249Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "19",
+    "object_repr": "Sprint Women's Sports Shoe",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"variation\", \"object\": \"Pink\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"38\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"40\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"42\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 150,
+  "fields": {
+    "action_time": "2026-02-01T17:00:32.363Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "17",
+    "object_repr": "Nino Rossi Women's Flat Sandal",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Images\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 151,
+  "fields": {
+    "action_time": "2026-02-01T17:01:19.255Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "17",
+    "object_repr": "Nino Rossi Women's Flat Sandal",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Images\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 152,
+  "fields": {
+    "action_time": "2026-02-01T17:01:37.386Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "16",
+    "object_repr": "Dr. Mauch Women's Slipper",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Images\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 153,
+  "fields": {
+    "action_time": "2026-02-03T07:19:28.499Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "13",
+    "object_repr": "T-Shirt",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 154,
+  "fields": {
+    "action_time": "2026-02-03T07:21:07.136Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "17",
+    "object_repr": "Nino Rossi Women's Flat Sandal",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"variation\", \"object\": \"Black\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 155,
+  "fields": {
+    "action_time": "2026-02-05T01:02:29.518Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "9",
+    "object_repr": "shirt",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\", \"Price\", \"Images\"]}}, {\"changed\": {\"name\": \"variation\", \"object\": \"Black\", \"fields\": [\"Variation value\"]}}, {\"changed\": {\"name\": \"variation\", \"object\": \"L\", \"fields\": [\"Variation value\"]}}, {\"changed\": {\"name\": \"variation\", \"object\": \"Green\", \"fields\": [\"Variation value\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 156,
+  "fields": {
+    "action_time": "2026-02-05T01:03:40.579Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "category",
+      "category"
+    ],
+    "object_id": "2",
+    "object_repr": "shirt",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\", \"Cat image\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 157,
+  "fields": {
+    "action_time": "2026-02-05T01:05:46.908Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "1",
+    "object_repr": "Shirt",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Description\", \"Images\"]}}, {\"changed\": {\"name\": \"variation\", \"object\": \"O\", \"fields\": [\"Variation value\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 158,
+  "fields": {
+    "action_time": "2026-02-05T01:15:00.748Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "9",
+    "object_repr": "shirt",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Images\"]}}, {\"changed\": {\"name\": \"variation\", \"object\": \"Blue\", \"fields\": [\"Variation value\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 159,
+  "fields": {
+    "action_time": "2026-02-05T01:17:12.148Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "7",
+    "object_repr": "juti",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Images\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 160,
+  "fields": {
+    "action_time": "2026-02-05T01:19:40.513Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "12",
+    "object_repr": "Heels",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"variation\", \"object\": \"Black\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"36\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"38\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 161,
+  "fields": {
+    "action_time": "2026-02-05T01:21:03.476Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "3",
+    "object_repr": "heels",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"variation\", \"object\": \"Black\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"36\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"38\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 162,
+  "fields": {
+    "action_time": "2026-02-05T01:22:44.681Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "4",
+    "object_repr": "Bags",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Product name\"]}}, {\"added\": {\"name\": \"variation\", \"object\": \"Black\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"Pink\"}}, {\"added\": {\"name\": \"variation\", \"object\": \"Brown\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 163,
+  "fields": {
+    "action_time": "2026-02-05T01:28:57.951Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "5",
+    "object_repr": "Metal Chains",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Product name\", \"Description\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 164,
+  "fields": {
+    "action_time": "2026-02-05T01:30:01.225Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "3",
+    "object_repr": "Semi Heels",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Product name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 165,
+  "fields": {
+    "action_time": "2026-02-05T01:31:30.855Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "3",
+    "object_repr": "Stelitto Heels",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Product name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 166,
+  "fields": {
+    "action_time": "2026-02-05T01:32:03.712Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "3",
+    "object_repr": "Stiletto Heels",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Product name\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 167,
+  "fields": {
+    "action_time": "2026-04-27T16:22:21.497Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "20",
+    "object_repr": "shirt123",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}, {\"added\": {\"name\": \"variation\", \"object\": \"M, L, X, XL, XXL\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 168,
+  "fields": {
+    "action_time": "2026-04-27T16:34:24.999Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "variationcategory"
+    ],
+    "object_id": "3",
+    "object_repr": "brand",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 169,
+  "fields": {
+    "action_time": "2026-04-27T16:35:55.318Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "variationcategory"
+    ],
+    "object_id": "4",
+    "object_repr": "material",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 170,
+  "fields": {
+    "action_time": "2026-04-27T16:46:58.653Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "accounts",
+      "account"
+    ],
+    "object_id": "33",
+    "object_repr": "test@example.com",
+    "action_flag": 3,
+    "change_message": ""
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 171,
+  "fields": {
+    "action_time": "2026-04-28T15:30:30.990Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "variationcategory"
+    ],
+    "object_id": "5",
+    "object_repr": "beauty",
+    "action_flag": 1,
+    "change_message": "[{\"added\": {}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 172,
+  "fields": {
+    "action_time": "2026-04-29T07:52:35.143Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "20",
+    "object_repr": "shirt123",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 173,
+  "fields": {
+    "action_time": "2026-04-29T07:59:36.149Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "18",
+    "object_repr": "Sprint Women's Canvas",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 174,
+  "fields": {
+    "action_time": "2026-04-29T07:59:52.817Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "16",
+    "object_repr": "Dr. Mauch Women's Slipper",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 175,
+  "fields": {
+    "action_time": "2026-04-29T08:01:14.115Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "12",
+    "object_repr": "Heels",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 176,
+  "fields": {
+    "action_time": "2026-04-29T08:01:34.387Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "6",
+    "object_repr": "earring",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 177,
+  "fields": {
+    "action_time": "2026-04-29T08:07:18.579Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "9",
+    "object_repr": "shirt",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 178,
+  "fields": {
+    "action_time": "2026-04-29T08:07:36.019Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "4",
+    "object_repr": "Bags",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 179,
+  "fields": {
+    "action_time": "2026-04-29T08:15:52.117Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "20",
+    "object_repr": "shirt123",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Images\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 180,
+  "fields": {
+    "action_time": "2026-04-29T08:17:22.154Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "20",
+    "object_repr": "shirt123",
+    "action_flag": 2,
+    "change_message": "[{\"added\": {\"name\": \"productgallery\", \"object\": \"shirt123\"}}, {\"added\": {\"name\": \"productgallery\", \"object\": \"shirt123\"}}, {\"added\": {\"name\": \"productgallery\", \"object\": \"shirt123\"}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 181,
+  "fields": {
+    "action_time": "2026-04-29T16:46:37.343Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "carts",
+      "order"
+    ],
+    "object_id": "56",
+    "object_repr": "Istiak",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 182,
+  "fields": {
+    "action_time": "2026-04-29T16:53:41.466Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "carts",
+      "order"
+    ],
+    "object_id": "57",
+    "object_repr": "Istiak",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 183,
+  "fields": {
+    "action_time": "2026-04-29T17:06:10.949Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "carts",
+      "order"
+    ],
+    "object_id": "55",
+    "object_repr": "Istiak",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 184,
+  "fields": {
+    "action_time": "2026-04-29T17:07:44.409Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "carts",
+      "order"
+    ],
+    "object_id": "58",
+    "object_repr": "Istiak",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Status\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 185,
+  "fields": {
+    "action_time": "2026-04-29T17:22:46.874Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "reviewrating"
+    ],
+    "object_id": "5",
+    "object_repr": "nice product",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is visible\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 186,
+  "fields": {
+    "action_time": "2026-04-29T17:22:57.773Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "reviewrating"
+    ],
+    "object_id": "5",
+    "object_repr": "nice product",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is visible\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 187,
+  "fields": {
+    "action_time": "2026-04-29T17:25:40.116Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "reviewrating"
+    ],
+    "object_id": "7",
+    "object_repr": "nice producthjf",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Is visible\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 188,
+  "fields": {
+    "action_time": "2026-05-01T16:44:40.572Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "5",
+    "object_repr": "Metal Chains",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 189,
+  "fields": {
+    "action_time": "2026-05-01T17:07:02.356Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "4",
+    "object_repr": "Bags",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 190,
+  "fields": {
+    "action_time": "2026-05-01T17:07:23.129Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "5",
+    "object_repr": "Metal Chains",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 191,
+  "fields": {
+    "action_time": "2026-05-01T17:10:05.022Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "16",
+    "object_repr": "Dr. Mauch Women's Slipper",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+},
+{
+  "model": "admin.logentry",
+  "pk": 192,
+  "fields": {
+    "action_time": "2026-05-01T17:12:35.829Z",
+    "user": [
+      "urmighose81@gmail.com"
+    ],
+    "content_type": [
+      "store",
+      "product"
+    ],
+    "object_id": "12",
+    "object_repr": "Heels",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"Discount percent\"]}}]"
+  }
+}
+]
